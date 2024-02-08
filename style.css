@@ -1,6 +1,6 @@
 body {
     margin: 0; 
-    background: url(IMG_0050.jpeg);
+    background: url(image3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -16,7 +16,7 @@ body {
 }
 
 #logo {
-    width: 18px; /* Adjust the size of the logo */
+    width: 40px; /* Adjust the size of the logo */
     height: auto; /* Maintain aspect ratio */
 }
 
@@ -24,7 +24,7 @@ body {
     font-family: cursive, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: antiquewhite;
     text-decoration: none;
-    font-size: 25px; /* Adjust the font size */
+    font-size: 30px; /* Adjust the font size */
     margin-left: 10px; /* Add spacing between the logo and name */
     text-align: center;
 }
@@ -32,18 +32,20 @@ body {
 .btnLogin-popup {
     font-family: cursive, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /*background-color: #4CAF50;  Set background color for the login button */
-    color: rgb(0, 0, 0);
+    color: antiquewhite;
     border-radius: 50px; 
     border: 5px solid transparent; 
-    background: linear-gradient(45deg,rgba(255, 115, 0, 0.387),rgba(137, 92, 18, 0.643)) border-box; 
+    /*background: linear-gradient(45deg,rgba(255, 115, 0, 0.387),rgba(137, 92, 18, 0.643)) border-box; */
     padding: 10px 20px; /* Adjust padding for the button */
-    font-size: 16px; /* Adjust the font size */
+    font-size: 20px; /* Adjust the font size */
     cursor: pointer;
-    background-color: rgb(100, 101, 95);
+    background-color: rgba(52, 48, 100, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .btnLogin-popup:hover {
-    background-color: #45a049; /* Change background color on hover */
+    background-color: rgba(48, 76, 100, 0.5);
+    backdrop-filter: blur(10px);
 }
 
 .searchContainer {
@@ -54,10 +56,10 @@ body {
 #searchBar {
     padding: 20px;
     font-size: 16px;
-    margin-top: 100px;
+    margin-top: 20px;
     border: white;
     border-radius: 30px;
-    background: linear-gradient(45deg,rgba(251, 203, 164, 0.338),rgba(130, 103, 60, 0.643)) border-box; 
+    background: linear-gradient(45deg,rgb(76, 106, 119),rgb(99, 136, 151)) border-box; 
     padding: 10px 20px; /* Adjust padding for the button */
     font-size: 16px; 
     background-color: rgb(100, 101, 95);
