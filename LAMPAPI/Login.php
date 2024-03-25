@@ -1,7 +1,7 @@
 <?php
   $inData = getRequestInfo();
 	
-	$id = 0;
+	$UserID = 0;
   $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
   if( $conn->connect_error )
 	{ 
@@ -16,7 +16,7 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithInfo( $row['ID'] );
+			returnWithInfo( $row['UserID'] );
 		}
 		else
 		{
@@ -40,13 +40,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0 . $err . '"}';
+		$retValue = '{"UserID":0 . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo($id )
 	{
-		$retValue = '{"id":' . $id . '","error":""}';
+		$retValue = '{"UserID":' . $UserID . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
