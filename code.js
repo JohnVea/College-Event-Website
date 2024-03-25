@@ -50,6 +50,11 @@ Login.addEventListener('click', function() {
         console.log('UserID:', userID);
         console.log('FirstName:', firstName);
         SignedInUser.textContent = firstName;
+        if (SignedInUser) {
+            SignedInUser.textContent = firstName;
+        } else {
+            console.error('Signed-in user element not found.');
+        }
         window.location.href = 'signedin.html'
         
 
