@@ -52,6 +52,7 @@ Login.addEventListener('click', function() {
 
     })
     .catch(error => {
+        console.log('Error:', error);
         // Handle any errors that occur during the fetch operation
         console.error('Error logging in:', error);
         // Display error message to the user or handle it accordingly
