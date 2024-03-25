@@ -7,7 +7,7 @@
     if ($conn->connect_error) { 
         returnWithError($conn->connect_error);
     } else {
-        $stmt = $conn->prepare("SELECT UserID, FirstName FROM Users WHERE Username=? AND Password=?");
+        $stmt = $conn->prepare("SELECT UserID FROM Users WHERE Username=? AND Password=?");
         $stmt->bind_param("ss", $inData["Username"], $inData["Password"]);
         $stmt->execute();
         $result = $stmt->get_result();
