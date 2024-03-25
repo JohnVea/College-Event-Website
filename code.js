@@ -24,47 +24,47 @@ Login.addEventListener('click', async function() {
 async function doLogin() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+//	var hash = md5( password );
+	
+	document.getElementById("loginResult").innerHTML = "";
 
-    try {
-        // Make an HTTP request to the server to authenticate the user
-        // (Assuming the server endpoint is named login.php)
-        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                Username: username,
-                Password: password
-            })
-        });
+	let tmp = {Username:username, Password:password};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = 'http://unieventverse.com/LAMPAPI/Login.php'
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
-        }
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.UserID;
+		
+				if( userId < 1 )
+				{		
+					//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					alert("User/Password combination incorrect")
+					return;
+				}
+		
+				firstName = jsonObject.FirstName;
 
-        const data = await response.json();
-
-        // Check if there's an error message
-        if (data.error) {
-            console.error('Error:', data.error);
-            // Handle the error, such as displaying an error message to the user
-        } else {
-            // If no error, store the user info in variables (using bracket notation)
-            const userID = data['UserID'];
-            const firstName = data['FirstName'];
-            
-            // Do whatever you need with the stored user info
-            console.log('UserID:', userID);
-            console.log('FirstName:', firstName);
-            // Redirect the user to the signed-in page
-            SignedInUser.textContent = firstName;
-            window.location.href = "signedin.html";
-        }
-    } catch (error) {
-        // Handle any errors that occur during the fetch operation
-        console.error('Error:', error);
-        //window.location.href = "signedin.html";
-        // Display error message to the user or handle it accordingly
-    }
+				saveCookie();
+                SignedInUser.textContent = firstName;
+                console.log(firstName)
+				window.location.href = "signedin.html";
+				//alert(firstName+","+lastName+"UserId:"+userId);
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
 }
