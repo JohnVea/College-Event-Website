@@ -55,6 +55,24 @@ Login.addEventListener('click', function() {
     .catch(error => {
         // Log the specific error received from the server
         console.error('Error logging in:', error);
-        // Display error message to the user or handle it accordingly
+        // Check if the error is a server response
+        if (error instanceof Response) {
+            // Parse the error response as JSON
+            error.json().then(data => {
+                // Display the error message to the user or handle it accordingly
+                console.error('Server error:', data.error);
+                // You can display an error message to the user here
+            }).catch(parseError => {
+                // If there's an error parsing the response JSON, log it
+                console.error('Error parsing server response:', parseError);
+                // You can handle this error separately, such as displaying a generic error message
+            });
+        } else {
+            // If the error is not a server response, handle it accordingly
+            // This could be a network error, CORS issue, or other client-side error
+            console.error('Non-server error:', error);
+            // You can display a generic error message to the user here
+        }
     });
+    
 });
