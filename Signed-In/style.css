@@ -1,0 +1,153 @@
+body {
+    margin: 0; 
+    background: url(wp2140463.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between; /* Align items to the ends of the container */
+    align-items: center; /* Center items vertically */
+    /*background-color: #333;  Set background color for the navigation bar */
+    padding: 5px; /* Add padding to the navigation bar */
+}
+
+#logo {
+    width: 3%; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#name {
+    color: rgb(222, 208, 188);
+    text-decoration: none;
+    font-size: 250%; /* Adjust the font size */
+    margin-left: 5%; /* Add spacing between the logo and name */
+    text-align: center;
+}
+
+.navigation {
+    position: relative;
+    background-color: rgba(215, 214, 214, 0.5);
+    backdrop-filter: blur(50px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+.signedOnUser {
+    font-family: cursive, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /*background-color: #4CAF50;  Set background color for the login button */
+    color: antiquewhite;
+    border-radius: 250%; 
+    border: 5px solid transparent; 
+    /*background: linear-gradient(45deg,rgba(255, 115, 0, 0.387),rgba(137, 92, 18, 0.643)) border-box; */
+    padding: 10px 20px; 
+    font-size: 130%; /* Adjust the font size */
+    cursor: pointer;
+    background-color: rgba(52, 48, 100, 0.2);
+    backdrop-filter: blur(100%);
+}
+
+.signedOnUser:hover {
+    background-color: rgba(48, 76, 100, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.searchContainer {
+   border: white;
+   border-radius: 10px;
+}
+
+#searchBar {
+    padding: 40px; /* Increase padding for more space inside the search bar */
+    font-size: 24px; /* Increase font size for better visibility */
+    margin-top: 4%;
+    border-radius: 50px; /* Increase border-radius for rounder corners */
+    
+    padding: 1% 8%; /* Adjust padding for the button */
+    font-size: 20px; /* Reset font size */
+    
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: antiquewhite;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(30px); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    /*display: none;*/
+}
+
+
+
+.login-container {
+    width: 32%;
+    min-width: 210px; 
+    min-height: 40px;
+    max-width: 20%;
+    padding: 5%;
+    padding-right: 5%;
+    border: 5% solid #ccc;
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-sizing: border-box;
+    display: none;
+    background-color: rgba(199, 197, 197, 0.5);
+    backdrop-filter: blur(50px); 
+}
+
+
+
+
+.login-container label[for="username"],
+.login-container label[for="password"] {
+    color: antiquewhite;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.login-container input#username {
+    height: 20px;
+    width: 100%;
+    margin-bottom: 10px; 
+    margin-right: 20%;
+    border-radius: 5px;
+    border: 2px antiquewhite;
+}
+.login-container input#password {
+    height: 20px;
+    width: 100%;
+    margin-bottom: 10px; 
+    border-radius: 5px;
+    border: 2px antiquewhite;
+    margin-right: 20%;
+}
+.username{
+    height: 200px;
+    width: 250px;
+    margin-bottom: 10px; 
+    
+}
+
+.login-container button {
+    height: 20px;
+    width: 90px; 
+    margin-right: 14%;
+    margin-bottom: 5%;
+}
+
+#searchBar::placeholder {
+    color: rgb(252, 237, 218);
+}
+
