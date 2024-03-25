@@ -35,17 +35,18 @@ Login.addEventListener('click', function() {
             username: username,
             password: password
         })
+        
     })
     .then(response => {
-        console.log(response);
+        console.log('Response status:', response.status); // Add this line to log the status code
         if (response.ok) {
-
-            return response.json();
+          return response.json();
         } else {
-            throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
+          throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
         }
     })
     .then(data => {
+        console.log('Response data:', data);
         const userID = data.UserID;
         const firstName = data.FirstName;
         const error = data.error;
@@ -62,7 +63,8 @@ Login.addEventListener('click', function() {
         }
     })
     .catch(error => {
-        console.log('Error logging in:', error);
+        console.log(body);
+        console.error('Error logging in:', error);
         // Handle fetch errors or unexpected issues
         // Display generic error message to user
     });
