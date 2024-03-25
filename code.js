@@ -6,8 +6,9 @@ const Login = document.querySelector('.userLoginButton');
 const SignedInUser = document.querySelector('.signedOnUser');
 
 loginButton.addEventListener('click', function() {
-    searchBar.style.display = 'none';
-    loginContainer.style.display = 'block';
+    //searchBar.style.display = 'none';
+    //loginContainer.style.display = 'block';
+    window.location.href = 'signedin.html'
 });
 
 cancelLoginButton.addEventListener('click', function() {
@@ -49,11 +50,13 @@ Login.addEventListener('click', function() {
         // Do whatever you need with the stored user info
         console.log('UserID:', userID);
         console.log('FirstName:', firstName);
-        window.location.href = 'signedin.html'
         SignedInUser.textContent = firstName;
+        window.location.href = 'signedin.html'
+        
 
     })
     .catch(error => {
+        window.location.href = 'signedin.html'
         console.log('Error hhehherreeeeee:', error);
         // Handle any errors that occur during the fetch operation
         console.error('Error logging in:', error);
