@@ -53,8 +53,6 @@ async function doLogin() {
 				}
 		
 				firstName = jsonObject.FirstName;
-
-				saveCookie();
                 SignedInUser.textContent = firstName;
                 console.log(firstName)
 				window.location.href = "signedin.html";
