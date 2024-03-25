@@ -17,47 +17,42 @@ cancelLoginButton.addEventListener('click', function() {
 
 // Your existing code...
 Login.addEventListener('click', function() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    // Retrieve username and password from input fields
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
 
-    document.getElementById("loginResult").innerHTML = "";
-
-    const data = { Username: username, Password: password };
-    const jsonPayload = JSON.stringify(data);
-    const url = 'http://unieventverse.com/LAMPAPI/Login.php'
-
-    fetch(url, {
+    // Make an HTTP request to the server to authenticate the user
+    // (Assuming the server endpoint is named login.php)
+    fetch('http://unieventverse.com/LAMPAPI/Login.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
+            'Content-Type': 'application/json'
         },
-        body: jsonPayload
+        body: JSON.stringify({
+            Username: username,
+            Password: password
+        })
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
-        }
-    })
+    .then(response => response.json())
     .then(data => {
-        const userId = data.UserID;
-        const firstName = data.FirstName;
-        const error = data.error;
-    
-        if (error) {
-            console.error('Error:', error);
-            console.log(error.message);
-            // Handle specific errors (e.g., invalid credentials, server error)
-            // Display appropriate error message to user
+        // Check if there's an error message
+        if (data.error !== "") {
+            console.error('Error:', data.error);
+            // Handle the error, such as displaying an error message to the user
         } else {
-            console.log(data.FirstName);
-            console.log('Login successful!');
-            // Update UI or show loading indicator
-            window.location.href = "contact.html";
+            // If no error, store the user info in variables
+            var userID = data.UserID;
+            var firstName = data.FirstName;
+            
+            // Do whatever you need with the stored user info
+            console.log('UserID:', userID);
+            console.log('FirstName:', firstName);
         }
     })
     .catch(error => {
-        console.log(error.message);
+        // Handle any errors that occur during the fetch operation
+        console.error('Error:', error);
+        // Display error message to the user or handle it accordingly
     });
 });
+
