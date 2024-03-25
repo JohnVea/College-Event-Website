@@ -20,34 +20,28 @@ Login.addEventListener('click', function() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    if (!username || !password) {
-        console.error('Error: Username or password cannot be empty');
-        // Display error message to user
-        return;
-    }
+    document.getElementById("loginResult").innerHTML = "";
 
-    fetch('http://unieventverse.com/LAMPAPI/Login.php', {
+    const data = { Username: username, Password: password };
+    const jsonPayload = JSON.stringify(data);
+    const url = 'http://unieventverse.com/LAMPAPI/Login.php'
+
+    fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: JSON.stringify({
-            username: username,
-            password: password
-        })
-        
+        body: jsonPayload
     })
     .then(response => {
-        console.log('Response status:', response.status); // Add this line to log the status code
         if (response.ok) {
-          return response.json();
+            return response.json();
         } else {
-          throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
+            throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
         }
     })
     .then(data => {
-        console.log('Response data:', data);
-        const userID = data.UserID;
+        const userId = data.UserID;
         const firstName = data.FirstName;
         const error = data.error;
 
@@ -56,16 +50,13 @@ Login.addEventListener('click', function() {
             // Handle specific errors (e.g., invalid credentials, server error)
             // Display appropriate error message to user
         } else {
-            loginResultElement.innerHTML = error.message;
+            document.getElementById("loginResult").innerHTML = error.message;
             console.log('Login successful!');
             // Update UI or show loading indicator
-            window.location.href = 'signedin.html';
+            window.location.href = "signedin.html";
         }
     })
     .catch(error => {
-        console.log('Response data:', data);
-        console.error('Error logging in:', error);
-        // Handle fetch errors or unexpected issues
-        // Display generic error message to user
+        document.getElementById("loginResult").innerHTML = error.message;
     });
 });
