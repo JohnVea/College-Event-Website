@@ -6,6 +6,7 @@ const Login = document.querySelector('.userLoginButton');
 const SignedInUser = document.querySelector('.signedOnUser');
 
 loginButton.addEventListener('click', function() {
+    console.log('Login button clicked'); // Debug statement
     searchBar.style.display = 'none';
     loginContainer.style.display = 'block';
 });
@@ -16,7 +17,11 @@ cancelLoginButton.addEventListener('click', function() {
 });
 
 Login.addEventListener('click', async function() {
-    // Retrieve username and password from input fields
+    console.log('User login button clicked'); // Debug statement
+    await doLogin();
+});
+
+async function doLogin() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -57,10 +62,9 @@ Login.addEventListener('click', async function() {
             window.location.href = "signedin.html";
         }
     } catch (error) {
-        
         // Handle any errors that occur during the fetch operation
         console.error('Error:', error);
-        window.location.href = "signedin.html";
+        //window.location.href = "signedin.html";
         // Display error message to the user or handle it accordingly
     }
-});
+}
