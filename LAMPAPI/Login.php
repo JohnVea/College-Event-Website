@@ -1,6 +1,7 @@
 <?php
     $inData = getRequestInfo();
     $UserID = 0;
+    $FirstName = "";
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
     if ($conn->connect_error) { 
@@ -13,7 +14,13 @@
     
         if ($row = $result->fetch_assoc()) {
             $UserID = $row['UserID'];
-            $FirstName = $row['FirstName'];
+            $stmt = $conn->prepare("SELECT FirstName FROM Profiles WHERE UserID=?");
+            $stmt->bind_param("s", $UserID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                $FirstName = $row['FirstName'];
+            }
             returnWithInfo($UserID, $FirstName);
         } else {
             returnWithError("No Records Found");
