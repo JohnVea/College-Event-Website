@@ -52,6 +52,7 @@ Login.addEventListener('click', function() {
             console.log('UserID:', userID);
             console.log('FirstName:', firstName);
             // Redirect the user to the signed-in page
+            SignedInUser.textContent = firstName;
             window.location.href = "signedin.html";
         }
     })
