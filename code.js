@@ -6,9 +6,8 @@ const Login = document.querySelector('.userLoginButton');
 const SignedInUser = document.querySelector('.signedOnUser');
 
 loginButton.addEventListener('click', function() {
-    //searchBar.style.display = 'none';
-    //loginContainer.style.display = 'block';
-    window.location.href = 'signedin.html'
+    searchBar.style.display = 'none';
+    loginContainer.style.display = 'block';
 });
 
 cancelLoginButton.addEventListener('click', function() {
