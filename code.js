@@ -33,10 +33,15 @@ Login.addEventListener('click', function() {
             Password: password
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
         // Check if there's an error message
-        if (data.error !== "") {
+        if (data.error) {
             console.error('Error:', data.error);
             // Handle the error, such as displaying an error message to the user
         } else {
@@ -47,6 +52,8 @@ Login.addEventListener('click', function() {
             // Do whatever you need with the stored user info
             console.log('UserID:', userID);
             console.log('FirstName:', firstName);
+            // Redirect the user to the signed-in page
+            window.location.href = "signedin.html";
         }
     })
     .catch(error => {
@@ -55,4 +62,3 @@ Login.addEventListener('click', function() {
         // Display error message to the user or handle it accordingly
     });
 });
-
