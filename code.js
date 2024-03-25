@@ -15,30 +15,31 @@ cancelLoginButton.addEventListener('click', function() {
     loginContainer.style.display = 'none';
 });
 
-Login.addEventListener('click', function() {
+Login.addEventListener('click', async function() {
     // Retrieve username and password from input fields
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Make an HTTP request to the server to authenticate the user
-    // (Assuming the server endpoint is named login.php)
-    fetch('http://unieventverse.com/LAMPAPI/Login.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            Username: username,
-            Password: password
-        })
-    })
-    .then(response => {
+    try {
+        // Make an HTTP request to the server to authenticate the user
+        // (Assuming the server endpoint is named login.php)
+        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Username: username,
+                Password: password
+            })
+        });
+
         if (!response.ok) {
             throw new Error('Failed to fetch: ' + response.status + ' ' + response.statusText);
         }
-        return response.json();
-    })
-    .then(data => {
+
+        const data = await response.json();
+
         // Check if there's an error message
         if (data.error) {
             console.error('Error:', data.error);
@@ -55,10 +56,11 @@ Login.addEventListener('click', function() {
             SignedInUser.textContent = firstName;
             window.location.href = "signedin.html";
         }
-    })
-    .catch(error => {
+    } catch (error) {
+        
         // Handle any errors that occur during the fetch operation
         console.error('Error:', error);
+        window.location.href = "signedin.html";
         // Display error message to the user or handle it accordingly
-    });
+    }
 });
