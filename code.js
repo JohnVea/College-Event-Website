@@ -51,7 +51,7 @@ Login.addEventListener('click', function() {
         console.log('FirstName:', firstName);
         SignedInUser.textContent = firstName;
         if (SignedInUser) {
-            SignedInUser.textContent = firstName;
+            SignedInUser.textContent = data.FirstName;
         } else {
             console.error('Signed-in user element not found.');
         }
@@ -60,7 +60,6 @@ Login.addEventListener('click', function() {
 
     })
     .catch(error => {
-        window.location.href = 'signedin.html'
         console.log('Error hhehherreeeeee:', error);
         // Handle any errors that occur during the fetch operation
         console.error('Error logging in:', error);
