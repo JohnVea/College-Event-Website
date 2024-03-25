@@ -15,11 +15,10 @@ cancelLoginButton.addEventListener('click', function() {
     loginContainer.style.display = 'none';
 });
 
-// Your existing code...
 Login.addEventListener('click', function() {
     // Retrieve username and password from input fields
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
     // Make an HTTP request to the server to authenticate the user
     // (Assuming the server endpoint is named login.php)
@@ -45,9 +44,9 @@ Login.addEventListener('click', function() {
             console.error('Error:', data.error);
             // Handle the error, such as displaying an error message to the user
         } else {
-            // If no error, store the user info in variables
-            var userID = data.UserID;
-            var firstName = data.FirstName;
+            // If no error, store the user info in variables (using bracket notation)
+            const userID = data['UserID'];
+            const firstName = data['FirstName'];
             
             // Do whatever you need with the stored user info
             console.log('UserID:', userID);
