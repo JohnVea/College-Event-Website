@@ -3,6 +3,7 @@ const loginContainer = document.querySelector('.login-container');
 const searchBar = document.getElementById('searchBar');
 const cancelLoginButton = document.querySelector('.cancelLoginButton');
 const Login = document.querySelector('.userLoginButton');
+const SignedInUser = document.querySelector('.signedOnUser');
 
 loginButton.addEventListener('click', function() {
     searchBar.style.display = 'none';
@@ -45,14 +46,15 @@ Login.addEventListener('click', function() {
         // Redirect or perform any necessary actions here
         var userID = data.UserID;
         var firstName = data.FirstName;
-        loginButton.textContent = firstName;
         // Do whatever you need with the stored user info
         console.log('UserID:', userID);
         console.log('FirstName:', firstName);
+        window.location.href = 'signedin.html'
+        SignedInUser.textContent = firstName;
 
     })
     .catch(error => {
-        console.log('Error:', error);
+        console.log('Error hhehherreeeeee:', error);
         // Handle any errors that occur during the fetch operation
         console.error('Error logging in:', error);
         // Display error message to the user or handle it accordingly
