@@ -16,7 +16,8 @@ cancelLoginButton.addEventListener('click', function() {
 });
 
 Login.addEventListener('click', function() {
-    // Get the username and password entered by the user
+    doLogin();
+    /*// Get the username and password entered by the user
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -41,38 +42,85 @@ Login.addEventListener('click', function() {
         }
     })
     .then(data => {
-        // Handle the data returned by the API (e.g., redirect to dashboard)
-        console.log('Login successful:', data);
-        // Redirect or perform any necessary actions here
-        var userID = data.UserID;
-        var firstName = data.FirstName;
-        // Do whatever you need with the stored user info
-        console.log('UserID:', userID);
-        console.log('FirstName:', firstName);
-        SignedInUser.textContent = firstName;
-        window.location.href = 'signedin.html';
+        // Handle the data returned by the API
+        console.log('Login response:', data);
+        const userID = data.UserID;
+        const firstName = data.FirstName;
+        const error = data.error;
+
+        // Check for any potential error message
+        if (error) {
+            console.error('Error:', error);
+            // Handle the error (e.g., display an error message to the user)
+        } else {
+            // No error, proceed with signed-in user actions
+            console.log('UserID:', userID);
+            console.log('FirstName:', firstName);
+            // Update UI or redirect to signed-in page
+            window.location.href = 'signedin.html';
+        }
     })
     .catch(error => {
-        // Log the specific error received from the server
+        // Handle any errors that occur during the fetch operation
+        console.log(data.userID);
+        console.log('Error:', error);
         console.error('Error logging in:', error);
-        // Check if the error is a server response
-        if (error instanceof Response) {
-            // Parse the error response as JSON
-            error.json().then(data => {
-                // Display the error message to the user or handle it accordingly
-                console.error('Server error:', data.error);
-                // You can display an error message to the user here
-            }).catch(parseError => {
-                // If there's an error parsing the response JSON, log it
-                console.error('Error parsing server response:', parseError);
-                // You can handle this error separately, such as displaying a generic error message
-            });
-        } else {
-            // If the error is not a server response, handle it accordingly
-            // This could be a network error, CORS issue, or other client-side error
-            console.error('Non-server error:', error);
-            // You can display a generic error message to the user here
-        }
-    });
-    
+        // Display error message to the user or handle it accordingly
+    });*/
 });
+
+async function doLogin() {
+    const url = 'http://unieventverse.com/LAMPAPI/Login.php'
+    let login = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let loginResultElement = document.getElementById("loginResult");
+    if (!loginResultElement) {
+        console.error("Element with ID 'loginResult' not found.");
+        return;
+    }
+
+    // Clear the inner HTML of the "loginResult" element if it exists
+    loginResultElement.innerHTML = "";
+
+    let data = { login: login, password: password };
+    let jsonPayload = JSON.stringify(data);
+
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            body: jsonPayload
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        let jsonObject = await response.json();
+
+        let userId = jsonObject.id;
+
+        if (userId < 1) {
+            alert("User/Password combination incorrect");
+            return;
+        }
+
+        let firstName = jsonObject.FirstName;
+        console.log(firstName);
+        SignedInUser.textContent = firstName;
+
+        saveCookie();
+        window.location.href = "signedin.html";
+        // alert(firstName + "," + lastName + "UserId:" + userId);
+    } catch (error) {
+        // Display the error message in the "loginResult" element if it exists
+        if (loginResultElement) {
+            loginResultElement.innerHTML = error.message;
+        } else {
+            console.error("Error occurred:", error);
+        }
+    }
+}
