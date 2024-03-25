@@ -63,7 +63,7 @@ Login.addEventListener('click', function() {
         }
     })
     .catch(error => {
-        console.log(body);
+        console.log('Response data:', data);
         console.error('Error logging in:', error);
         // Handle fetch errors or unexpected issues
         // Display generic error message to user
