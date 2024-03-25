@@ -4,7 +4,7 @@
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
-  $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
+  $conn = new mysql("localhost", "JohnVea", "1loveComputers", "COP4710");
   if( $conn->connect_error )
 	{ 
 		returnWithError( $conn->connect_error );
