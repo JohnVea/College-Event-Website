@@ -43,6 +43,13 @@ Login.addEventListener('click', function() {
         // Handle the data returned by the API (e.g., redirect to dashboard)
         console.log('Login successful:', data);
         // Redirect or perform any necessary actions here
+        var userID = data.UserID;
+        var firstName = data.FirstName;
+        loginButton.textContent = firstName;
+        // Do whatever you need with the stored user info
+        console.log('UserID:', userID);
+        console.log('FirstName:', firstName);
+
     })
     .catch(error => {
         // Handle any errors that occur during the fetch operation
