@@ -44,19 +44,20 @@ Login.addEventListener('click', function() {
         const userId = data.UserID;
         const firstName = data.FirstName;
         const error = data.error;
-
+    
         if (error) {
             console.error('Error:', error);
+            console.log(error.message);
             // Handle specific errors (e.g., invalid credentials, server error)
             // Display appropriate error message to user
         } else {
-            document.getElementById("loginResult").innerHTML = error.message;
+            console.log(data.FirstName);
             console.log('Login successful!');
             // Update UI or show loading indicator
-            window.location.href = "signedin.html";
+            window.location.href = "contact.html";
         }
     })
     .catch(error => {
-        document.getElementById("loginResult").innerHTML = error.message;
+        console.log(error.message);
     });
 });
