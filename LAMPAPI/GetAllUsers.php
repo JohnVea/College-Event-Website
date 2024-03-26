@@ -1,6 +1,7 @@
 <?php
-    // Allow only GET and POST methods
-    header("Access-Control-Allow-Methods: GET, POST");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
