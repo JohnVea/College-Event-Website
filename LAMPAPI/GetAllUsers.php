@@ -1,4 +1,7 @@
 <?php
+    // Allow only GET and POST methods
+    header("Access-Control-Allow-Methods: GET, POST");
+
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
     if ($conn->connect_error) { 
