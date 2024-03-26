@@ -19,8 +19,8 @@ cancelLoginButton.addEventListener('click', function() {
 
 Login.addEventListener('click', async function() {
     console.log('User login button clicked');
-    await doLogin();
-    
+    //await doLogin();
+    await getUsers();
 });
 
 async function doLogin() {
@@ -58,6 +58,33 @@ async function doLogin() {
     } catch (error) {
         // Handle any errors that might occur during login
         console.error('Error during login:', error.message);
+        // Optionally display an error message to the user
+        // You can update a DOM element with an error message, show a modal, etc.
+    }
+}
+
+
+async function getUsers() {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetUsers.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch users');
+        }
+
+        const data = await response.json();
+
+        // Handle the response data as needed
+        console.log('Users:', data);
+
+    } catch (error) {
+        // Handle any errors that might occur during fetching users
+        console.error('Error fetching users:', error.message);
         // Optionally display an error message to the user
         // You can update a DOM element with an error message, show a modal, etc.
     }
