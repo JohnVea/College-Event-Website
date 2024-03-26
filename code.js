@@ -34,20 +34,26 @@ async function doLogin() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ Username : username, Password : password })
         });
 
         if (!response.ok) {
-            // If response is not OK (e.g., status code 400 or 500), handle error accordingly
             throw new Error('Login failed');
         }
 
         const data = await response.json();
-        // Assuming your API returns some data after successful login, you can handle it here
-        console.log('Login successful:', data);
-        
-        // Redirect or perform other actions after successful login
-        // window.location.href = '/dashboard'; // Example redirect
+
+        if (data.error === "") {
+            // Successful login
+            console.log('Login successful:', data);
+            // Assuming you have an element to display the user's first name
+            const firstNameElement = document.getElementById('firstName');
+            firstNameElement.textContent = data.FirstName;
+            // Optionally redirect the user or perform other actions
+        } else {
+            // Login failed
+            throw new Error(data.error);
+        }
 
     } catch (error) {
         // Handle any errors that might occur during login
