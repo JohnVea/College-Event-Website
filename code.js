@@ -19,15 +19,53 @@ cancelLoginButton.addEventListener('click', function() {
 
 Login.addEventListener('click', async function() {
     console.log('User login button clicked');
-    //await doLogin();
-    await getUsers();
+    await doLogin();
+   // await getUsers();
 });
 
 async function doLogin() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    try {
+	let tmp = {Username: username, Password:password};
+	let jsonPayload = JSON.stringify( tmp );
+	
+
+    let url = 'http://unieventverse.com/LAMPAPI/Login.php';
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.userId;
+		
+				if( userId < 1 )
+				{		
+					//document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					alert("User/Password combination incorrect")
+					return;
+				}
+		
+				let firstName = jsonObject.FirstName;
+                firstNameElement.textContent = firstName;
+                console.log('Login successful:', firstName);
+
+				window.location.href = "signedin.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.err("login Error : " + err.message);
+	}
+
+    /*try {
         // Assuming you have some API endpoint for login, you can use fetch or any other method to send the login request
         const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
@@ -60,7 +98,7 @@ async function doLogin() {
         console.error('Error during login:', error.message);
         // Optionally display an error message to the user
         // You can update a DOM element with an error message, show a modal, etc.
-    }
+    }*/
 }
 
 async function getUsers() {
