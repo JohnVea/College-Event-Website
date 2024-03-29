@@ -1,7 +1,15 @@
 <?php
+    // Allow requests from any origin
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    // Allow certain methods (e.g., POST)
+    header("Access-Control-Allow-Methods: POST");
+    
+    // Allow specific headers
+    header("Access-Control-Allow-Headers: Content-Type");
+    
+    // Set response content type
+    header("Content-Type: application/json");
 
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
