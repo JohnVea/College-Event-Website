@@ -71,7 +71,7 @@ async function doLogin() {
 
 async function getUsers() {
     try {
-      const response = await fetch('http://unieventverse.com/GetAllUsers.php', {
+      const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllUsers.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
