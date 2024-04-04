@@ -1,6 +1,6 @@
 body {
     margin: 0; 
-    background: url(wp2140463.jpg);
+    background: url(img.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -20,7 +20,7 @@ body {
 }
 
 #name {
-    color: rgb(222, 208, 188);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 250%; /* Adjust the font size */
     margin-left: 5%; /* Add spacing between the logo and name */

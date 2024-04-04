@@ -9,7 +9,8 @@ const loginResult = document.getElementById('loginResult'); // Assuming element 
 loginButton.addEventListener('click', function() {
     console.log('Login button clicked');
     searchBar.style.display = 'none';
-    loginContainer.style.display = 'block';
+    //loginContainer.style.display = 'block';
+    getUsers();
 });
 
 cancelLoginButton.addEventListener('click', function() {
