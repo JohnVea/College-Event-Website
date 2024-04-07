@@ -63,8 +63,9 @@ async function fetchLocations() {
     return await response.json();
 }
 
+
 // Function to create an event card based on event data
-function createEventCard(event) {
+function createEventCard(event, locations) {
     const eventCard = document.createElement('div');
     eventCard.classList.add('eventCard');
 
@@ -104,6 +105,7 @@ function createEventCard(event) {
 }
 
 
+
 // Listen for changes in the search bar input field
 const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('input', searchEvents);
@@ -132,9 +134,10 @@ function searchEvents() {
         
         // Loop through each search result and create event cards
         events.forEach(event => {
-            const eventCard = createEventCard(event);
+            const eventCard = createEventCard(event, locations);
             displayEventsContainer.appendChild(eventCard);
         });
+        
     })
     .catch(error => {
         console.error('Error searching events:', error);
