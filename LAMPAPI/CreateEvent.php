@@ -11,17 +11,22 @@
     // Set response content type
     header("Content-Type: application/json");
 
-    $inData = getRequestInfo();
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
     if ($conn->connect_error) { 
         returnWithError($conn->connect_error);
     } else {
-        // Retrieve event data from request
-        $time = $inData["time"];
-        $location = $inData["location"];
-        $eventName = $inData["eventName"];
-        $description = $inData["description"];
+        // Retrieve raw JSON data from request body
+        $json_data = file_get_contents('php://input');
+        
+        // Decode JSON data
+        $data = json_decode($json_data, true);
+        
+        // Extract data fields
+        $time = $data['time'];
+        $location = $data['location'];
+        $eventName = $data['eventName'];
+        $description = $data['description'];
 
         // Prepare and execute SQL statement to insert new event
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
@@ -38,10 +43,6 @@
 
         $stmt->close();
         $conn->close();
-    }
-    
-    function getRequestInfo() {
-        return json_decode(file_get_contents('php://input'), true);
     }
     
     function sendResultInfoAsJson($obj) {
