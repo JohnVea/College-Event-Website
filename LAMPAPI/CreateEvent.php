@@ -39,8 +39,7 @@
     }
     
     function getRequestInfo() {
-        $json = file_get_contents('php://input');
-        return json_decode($json, true);
+        return json_decode(file_get_contents('php://input'), true);
     }
     
     function sendResultInfoAsJson($obj) {
