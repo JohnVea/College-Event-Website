@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset = "utf-8">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./style.css">
         <title>Univentverse</title>
     </head>
 
@@ -10,30 +10,28 @@
         
         <nav class="navigation">
                 <img src="/Subject.png" alt="Logo" id="logo">
-                <a href="#" id="name">Unieventverse</a>
-                <button class="btnLogin-popup">Log In</button>
+                <div class="searchContainer">
+                    <input type="text" id="searchBar" placeholder="Search for events..." color: antiquewhite>
+                </div>
+                <button class="Signout"> Logout </button>
         </nav>
-        <div class="searchContainer">
-            <input type="text" id="searchBar" placeholder="Search for events..." color: antiquewhite>
-        </div>
-
-        <div class="login-container">
-            <div class="login">
-                <form>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                
-                    <button type="submit">Log In</button>
-                    <button class="cancelLoginButton" type="button">Cancel</button>
-                </form>    
+        
+        <div class="displayEventsContainer">
+            <div class="eventCard">
+                <h1 class="eventName"></h1>
+                <h2 class="eventDate"></h2>
+                <h3 class="eventTime"></h3>
+                <h3 class="longitude"></h3>
+                <h3 class="latitude"></h3>
+                <h3 class="eventLocation"></h3>
+                <p class="eventDescription"></p>
             </div>
-            
+            <button class="createEvent">Create Event</button>
         </div>
 
-        <script src="code.js"></script>
+        
+
+        <script src="./script.js"></script>
         
                 
            
