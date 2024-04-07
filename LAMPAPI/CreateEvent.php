@@ -45,7 +45,7 @@ if (!$locId) {
     $locId = substr($location, 0, 10); // Truncate the name if it's too long
     $descr = "Default description"; // Change this to your desired default description
     $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
-    $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
+    $insertLocationStmt->bind_param("sssss", $locId, $location, $description, $longitude, $latitude);
     if (!$insertLocationStmt->execute()) {
         returnWithError("Failed to insert location: " . $insertLocationStmt->error);
     }
