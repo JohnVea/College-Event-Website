@@ -56,12 +56,12 @@ if (!$locId) {
     $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("siss", $time, $locId, $eventName, $description);
     
-    
+    returnWithError("Failed to create event: $locId");
         if ($stmt->execute()) {
             $response = array("message" => "Event created successfully");
             sendResultInfoAsJson($response);
         } else {
-            $error = $locId;
+            $error = $stmt->error;
             returnWithError("Failed to create event: $error");
         }
     
