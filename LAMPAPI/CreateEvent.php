@@ -26,33 +26,14 @@ $latitude = $inData['latitude'];
 $eventName = $inData['eventName'];
 $description = $inData['description'];
 
+// Truncate location to fit within 10 characters
+$locId = substr($location, 0, 10);
+
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
 if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
-    // Check if the location already exists in the Locations table
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
-    $checkLocationStmt->bind_param("s", $location);
-    $checkLocationStmt->execute();
-    $checkLocationStmt->store_result();
-    $checkLocationStmt->bind_result($locId);
-    $checkLocationStmt->fetch();
-    $checkLocationStmt->close();
-
-    if (!$locId) {
-        // Location doesn't exist, insert it into the Locations table
-        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Longitude, Latitude) VALUES (?, ?, ?, ?)");
-        $insertLocationStmt->bind_param("ssdd", $location, $location, $longitude, $latitude);
-        if (!$insertLocationStmt->execute()) {
-            returnWithError("Failed to insert location: " . $insertLocationStmt->error);
-        }
-        $insertLocationStmt->close();
-
-        // Retrieve the inserted Location ID
-        $locId = $location;
-    }
-
     // Now insert the event into the Events table
     $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("siss", $time, $locId, $eventName, $description);
