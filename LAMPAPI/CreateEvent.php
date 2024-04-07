@@ -56,10 +56,7 @@ if (!$locId) {
     $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("siss", $time, $locId, $eventName, $description);
 
-    ob_start();
     
-    $dumpedStatement = ob_get_clean();
-    return $dumpedStatement;
         if ($stmt->execute()) {
             $response = array("message" => "Event created successfully");
             sendResultInfoAsJson($response);
