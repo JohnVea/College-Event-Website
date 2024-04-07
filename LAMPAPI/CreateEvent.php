@@ -20,6 +20,7 @@
     $latitude = $inData['latitude'];
     $eventName = $inData['eventName'];
     $description = $inData['description'];
+    $loc = $location;
     
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
@@ -54,7 +55,7 @@
     
         // Now insert the event into the Events table
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("siss", $time, $location, $eventName, $description);
+        $stmt->bind_param("siss", $time, $loc, $eventName, $description);
     
         if ($stmt->execute()) {
             $response = array("message" => "Event created successfully");
