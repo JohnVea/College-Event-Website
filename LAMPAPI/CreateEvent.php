@@ -26,7 +26,6 @@
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $time, $location, $eventName, $description);
         $stmt->execute();
-        $result = $stmt->get_result();
     
         
         if ($stmt->execute()) {
