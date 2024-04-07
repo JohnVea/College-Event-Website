@@ -21,23 +21,19 @@ $inData = getRequestInfo();
 
 $time = $inData['time'];
 $location = $inData['location'];
-$eventName = $inData['eventName'];
-$description = $inData['description'];
 $longitude = $inData['longitude'];
 $latitude = $inData['latitude'];
+$eventName = $inData['eventName'];
+$description = $inData['description'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
 if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
-    // Extract the city from the location string
-    $locationParts = explode(',', $location);
-    $city = trim($locationParts[0]);
-
     // Check if the location already exists in the Locations table
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE LocID = ?");
-    $checkLocationStmt->bind_param("s", $city);
+    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
+    $checkLocationStmt->bind_param("s", $location);
     $checkLocationStmt->execute();
     $checkLocationStmt->store_result();
     $checkLocationStmt->bind_result($locId);
@@ -46,18 +42,19 @@ if ($conn->connect_error) {
 
     if (!$locId) {
         // Location doesn't exist, insert it into the Locations table
-        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Longitude, Latitude) VALUES (?, ?, ?, ?)");
-        $insertLocationStmt->bind_param("ssdd", $city, $location, $longitude, $latitude);
+        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (Name, Longitude, Latitude) VALUES (?, ?, ?)");
+        $insertLocationStmt->bind_param("sdd", $location, $longitude, $latitude);
         if (!$insertLocationStmt->execute()) {
             returnWithError("Failed to insert location: " . $insertLocationStmt->error);
         }
         $insertLocationStmt->close();
-        $locId = $city;
+        // Retrieve the inserted Location ID
+        $locId = $conn->insert_id;
     }
 
     // Now insert the event into the Events table
     $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $time, $locId, $eventName, $description);
+    $stmt->bind_param("siss", $time, $locId, $eventName, $description);
 
     if ($stmt->execute()) {
         $response = array("message" => "Event created successfully");
