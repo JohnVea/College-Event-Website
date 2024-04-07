@@ -57,7 +57,7 @@ if (!$locId) {
     $stmt->bind_param("siss", $time, $locId, $eventName, $description);
 
     ob_start();
-    $stmt->debugDumpParams();
+    
     $dumpedStatement = ob_get_clean();
     return $dumpedStatement;
         if ($stmt->execute()) {
