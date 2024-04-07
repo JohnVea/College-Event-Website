@@ -63,6 +63,47 @@ async function fetchLocations() {
     return await response.json();
 }
 
+// Function to create an event card based on event data
+function createEventCard(event) {
+    const eventCard = document.createElement('div');
+    eventCard.classList.add('eventCard');
+
+    const eventName = document.createElement('h1');
+    eventName.textContent = 'Event: ' + event.EventName;
+
+    const eventDate = document.createElement('h2');
+    eventDate.textContent = "Time: " + event.EventTime;
+
+    // Find the location that matches the event's location
+    const location = locations.find(location => location.LocID === event.Location);
+
+    const eventLocation = document.createElement('h3');
+    eventLocation.textContent = "Event Location: " + location.Name;
+
+    const longitude = document.createElement('h3');
+    longitude.textContent = "\tLongitude: " + location.Longitude;
+
+    const latitude = document.createElement('h3');
+    latitude.textContent = "\tLatitude: " + location.Latitude;
+
+    const eventDescription = document.createElement('p');
+    eventDescription.textContent = event.Description;
+
+    eventCard.appendChild(eventName);
+    eventCard.appendChild(eventDate);
+    eventCard.appendChild(eventLocation);
+    eventCard.appendChild(longitude);
+    eventCard.appendChild(latitude);
+    eventCard.appendChild(eventDescription);
+
+    // Set height of event card based on description height
+    const descriptionHeight = eventDescription.clientHeight;
+    eventCard.style.height = descriptionHeight + 10 + '%';
+
+    return eventCard;
+}
+
+
 // Listen for changes in the search bar input field
 const searchBar = document.getElementById('searchBar');
 searchBar.addEventListener('input', searchEvents);
