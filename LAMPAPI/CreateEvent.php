@@ -11,12 +11,11 @@
     // Set response content type
     header("Content-Type: application/json");
 
-
     $inData = getRequestInfo();
-    $time = $data['time'];
-    $location = $data['location'];
-    $eventName = $data['eventName'];
-    $description = $data['description'];
+    $time = $inData['time'];
+    $location = $inData['location'];
+    $eventName = $inData['eventName'];
+    $description = $inData['description'];
 
     $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
     
@@ -25,11 +24,9 @@
     } else {
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $time, $location, $eventName, $description);
-        $stmt->execute();
-    
         
         if ($stmt->execute()) {
-            response = array("message" => "Event created successfully");
+            $response = array("message" => "Event created successfully");
             sendResultInfoAsJson($response);
         } else {
             returnWithError("Failed to create event");
@@ -45,10 +42,6 @@
     
     function sendResultInfoAsJson($obj) {
         header('Content-type: application/json');
-        echo $obj;
-    }
-    
-    function sendResultInfoAsJson($obj) {
         echo json_encode($obj);
     }
     
@@ -56,9 +49,4 @@
         $response = array("error" => $err);
         sendResultInfoAsJson($response);
     }
-
-
-
-    
-    
 ?>
