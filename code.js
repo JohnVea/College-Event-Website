@@ -64,7 +64,7 @@ async function doLogin() {
         if (data.error === "") {
             console.log('Login successful:', data);
             localStorage.setItem('userData', JSON.stringify(data));
-            window.location.href = "Signed-In/home.html";
+            window.location.href = "./Signed-In/home.html";
         } else {
             throw new Error(data.error);
         }
