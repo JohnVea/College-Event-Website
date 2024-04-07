@@ -61,7 +61,7 @@ if (!$locId) {
             $response = array("message" => "Event created successfully");
             sendResultInfoAsJson($response);
         } else {
-            $error = $stmt->error;
+            $error = $locId;
             returnWithError("Failed to create event: $error");
         }
     
@@ -76,7 +76,7 @@ if (!$locId) {
             $json = file_get_contents('php://input');
             $data = json_decode($json, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                returnWithError("Invalid JSON data: " . $locId);
+                returnWithError("Invalid JSON data: " . json_last_error_msg());
             }
             return $data;
         } else {
