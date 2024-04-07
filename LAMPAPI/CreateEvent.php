@@ -1,4 +1,4 @@
-<?php
+xisting<?php
     
     // Allow requests from any origin
     header("Access-Control-Allow-Origin: *");
@@ -34,7 +34,7 @@
         $checkLocationStmt->bind_param("s", $location);
         $checkLocationStmt->execute();
         $checkLocationStmt->store_result();
-        $checkLocationStmt->bind_result($locId); // Use $locId instead of $existingLocId
+        $checkLocationStmt->bind_result($existingLocId);
         $checkLocationStmt->fetch();
         $checkLocationStmt->close();
 
@@ -47,7 +47,10 @@
             if (!$insertLocationStmt->execute()) {
                 returnWithError("Failed to insert location: " . $insertLocationStmt->error);
             }
+            
             $insertLocationStmt->close();
+        }else{
+            $locId = $existingLocId;
         }
     
         // Now insert the event into the Events table
