@@ -1,6 +1,6 @@
 body {
     margin: 0; 
-    background: url(img.jpg);
+    background: url(./img.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
