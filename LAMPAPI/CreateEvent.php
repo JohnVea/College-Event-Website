@@ -29,13 +29,15 @@ $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    // Extract the city from the location string
+    // Extract the city and state from the location string
     $locationParts = explode(',', $location);
     $city = trim($locationParts[0]);
+    $state = trim($locationParts[1] ?? '');
+    $fullLocation = "$city, $state";
 
     // Check if the location already exists in the Locations table
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE LocID = ?");
-    $checkLocationStmt->bind_param("s", $city);
+    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
+    $checkLocationStmt->bind_param("s", $fullLocation);
     $checkLocationStmt->execute();
     $checkLocationStmt->bind_result($locId);
     $checkLocationStmt->fetch();
@@ -43,9 +45,9 @@ if ($conn->connect_error) {
 
     if (!$locId) {
         // Location doesn't exist, insert it into the Locations table
-        $locId = $city;
+        $locId = uniqid('loc_', true);
         $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name) VALUES (?, ?)");
-        $insertLocationStmt->bind_param("ss", $locId, $location);
+        $insertLocationStmt->bind_param("ss", $locId, $fullLocation);
         $insertLocationStmt->execute();
         $insertLocationStmt->close();
     }
