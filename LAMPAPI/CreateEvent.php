@@ -48,6 +48,7 @@ if ($conn->connect_error) {
             returnWithError("Failed to insert location: " . $insertLocationStmt->error);
         }
         $insertLocationStmt->close();
+
         // Retrieve the inserted Location ID
         $locId = $conn->insert_id;
     }
