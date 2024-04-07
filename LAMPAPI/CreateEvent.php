@@ -34,9 +34,10 @@
         $checkLocationStmt->bind_param("s", $location);
         $checkLocationStmt->execute();
         $checkLocationStmt->store_result();
-        $checkLocationStmt->bind_result($existingLocId);
+        $checkLocationStmt->bind_result($locId); // Use $locId instead of $existingLocId
         $checkLocationStmt->fetch();
         $checkLocationStmt->close();
+
     
         if (!$existingLocId) {
             // Location doesn't exist, insert it into the Locations table
@@ -47,9 +48,6 @@
                 returnWithError("Failed to insert location: " . $insertLocationStmt->error);
             }
             $insertLocationStmt->close();
-        } else {
-            // Use the existing LocID
-            $locId = $existingLocId;
         }
     
         // Now insert the event into the Events table
