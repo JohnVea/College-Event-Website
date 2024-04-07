@@ -1,5 +1,10 @@
 <?php
 
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Allow requests from any origin
 header("Access-Control-Allow-Origin: *");
 
@@ -31,7 +36,8 @@ if ($conn->connect_error) {
         $response = array("message" => "Event created successfully");
         sendResultInfoAsJson($response);
     } else {
-        returnWithError("Failed to create event");
+        $error = $stmt->error;
+        returnWithError("Failed to create event: $error");
     }
 
     $stmt->close();
@@ -43,7 +49,11 @@ function getRequestInfo() {
 
     if ($contentType === 'application/json') {
         $json = file_get_contents('php://input');
-        return json_decode($json, true);
+        $data = json_decode($json, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            returnWithError("Invalid JSON data: " . json_last_error_msg());
+        }
+        return $data;
     } else {
         return $_POST;
     }
@@ -56,5 +66,7 @@ function sendResultInfoAsJson($obj) {
 function returnWithError($err) {
     $response = array("error" => $err);
     sendResultInfoAsJson($response);
+    http_response_code(500);
+    exit;
 }
 ?>
