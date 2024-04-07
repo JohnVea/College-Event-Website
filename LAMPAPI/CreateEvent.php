@@ -54,7 +54,7 @@
     
         // Now insert the event into the Events table
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("siss", $time, $locID, $eventName, $description);
+        $stmt->bind_param("siss", $time, $locId, $eventName, $description);
     
         if ($stmt->execute()) {
             $response = array("message" => "Event created successfully");
