@@ -50,15 +50,6 @@ if (!$locId) {
         returnWithError("Failed to insert location: " . $insertLocationStmt->error);
     }
     $insertLocationStmt->close();
-}else{
-
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
-    $checkLocationStmt->bind_param("s", $location);
-    $checkLocationStmt->execute();
-    $checkLocationStmt->store_result();
-    $checkLocationStmt->bind_result($locId);
-    $checkLocationStmt->fetch();
-    $checkLocationStmt->close();
 }
     
     // Now insert the event into the Events table
@@ -85,7 +76,7 @@ if (!$locId) {
             $json = file_get_contents('php://input');
             $data = json_decode($json, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                returnWithError("Invalid JSON data: " . json_last_error_msg());
+                returnWithError("Invalid JSON data: " . $locId);
             }
             return $data;
         } else {
