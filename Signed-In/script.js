@@ -1,3 +1,5 @@
+let locationsData; // Define a variable to store locations data globally
+
 // Fetch events from the API and display them
 fetchEvents();
 
@@ -7,45 +9,16 @@ function fetchEvents() {
     .then(events => {
         fetchLocations()
         .then(locations => {
+            locationsData = locations; // Store locations data globally
             const displayEventsContainer = document.querySelector('.displayEventsContainer');
             
             // Loop through each event and create HTML elements to display them
             events.forEach(event => {
-                const eventCard = document.createElement('div');
-                eventCard.classList.add('eventCard');
-
-                const eventName = document.createElement('h1');
-                eventName.textContent = 'Event: ' + event.EventName;
-
-                const eventDate = document.createElement('h2');
-                eventDate.textContent = "Time: " + event.EventTime;
-
-                // Find the location that matches the event's location
-                const location = locations.find(location => location.LocID === event.Location);
-
-                const eventLocation = document.createElement('h3');
-                eventLocation.textContent = "Event Location: " + location.Name;
-
-                const longitude = document.createElement('h3');
-                longitude.textContent = "\tLongitude: " + location.Longitude;
-
-                const latitude = document.createElement('h3');
-                latitude.textContent = "\tLatitude: " + location.Latitude;
-
-                const eventDescription = document.createElement('p');
-                eventDescription.textContent = event.Description;
-
-                eventCard.appendChild(eventName);
-                eventCard.appendChild(eventDate);
-                eventCard.appendChild(eventLocation);
-                eventCard.appendChild(longitude);
-                eventCard.appendChild(latitude);
-                eventCard.appendChild(eventDescription);
-
+                const eventCard = createEventCard(event, locationsData); // Pass locations data
                 displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
 
                 // Set height of event card based on description height
-                const descriptionHeight = eventDescription.clientHeight;
+                const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
                 eventCard.style.height = descriptionHeight + 10 + '%';
             });
         })
@@ -62,7 +35,6 @@ async function fetchLocations() {
     const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllLocations.php');
     return await response.json();
 }
-
 
 // Function to create an event card based on event data
 function createEventCard(event, locations) {
@@ -88,6 +60,7 @@ function createEventCard(event, locations) {
     latitude.textContent = "\tLatitude: " + location.Latitude;
 
     const eventDescription = document.createElement('p');
+    eventDescription.classList.add('eventDescription');
     eventDescription.textContent = event.Description;
 
     eventCard.appendChild(eventName);
@@ -97,14 +70,8 @@ function createEventCard(event, locations) {
     eventCard.appendChild(latitude);
     eventCard.appendChild(eventDescription);
 
-    // Set height of event card based on description height
-    const descriptionHeight = eventDescription.clientHeight;
-    eventCard.style.height = descriptionHeight + 10 + '%';
-
     return eventCard;
 }
-
-
 
 // Listen for changes in the search bar input field
 const searchBar = document.getElementById('searchBar');
@@ -134,10 +101,13 @@ function searchEvents() {
         
         // Loop through each search result and create event cards
         events.forEach(event => {
-            const eventCard = createEventCard(event, locations);
+            const eventCard = createEventCard(event, locationsData); // Pass locations data
             displayEventsContainer.appendChild(eventCard);
+
+            // Set height of event card based on description height
+            const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
+            eventCard.style.height = descriptionHeight + 10 + '%';
         });
-        
     })
     .catch(error => {
         console.error('Error searching events:', error);
