@@ -9,10 +9,17 @@
     if ($conn->connect_error) { 
         returnWithError($conn->connect_error);
     } else {
-        $time = $_POST['time'];
-        $location = $_POST['location'];
-        $eventName = $_POST['eventName'];
-        $description = $_POST['description'];
+        // Get the JSON data from the request body
+        $json_data = file_get_contents('php://input');
+        
+        // Decode JSON data
+        $data = json_decode($json_data, true);
+        
+        // Extract data fields
+        $time = $data['time'];
+        $location = $data['location'];
+        $eventName = $data['eventName'];
+        $description = $data['description'];
 
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $time, $location, $eventName, $description);
