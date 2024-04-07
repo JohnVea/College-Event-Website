@@ -49,10 +49,16 @@ function getRequestInfo() {
 
     if ($contentType === 'application/json') {
         $json = file_get_contents('php://input');
+        echo "Raw JSON data: $json\n";
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            returnWithError("Invalid JSON data: " . json_last_error_msg());
+            $jsonError = json_last_error_msg();
+            echo "JSON decode error: $jsonError\n";
+            returnWithError("Invalid JSON data: $jsonError");
         }
+        echo "Decoded JSON data: ";
+        print_r($data);
+        echo "\n";
         return $data;
     } else {
         return $_POST;
