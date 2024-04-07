@@ -47,7 +47,7 @@ if ($conn->connect_error) {
         // Location doesn't exist, insert it into the Locations table
         $descr = $description;
         $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
-        $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
+        $insertLocationStmt->bind_param("sssss", $locId, $eventName, $descr, $longitude, $latitude);
         if (!$insertLocationStmt->execute()) {
             returnWithError("Failed to insert location: " . $insertLocationStmt->error);
         }
