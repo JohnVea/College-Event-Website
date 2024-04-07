@@ -9,8 +9,8 @@ const loginResult = document.getElementById('loginResult'); // Assuming element 
 loginButton.addEventListener('click', function() {
     console.log('Login button clicked');
     searchBar.style.display = 'none';
-    //loginContainer.style.display = 'block';
-    getUsers();
+    loginContainer.style.display = 'block';
+    //getUsers();
 });
 
 cancelLoginButton.addEventListener('click', function() {
@@ -24,16 +24,29 @@ Login.addEventListener('click', async function() {
    // await getUsers();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.querySelector('form');
+
+    loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        try {
+            await doLogin(); // Call the login function
+        } catch (error) {
+            console.error('Error during form submission:', error.message);
+            // Optionally display an error message to the user
+        }
+    });
+});
+
 async function doLogin() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-	let tmp = {Username: username, Password:password};
-	let jsonPayload = JSON.stringify( tmp );
-	
+    let tmp = {Username: username, Password:password};
+    let jsonPayload = JSON.stringify(tmp);
 
     try {
-        // Assuming you have some API endpoint for login, you can use fetch or any other method to send the login request
         const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
             headers: {
@@ -49,25 +62,17 @@ async function doLogin() {
         const data = await response.json();
 
         if (data.error === "") {
-            // Successful login
             console.log('Login successful:', data);
-            // Assuming you have an element to display the user's first name
-            const firstNameElement = document.getElementById('firstName');
-            firstNameElement.textContent = data.FirstName;
-            window.location.href = "signedin.html";
-            // Optionally redirect the user or perform other actions
+            localStorage.setItem('userData', JSON.stringify(data));
+            window.location.href = "./Signed-in/home.html";
         } else {
-            // Login failed
             throw new Error(data.error);
         }
-
     } catch (error) {
-        // Handle any errors that might occur during login
         console.error('Error during login:', error.message);
-        // Optionally display an error message to the user
-        // You can update a DOM element with an error message, show a modal, etc.
     }
 }
+
 
 async function getUsers() {
     try {
