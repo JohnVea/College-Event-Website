@@ -52,6 +52,14 @@ xisting<?php
         }else{
             $locId = $existingLocId;
         }
+        // Check if the location already exists in the Locations table
+        $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
+        $checkLocationStmt->bind_param("s", $location);
+        $checkLocationStmt->execute();
+        $checkLocationStmt->store_result();
+        $checkLocationStmt->bind_result($locId);
+        $checkLocationStmt->fetch();
+        $checkLocationStmt->close();
     
         // Now insert the event into the Events table
         $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
