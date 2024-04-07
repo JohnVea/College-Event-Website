@@ -20,7 +20,7 @@ header("Content-Type: application/json");
 $inData = getRequestInfo();
 
 $time = $inData['time'];
-$location = $inData['location']; // Use the location name instead of locId
+$location = $inData['location'];
 $eventName = $inData['eventName'];
 $description = $inData['description'];
 
@@ -29,22 +29,25 @@ $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
+    // Generate a unique LocID value
+    $locId = uniqid('loc_', true);
+
     // Check if the location already exists in the Locations table
     $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
     $checkLocationStmt->bind_param("s", $location);
     $checkLocationStmt->execute();
-    $checkLocationStmt->bind_result($locId);
+    $checkLocationStmt->bind_result($existingLocId);
     $checkLocationStmt->fetch();
     $checkLocationStmt->close();
 
-    if ($locId) {
+    if ($existingLocId) {
         // Location already exists, use the existing LocID
+        $locId = $existingLocId;
     } else {
         // Location doesn't exist, insert it into the Locations table
-        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (Name) VALUES (?)");
-        $insertLocationStmt->bind_param("s", $location);
+        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name) VALUES (?, ?)");
+        $insertLocationStmt->bind_param("ss", $locId, $location);
         $insertLocationStmt->execute();
-        $locId = $conn->insert_id;
         $insertLocationStmt->close();
     }
 
