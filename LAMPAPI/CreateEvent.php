@@ -42,7 +42,8 @@ $checkLocationStmt->close();
 
 if (!$locId) {
     // Location doesn't exist, insert it into the Locations table
-    $locId = substr($location, 0, 10); // Truncate the name if it's too long
+    //$locId = substr($location, 0, 10); // Truncate the name if it's too long
+    $locId = $location;
     $descr = substr($description, 0, 30); // Change this to your desired default description
     $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
     $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
