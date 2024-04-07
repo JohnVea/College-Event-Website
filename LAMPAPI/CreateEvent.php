@@ -29,22 +29,21 @@ $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    // Generate a unique LocID value
-    $locId = uniqid('loc_', true);
+    // Extract the city from the location string
+    $locationParts = explode(',', $location);
+    $city = trim($locationParts[0]);
 
     // Check if the location already exists in the Locations table
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
-    $checkLocationStmt->bind_param("s", $location);
+    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE LocID = ?");
+    $checkLocationStmt->bind_param("s", $city);
     $checkLocationStmt->execute();
-    $checkLocationStmt->bind_result($existingLocId);
+    $checkLocationStmt->bind_result($locId);
     $checkLocationStmt->fetch();
     $checkLocationStmt->close();
 
-    if ($existingLocId) {
-        // Location already exists, use the existing LocID
-        $locId = $existingLocId;
-    } else {
+    if (!$locId) {
         // Location doesn't exist, insert it into the Locations table
+        $locId = $city;
         $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name) VALUES (?, ?)");
         $insertLocationStmt->bind_param("ss", $locId, $location);
         $insertLocationStmt->execute();
