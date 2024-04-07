@@ -15,7 +15,7 @@
     $superAdminID = $inData['superAdminID'];
 
     // Connect to the database
-    $conn = new mysqli("localhost", "username", "password", "database");
+    $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
     // Check for connection errors
     if ($conn->connect_error) { 
