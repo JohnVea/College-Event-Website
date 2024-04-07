@@ -31,18 +31,20 @@ $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
+    // Generate a unique string for LocID
+    $locId = uniqid();
+
     // Check if the location already exists in the Locations table
     $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
     $checkLocationStmt->bind_param("s", $location);
     $checkLocationStmt->execute();
     $checkLocationStmt->store_result();
-    $checkLocationStmt->bind_result($locId);
+    $checkLocationStmt->bind_result($existingLocId);
     $checkLocationStmt->fetch();
     $checkLocationStmt->close();
 
-    if (!$locId) {
+    if (!$existingLocId) {
         // Location doesn't exist, insert it into the Locations table
-        $locId = $location;
         $descr = $description;
         $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
         $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
@@ -50,34 +52,24 @@ if ($conn->connect_error) {
             returnWithError("Failed to insert location: " . $insertLocationStmt->error);
         }
         $insertLocationStmt->close();
-    }
-
-    // Check if the event already exists based on Time and Location
-    $checkEventStmt = $conn->prepare("SELECT * FROM Events WHERE Time = ? AND Location = ?");
-    $checkEventStmt->bind_param("ss", $time, $locId);
-    $checkEventStmt->execute();
-    $checkEventStmt->store_result();
-    $numRows = $checkEventStmt->num_rows;
-    $checkEventStmt->close();
-
-    if ($numRows > 0) {
-        returnWithError("Event already exists for the given time and location.");
     } else {
-        // Now insert the event into the Events table
-        $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("siss", $time, $locId, $eventName, $description);
-
-        if ($stmt->execute()) {
-            $response = array("message" => "Event created successfully");
-            sendResultInfoAsJson($response);
-        } else {
-            $error = $stmt->error;
-            returnWithError("Failed to create event: $error");
-        }
-
-        $stmt->close();
+        // Use the existing LocID
+        $locId = $existingLocId;
     }
 
+    // Now insert the event into the Events table
+    $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("siss", $time, $locId, $eventName, $description);
+
+    if ($stmt->execute()) {
+        $response = array("message" => "Event created successfully");
+        sendResultInfoAsJson($response);
+    } else {
+        $error = $stmt->error;
+        returnWithError("Failed to create event: $error");
+    }
+
+    $stmt->close();
     $conn->close();
 }
 
