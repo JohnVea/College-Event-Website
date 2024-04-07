@@ -23,33 +23,36 @@ $time = $inData['time'];
 $location = $inData['location'];
 $eventName = $inData['eventName'];
 $description = $inData['description'];
+$longitude = $inData['longitude'];
+$latitude = $inData['latitude'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
 if ($conn->connect_error) {
-    returnWithError($conn->connect_error);
+    returnWithError("Database connection error: " . $conn->connect_error);
 } else {
-    // Extract the city and state from the location string
+    // Extract the city from the location string
     $locationParts = explode(',', $location);
     $city = trim($locationParts[0]);
-    $state = trim($locationParts[1] ?? '');
-    $fullLocation = "$city, $state";
 
     // Check if the location already exists in the Locations table
-    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
-    $checkLocationStmt->bind_param("s", $fullLocation);
+    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE LocID = ?");
+    $checkLocationStmt->bind_param("s", $city);
     $checkLocationStmt->execute();
+    $checkLocationStmt->store_result();
     $checkLocationStmt->bind_result($locId);
     $checkLocationStmt->fetch();
     $checkLocationStmt->close();
 
     if (!$locId) {
         // Location doesn't exist, insert it into the Locations table
-        $locId = uniqid('loc_', true);
-        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name) VALUES (?, ?)");
-        $insertLocationStmt->bind_param("ss", $locId, $fullLocation);
-        $insertLocationStmt->execute();
+        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Longitude, Latitude) VALUES (?, ?, ?, ?)");
+        $insertLocationStmt->bind_param("ssdd", $city, $location, $longitude, $latitude);
+        if (!$insertLocationStmt->execute()) {
+            returnWithError("Failed to insert location: " . $insertLocationStmt->error);
+        }
         $insertLocationStmt->close();
+        $locId = $city;
     }
 
     // Now insert the event into the Events table
@@ -73,16 +76,10 @@ function getRequestInfo() {
 
     if ($contentType === 'application/json') {
         $json = file_get_contents('php://input');
-        echo "Raw JSON data: $json\n";
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            $jsonError = json_last_error_msg();
-            echo "JSON decode error: $jsonError\n";
-            returnWithError("Invalid JSON data: $jsonError");
+            returnWithError("Invalid JSON data: " . json_last_error_msg());
         }
-        echo "Decoded JSON data: ";
-        print_r($data);
-        echo "\n";
         return $data;
     } else {
         return $_POST;
