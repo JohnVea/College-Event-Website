@@ -32,33 +32,41 @@ if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
     // Check if the location already exists in the Locations table
-$checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
-$checkLocationStmt->bind_param("s", $location);
-$checkLocationStmt->execute();
-$checkLocationStmt->store_result();
-$checkLocationStmt->bind_result($locId);
-$checkLocationStmt->fetch();
-$checkLocationStmt->close();
+    $checkLocationStmt = $conn->prepare("SELECT LocID FROM Locations WHERE Name = ?");
+    $checkLocationStmt->bind_param("s", $location);
+    $checkLocationStmt->execute();
+    $checkLocationStmt->store_result();
+    $checkLocationStmt->bind_result($locId);
+    $checkLocationStmt->fetch();
+    $checkLocationStmt->close();
 
-if (!$locId) {
-    // Location doesn't exist, insert it into the Locations table
-    //$locId = substr($location, 0, 10); // Truncate the name if it's too long
-    $locId = $location;
-    //$descr = substr($description, 0, 30); // Change this to your desired default description
-    $descr = $description;
-    $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
-    $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
-    if (!$insertLocationStmt->execute()) {
-        returnWithError("Failed to insert location: " . $insertLocationStmt->error);
+    if (!$locId) {
+        // Location doesn't exist, insert it into the Locations table
+        $locId = $location;
+        $descr = $description;
+        $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Descr, Longitude, Latitude) VALUES (?, ?, ?, ?, ?)");
+        $insertLocationStmt->bind_param("sssss", $locId, $location, $descr, $longitude, $latitude);
+        if (!$insertLocationStmt->execute()) {
+            returnWithError("Failed to insert location: " . $insertLocationStmt->error);
+        }
+        $insertLocationStmt->close();
     }
-    $insertLocationStmt->close();
-}
-    
-    // Now insert the event into the Events table
-    $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("siss", $time, $locId, $eventName, $description);
 
-    
+    // Check if the event already exists based on Time and Location
+    $checkEventStmt = $conn->prepare("SELECT * FROM Events WHERE Time = ? AND Location = ?");
+    $checkEventStmt->bind_param("ss", $time, $locId);
+    $checkEventStmt->execute();
+    $checkEventStmt->store_result();
+    $numRows = $checkEventStmt->num_rows;
+    $checkEventStmt->close();
+
+    if ($numRows > 0) {
+        returnWithError("Event already exists for the given time and location.");
+    } else {
+        // Now insert the event into the Events table
+        $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("siss", $time, $locId, $eventName, $description);
+
         if ($stmt->execute()) {
             $response = array("message" => "Event created successfully");
             sendResultInfoAsJson($response);
@@ -66,35 +74,39 @@ if (!$locId) {
             $error = $stmt->error;
             returnWithError("Failed to create event: $error");
         }
-    
-        $stmt->close();
-        $conn->close();
-    }
-    
-    function getRequestInfo() {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-    
-        if ($contentType === 'application/json') {
-            $json = file_get_contents('php://input');
-            $data = json_decode($json, true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                returnWithError("Invalid JSON data: " . json_last_error_msg());
-            }
-            return $data;
-        } else {
-            return $_POST;
-        }
-    }
-    
-    function sendResultInfoAsJson($obj) {
-        echo json_encode($obj);
-    }
-    
-    function returnWithError($err) {
-        $response = array("error" => $err);
-        sendResultInfoAsJson($response);
-        http_response_code(500);
-        exit;
-    }
-?>
 
+        $stmt->close();
+    }
+
+    $conn->close();
+}
+
+function getRequestInfo()
+{
+    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+    if ($contentType === 'application/json') {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            returnWithError("Invalid JSON data: " . json_last_error_msg());
+        }
+        return $data;
+    } else {
+        return $_POST;
+    }
+}
+
+function sendResultInfoAsJson($obj)
+{
+    echo json_encode($obj);
+}
+
+function returnWithError($err)
+{
+    $response = array("error" => $err);
+    sendResultInfoAsJson($response);
+    http_response_code(500);
+    exit;
+}
+?>
