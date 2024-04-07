@@ -42,16 +42,15 @@ if ($conn->connect_error) {
 
     if (!$locId) {
         // Location doesn't exist, insert it into the Locations table
+        $locId = substr($location, 0, 10); // Truncate the name if it's too long
         $insertLocationStmt = $conn->prepare("INSERT INTO Locations (LocID, Name, Longitude, Latitude) VALUES (?, ?, ?, ?)");
-        $insertLocationStmt->bind_param("ssdd", $location, $location, $longitude, $latitude);
+        $insertLocationStmt->bind_param("ssdd", $locId, $location, $longitude, $latitude);
         if (!$insertLocationStmt->execute()) {
             returnWithError("Failed to insert location: " . $insertLocationStmt->error);
         }
         $insertLocationStmt->close();
-
-        // Retrieve the inserted Location ID
-        $locId = $location;
     }
+
 
     // Now insert the event into the Events table
     $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
