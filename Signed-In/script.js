@@ -77,6 +77,48 @@ function createEventCard(event, locations) {
     return eventCard;
 }
 
+function createEventCardSearch(event, locations) {
+    const eventCard = document.createElement('div');
+    eventCard.classList.add('eventCard');
+
+    const eventName = document.createElement('h1');
+    eventName.textContent = 'Event: ' + (event.Event_name ? event.Event_name : event.EventName);
+
+    // Extract date and time from the 'Time' field
+    const dateTimeParts = event.Time.split(' '); // Split the time string at the space
+    const eventDate = document.createElement('h2');
+    eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
+    const eventTime = document.createElement('h2');
+    eventTime.textContent = "Time: " + dateTimeParts[1]; // Get the time part
+
+    // Find the location that matches the event's location
+    const location = locations.find(location => location.LocID === event.Location);
+
+    const eventLocation = document.createElement('h3');
+    eventLocation.textContent = "Event Location: " + location.Name;
+
+    const longitude = document.createElement('h3');
+    longitude.textContent = "\tLongitude: " + location.Longitude;
+
+    const latitude = document.createElement('h3');
+    latitude.textContent = "\tLatitude: " + location.Latitude;
+
+    const eventDescription = document.createElement('p');
+    eventDescription.classList.add('eventDescription');
+    eventDescription.textContent = event.Description;
+
+    eventCard.appendChild(eventName);
+    eventCard.appendChild(eventDate);
+    eventCard.appendChild(eventTime);
+    eventCard.appendChild(eventLocation);
+    eventCard.appendChild(longitude);
+    eventCard.appendChild(latitude);
+    eventCard.appendChild(eventDescription);
+
+    return eventCardSearch;
+}
+
+
 
 // Listen for changes in the search bar input field
 const searchBar = document.getElementById('searchBar');
@@ -106,7 +148,7 @@ function searchEvents() {
         
         // Loop through each search result and create event cards
         events.forEach(event => {
-            const eventCard = createEventCard(event, locationsData); // Pass locations data
+            const eventCard = createEventCardSearch(event, locationsData); // Pass locations data
             displayEventsContainer.appendChild(eventCard);
 
             // Set height of event card based on description height
