@@ -42,11 +42,13 @@ function createEventCard(event, locations) {
     eventCard.classList.add('eventCard');
 
     const eventName = document.createElement('h1');
-    eventName.textContent = 'Event: ' + (event.Event_name ? event.Event_name : event.EventName);
-    
+    eventName.textContent = 'Event: ' + (event.EventName ? event.EventName : event.Event_name);
+
     const eventDate = document.createElement('h2');
-    eventDate.textContent = "Time: " + (event.Time ? event.Time : event.EventTime);
-    
+    eventDate.textContent = "Date: " + event.EventDate;
+
+    const eventTime = document.createElement('h2');
+    eventTime.textContent = "Time: " + event.EventTime;
 
     // Find the location that matches the event's location
     const location = locations.find(location => location.LocID === event.Location);
@@ -66,6 +68,7 @@ function createEventCard(event, locations) {
 
     eventCard.appendChild(eventName);
     eventCard.appendChild(eventDate);
+    eventCard.appendChild(eventTime);
     eventCard.appendChild(eventLocation);
     eventCard.appendChild(longitude);
     eventCard.appendChild(latitude);
@@ -73,6 +76,7 @@ function createEventCard(event, locations) {
 
     return eventCard;
 }
+
 
 // Listen for changes in the search bar input field
 const searchBar = document.getElementById('searchBar');
