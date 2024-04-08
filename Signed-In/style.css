@@ -157,7 +157,7 @@ body {
 }
 
 .createEvent{
-    position: absolute;
+    position: fixed;
     bottom: 5%;
     right: 0%; 
     height: 35px;
