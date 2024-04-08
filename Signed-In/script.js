@@ -161,6 +161,7 @@ function searchEvents() {
         });
     })
     .catch(error => {
+        console.log(response);
         console.error('Error searching events:', error);
     });
 }
