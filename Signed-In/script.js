@@ -136,7 +136,13 @@ function searchEvents() {
     };
     
     // Call the SearchEvent API with the search query
-    fetch(`http://unieventverse.com/LAMPAPI/SearchEvent.php?query=${searchQuery}`)
+    fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(searchObject)
+    })
     .then(response => response.json())
     .then(events => {
         // Clear existing event cards
