@@ -87,9 +87,11 @@ function createEventCardSearch(event, locations) {
     // Extract date and time from the 'Time' field
     const dateTimeParts = event.Time.split(' '); // Split the time string at the space
     const eventDate = document.createElement('h2');
-    eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
-    const eventTime = document.createElement('h2');
-    eventTime.textContent = "Time: " + dateTimeParts[1]; // Get the time part
+    console.log(event.Timeime);
+    eventDate.textContent = "Date: " +event.Time; 
+    // eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
+    // const eventTime = document.createElement('h2');
+    // eventTime.textContent = "Time: " + dateTimeParts[1]; // Get the time part
 
     // Find the location that matches the event's location
     const location = locations.find(location => location.LocID === event.Location);
