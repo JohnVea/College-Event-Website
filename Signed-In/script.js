@@ -114,8 +114,9 @@ function createEventCardSearch(event, locations) {
     eventCard.appendChild(longitude);
     eventCard.appendChild(latitude);
     eventCard.appendChild(eventDescription);
+    
 
-    return eventCardSearch;
+    return eventCard;
 }
 
 
