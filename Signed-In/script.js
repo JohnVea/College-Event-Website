@@ -87,7 +87,7 @@ function createEventCardSearch(event, locations) {
     // Extract date and time from the 'Time' field
     const dateTimeParts = event.Time.split(' '); // Split the time string at the space
     const eventDate = document.createElement('h2');
-    console.log(event.Timeime);
+    console.log(event.Time);
     eventDate.textContent = "Date: " +event.Time; 
     // eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
     // const eventTime = document.createElement('h2');
@@ -136,13 +136,7 @@ function searchEvents() {
     };
     
     // Call the SearchEvent API with the search query
-    fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(searchObject)
-    })
+    fetch(`http://unieventverse.com/LAMPAPI/SearchEvent.php?query=${searchQuery}`)
     .then(response => response.json())
     .then(events => {
         // Clear existing event cards
