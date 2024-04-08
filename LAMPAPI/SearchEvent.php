@@ -37,8 +37,8 @@
         // Connect to the database
         $conn = connectDB();
 
-        // Prepare the SQL query
-        $sql = "SELECT * FROM Events WHERE Event_name LIKE ? OR Description LIKE ?";
+        // Prepare the SQL query to select event name, event date, and event time
+        $sql = "SELECT Event_name, DATE(Event_date) AS Event_date, TIME(Event_time) AS Event_time FROM Events WHERE Event_name LIKE ? OR Description LIKE ?";
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
             returnWithError("Failed to prepare SQL statement: " . $conn->error);
