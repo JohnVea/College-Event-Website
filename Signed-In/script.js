@@ -143,18 +143,16 @@ function searchEvents() {
         const displayEventsContainer = document.querySelector('.displayEventsContainer');
         displayEventsContainer.innerHTML = '';
         
-        if(events){
-            // Loop through each search result and create event cards
-            events.forEach(event => {
-                const eventCard = createEventCardSearch(event, locationsData); // Pass locations data
-                displayEventsContainer.appendChild(eventCard);
+        console.log(events);
+        // Loop through each search result and create event cards
+        events.forEach(event => {
+            const eventCard = createEventCardSearch(event, locationsData); // Pass locations data
+            displayEventsContainer.appendChild(eventCard);
 
-                // Set height of event card based on description height
-                const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                eventCard.style.height = descriptionHeight + 10 + '%';
-            });
-        }
-        
+            // Set height of event card based on description height
+            const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
+            eventCard.style.height = descriptionHeight + 10 + '%';
+        });
     })
     .catch(error => {
         console.error('Error searching events:', error);
