@@ -42,10 +42,11 @@ function createEventCard(event, locations) {
     eventCard.classList.add('eventCard');
 
     const eventName = document.createElement('h1');
-    eventName.textContent = 'Event: ' + event.Event_name;
-
+    eventName.textContent = 'Event: ' + (event.Event_name ? event.Event_name : event.EventName);
+    
     const eventDate = document.createElement('h2');
-    eventDate.textContent = "Time: " + event.Time;
+    eventDate.textContent = "Time: " + (event.Time ? event.Time : event.EventTime);
+    
 
     // Find the location that matches the event's location
     const location = locations.find(location => location.LocID === event.Location);
