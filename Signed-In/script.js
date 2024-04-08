@@ -89,9 +89,9 @@ function createEventCardSearch(event, locations) {
     const eventDate = document.createElement('h2');
     console.log(event.Time);
     eventDate.textContent = "Date: " +event.Time; 
-    // eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
-    // const eventTime = document.createElement('h2');
-    // eventTime.textContent = "Time: " + dateTimeParts[1]; // Get the time part
+    eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
+    const eventTime = document.createElement('h2');
+    eventTime.textContent = "Time: " + dateTimeParts[1]; // Get the time part
 
     // Find the location that matches the event's location
     const location = locations.find(location => location.LocID === event.Location);
@@ -161,7 +161,7 @@ function searchEvents() {
         });
     })
     .catch(error => {
-        console.log(response);
+        
         console.error('Error searching events:', error);
     });
 }
