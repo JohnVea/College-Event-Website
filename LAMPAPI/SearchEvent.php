@@ -67,12 +67,4 @@
         // Return an error if the request method is not POST
         returnWithError("Invalid request method");
     }
-?>    This is what it returns [
-    {
-        "Events_ID": 83,
-        "Time": "2024-04-07 15:30:00",
-        "Location": "661302aeef0d9",
-        "Event_name": "Tech Conference",
-        "Description": "An annual tech conference featuring the latest industry trends and innovations."
-    }
-]
+?>  
