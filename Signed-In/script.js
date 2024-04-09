@@ -218,26 +218,31 @@ document.addEventListener("DOMContentLoaded", function() {
         
         eventContainer.style.display = "none";
         displayEventsContainer.style.display = "block";
-        // console.log(JSON.stringify(eventData));
+        console.log(JSON.stringify(eventData));
     };
 
     
 });
 
 async function createEvent(eventData) {
-    try{
+    try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(eventData)
-        })
+        });
+
+        const responseData = await response.json();
+
         if (!response.ok) {
-            throw new Error(`Failed to Create Event: ${response.statusText}`);
+            throw new Error(`Failed to Create Event: ${responseData.error}`);
         }
-        console.log('Event Created');
-    }catch(error){
+
+        console.log(responseData.message); // Log the success message
+    } catch (error) {
         console.error('Error Creating Event', error);
-    };
+    }
 }
+

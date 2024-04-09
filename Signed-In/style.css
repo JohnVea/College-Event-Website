@@ -175,12 +175,22 @@ body {
     z-index: 1;
 }
 
+.eventCard {
+    transition: transform 0.3s ease;
+}
 .createEvent:hover{
     cursor: pointer;
-
+    transform: scale(1.03);
+    animation: bounce 0.5s;
 }
 
-
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
 
 
 .eventCard{
@@ -197,6 +207,8 @@ body {
 
 .eventCard:hover{
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    transform: scale(1.03);
 }
 
 
