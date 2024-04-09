@@ -53,7 +53,7 @@
    
    
        // Now insert the event into the Events table
-       $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?, ?)");
+       $stmt = $conn->prepare("INSERT INTO Events (timeOfDay, Time, Location, Event_name, Description) VALUES (?, ?, ?, ?, ?)");
        $stmt->bind_param("sssss", $timeOfDay, $time, $locId, $eventName, $description);
    
        if ($stmt->execute()) {
