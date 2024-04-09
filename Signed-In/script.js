@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function createEvent(eventData) {
     try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
