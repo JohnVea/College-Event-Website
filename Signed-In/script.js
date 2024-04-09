@@ -19,7 +19,7 @@ function fetchEvents() {
 
                 // Set height of event card based on description height
                 const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                eventCard.style.height = descriptionHeight + 10 + '%';
+                eventCard.style.height = descriptionHeight + 7 + '%';
             });
         })
         .catch(error => {
@@ -163,5 +163,81 @@ function searchEvents() {
     .catch(error => {
         
         console.error('Error searching events:', error);
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const createEventButton = document.getElementById('createEvent');
+    const eventContainer = document.getElementById('createEventContainer');
+    const submitEvent = document.getElementById('submitEvent');
+    const closeCreateEventForm = document.getElementById('closeCreateEventForm');
+    const displayEventsContainer = document.querySelector('.displayEventsContainer');
+    const eventName = document.getElementById('eventName');
+    const eventDate = document.getElementById('eventDate');
+    const eventTimeHours = document.getElementById('eventTimeHours');
+    const eventTimeMinutes = document.getElementById('eventTimeMinutes');
+    const Daytime = document.getElementById('Daytime');
+    const longitude = document.getElementById('longitude');
+    const latitude = document.getElementById('latitude');
+    const eventLocation = document.getElementById('eventLocation');
+    const eventDescription = document.getElementById('eventDescription');
+    const eventType = document.getElementById('eventType');
+    
+    
+
+    createEventButton.onclick = function() {
+        eventContainer.style.display = "block";
+        displayEventsContainer.style.display = "none";
+    };
+
+    closeCreateEventForm.onclick = function() {
+        eventContainer.style.display = "none";
+        displayEventsContainer.style.display = "block";
+    };
+
+    submitEvent.onclick = function() {
+        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + Daytime.value;
+
+
+
+        console.log(dateTimeString);
+        var eventData = {
+            time: dateTimeString,
+            location: eventLocation.value,
+            longitude: parseFloat(longitude.value),
+            latitude: parseFloat(latitude.value),
+            eventName: eventName.value,
+            description: eventDescription.value
+        };
+
+        createEvent(eventData);
+
+        
+        
+        eventContainer.style.display = "none";
+        displayEventsContainer.style.display = "block";
+        // console.log(JSON.stringify(eventData));
+    };
+
+    
+});
+
+function createEvent(eventData) {
+    // Call the SearchEvent API with the search query
+    fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData)
+    })
+    .then(response => response.json())
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        
+        console.error('Error Creating Event', error);
     });
 }

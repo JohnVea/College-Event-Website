@@ -29,6 +29,8 @@ body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -172,6 +174,10 @@ body {
     z-index: 1;
 }
 
+.createEvent:hover{
+    cursor: pointer;
+
+}
 
 
 
@@ -184,9 +190,91 @@ body {
     backdrop-filter: blur(5px); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     text-align: center;
+    position: relative;
 }
 
-.eventCard :hover{
+
+.eventCard:hover{
     cursor: pointer;
 }
 
+
+
+.createEventContainer {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(35px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+
+.createEventContainer button {
+    width: 81%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.createEventContainer #eventName,
+.createEventContainer #eventDate,
+.createEventContainer #eventLocation,
+.createEventContainer #longitude,
+.createEventContainer #latitude,
+.createEventContainer #eventDescription {
+    width: 80%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.createEventContainer #eventTimeHours {
+    width: 5%; 
+    margin-left: 9%;
+}
+.createEventContainer #eventTimeMinutes {
+    width: 5%; 
+}
+
+.createEventContainer button:hover,.createEventContainer input:hover{
+    cursor: pointer;
+}
+
+.submitEvent{
+    background-color: blue;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+.closePopup{
+    background-color: red;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+label[for="eventType"] {
+    margin-left: 9%;
+}
+
+.eventTimeHours{
+    width: 5%;
+}
+
+label[for="Daytime"] {
+    margin-left: 9%;
+}
+
+.eventTimeMinutes{
+    width: 5%;
+}
