@@ -52,9 +52,10 @@
        }
    
    
-       // Now insert the event into the Events table
-       $stmt = $conn->prepare("INSERT INTO Events (Time, timeOfDay, Location, Event_name, Description) VALUES (?, ?, ?, ?, ?)");
-       $stmt->bind_param("sssss", $time, $timeOfDay, $locId, $eventName, $description);
+          // Now insert the event into the Events table
+          $stmt = $conn->prepare("INSERT INTO Events (Time, timeOfDay, Location, Event_name, Description) VALUES (?, ?, ?, ?, ?)");
+         $stmt->bind_param("sssss", $time, $timeOfDay, $locId, $eventName, $description);
+
    
        if ($stmt->execute()) {
            $response = array("message" => "Event created successfully");
