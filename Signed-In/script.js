@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     submitEvent.onclick = function() {
-        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + Daytime.value;
+        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value;
 
 
 
