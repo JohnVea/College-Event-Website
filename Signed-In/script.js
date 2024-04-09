@@ -234,22 +234,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function createEvent(eventData) {
     try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: eventData
+            body: JSON.stringify(eventData)
         });
 
         if (!response.ok) {
-            const errorResponse = await response.text();
-            console.error('Error creating event:', errorResponse);
-            throw new Error(`Failed to Create Event: ${errorResponse} (Status Code: ${response.status})`);
+            //const errorResponse = await response.json();
+            console.error('Error creating event:', response.text());
+            throw new Error(`Failed to Create Event:`);
         }
 
-        const responseData = await response.json();
-        console.log(responseData.message); // Log the success message
+        //const responseData = await response.json();
+        //console.log(responseData.message); // Log the success message
     } catch (error) {
         console.error('Error Creating Event', error);
     }
