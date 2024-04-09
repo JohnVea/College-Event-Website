@@ -157,6 +157,7 @@ body {
     /* border: 5px solid white; */
     height: 93%;
     position: relative;
+    overflow-y: auto;
 }
 
 .createEvent{

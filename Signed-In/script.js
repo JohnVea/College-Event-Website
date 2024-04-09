@@ -197,13 +197,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     submitEvent.onclick = function() {
-        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value;
+        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
 
 
 
         console.log(dateTimeString);
         var eventData = {
             time: dateTimeString,
+            timeOfDay: Daytime.value,
             location: eventLocation.value,
             longitude: parseFloat(longitude.value),
             latitude: parseFloat(latitude.value),
