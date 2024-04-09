@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayEventsContainer.style.display = "block";
     };
 
-    submitEvent.onclick = function() {
+    submitEvent.onclick = async function() {
         const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
 
 
@@ -212,13 +212,13 @@ document.addEventListener("DOMContentLoaded", function() {
             description: eventDescription.value
         };
 
-        createEvent(eventData);
+        await createEvent(eventData);
 
         
         
-        eventContainer.style.display = "none";
-        displayEventsContainer.style.display = "block";
-        console.log(JSON.stringify(eventData));
+        //eventContainer.style.display = "none";
+        //displayEventsContainer.style.display = "block";
+        //console.log(JSON.stringify(eventData));
     };
 
     
@@ -234,15 +234,18 @@ async function createEvent(eventData) {
             body: JSON.stringify(eventData)
         });
 
-        const responseData = await response.json();
-
         if (!response.ok) {
-            throw new Error(`Failed to Create Event: ${responseData.error}`);
+            const errorResponse = await response.text();
+            console.error('Error creating event:', errorResponse);
+            throw new Error(`Failed to Create Event: ${errorResponse} (Status Code: ${response.status})`);
         }
 
+        const responseData = await response.json();
         console.log(responseData.message); // Log the success message
     } catch (error) {
         console.error('Error Creating Event', error);
     }
 }
+
+
 
