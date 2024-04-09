@@ -203,15 +203,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(dateTimeString);
         var eventData = {
-            time: dateTimeString,
-            timeOfDay: Daytime.value,
-            location: eventLocation.value,
-            longitude: parseFloat(longitude.value),
-            latitude: parseFloat(latitude.value),
-            eventName: eventName.value,
-            description: eventDescription.value
+            "time": "2098-06-07 12:21:00",
+            "timeOfDay": "PM",
+            "location": "Miami, FL",
+            "longitude": 55.006,
+            "latitude": 95.7128,
+            "eventName": "dont know  Yeettt ?????",
+            "description": "Tthis whattt ggg ???🤷🏻"
+            // time: dateTimeString,
+            // timeOfDay: Daytime.value,
+            // location: eventLocation.value,
+            // longitude: parseFloat(longitude.value),
+            // latitude: parseFloat(latitude.value),
+            // eventName: eventName.value,
+            // description: eventDescription.value
         };
 
+        console.log(eventData);
         await createEvent(eventData);
 
         
@@ -231,7 +239,7 @@ async function createEvent(eventData) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(eventData)
+            body: eventData
         });
 
         if (!response.ok) {
