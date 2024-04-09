@@ -239,10 +239,11 @@ async function createEvent(eventData) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(eventData)
+            body: eventData
         });
 
         if (!response.ok) {
+            console.log(JSON.stringify(eventData));
             //const errorResponse = await response.json();
             console.error('Error creating event:', response.text());
             throw new Error(`Failed to Create Event:`);
@@ -252,6 +253,7 @@ async function createEvent(eventData) {
         //console.log(responseData.message); // Log the success message
     } catch (error) {
         console.error('Error Creating Event', error);
+        console.log(JSON.stringify(eventData));
     }
 }
 
