@@ -1,5 +1,4 @@
-write a create event function base on this api
- <?php
+<?php
 
    // Allow requests from any origin
    header("Access-Control-Allow-Origin: *");
