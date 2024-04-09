@@ -239,7 +239,7 @@ async function createEvent(eventData) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: eventData
+            body: JSON.stringify(eventData)
         });
 
         if (!response.ok) {
