@@ -14,6 +14,7 @@ header("Content-Type: application/json");
 
 $inData = getRequestInfo();
 
+$date = $inData['date'];
 $time = $inData['time'];
 $location = $inData['location'];
 $longitude = $inData['longitude'];
@@ -52,8 +53,8 @@ if ($conn->connect_error) {
 
 
     // Now insert the event into the Events table
-    $stmt = $conn->prepare("INSERT INTO Events (Time, Location, Event_name, Description) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $time, $locId, $eventName, $description);
+    $stmt = $conn->prepare("INSERT INTO Events (Date, Time, Location, Event_name, Description) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $date, $time, $locId, $eventName, $description);
 
     if ($stmt->execute()) {
         $response = array("message" => "Event created successfully");
