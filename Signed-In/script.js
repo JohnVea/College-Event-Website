@@ -223,21 +223,20 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-function createEvent(eventData) {
-    // Call the SearchEvent API with the search query
-    fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(eventData)
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log(response);
-    })
-    .catch(error => {
-        
+async function createEvent(eventData) {
+    try{
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData)
+        })
+        if (!response.ok) {
+            throw new Error(`Failed to Create Event: ${response.statusText}`);
+        }
+        console.log('Event Created');
+    }catch(error){
         console.error('Error Creating Event', error);
-    });
+    };
 }
