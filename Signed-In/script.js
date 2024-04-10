@@ -203,13 +203,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(dateTimeString);
         var eventData = {
-            "time": "2098-06-07 12:21:00",
-            "timeOfDay": "PM",
-            "location": "Miami, FL",
-            "longitude": 55.006,
-            "latitude": 95.7128,
-            "eventName": "dont know  Yeettt ?????",
-            "description": "Tthis whattt ggg ???🤷🏻"
+            time: "2098-06-07 12:21:00",
+            timeOfDay: "PM",
+            location: "Miami, FL",
+            longitude: 55.006,
+            latitude: 95.7128,
+            eventName: "dont know  Yeettt ?????",
+            description: "Tthis whattt ggg ???🤷🏻"
             
             // time: dateTimeString,
             // timeOfDay: Daytime.value,
