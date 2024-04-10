@@ -251,6 +251,8 @@ async function createEvent(eventData) {
         const responseData = await response.json();
         console.log(responseData); // Log the response from the server
     } catch (error) {
+        console.log(eventData);
+        console.log(JSON.stringify(eventData));
         console.error('Error Creating Event', error);
     }
 }
