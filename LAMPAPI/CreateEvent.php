@@ -58,14 +58,12 @@
 
    
        if ($stmt->execute()) {
-            $response = array("message" => "Event created successfully");
-            sendResultInfoAsJson($response, 200, 'POST');
-        }
-         else {
-            $error = $stmt->error;
-            returnWithError("Failed to create event: $error");
-        }
-
+           $response = array("message" => "Event created successfully");
+           sendResultInfoAsJson($response);
+       } else {
+           $error = $stmt->error;
+           returnWithError("Failed to create event: $error");
+       }
    
        $stmt->close();
        $conn->close();
@@ -87,14 +85,12 @@
        }
    }
    
-   function sendResultInfoAsJson($obj, $statusCode = 200, $requestMethod = 'POST') {
-        http_response_code($statusCode);
-        header("Request-Method: $requestMethod");
-        header("Content-Type: application/json");
-        echo json_encode($obj);
-        exit;
-    }
-
+   function sendResultInfoAsJson($obj)
+   {
+      header("Request-Method: $requestMethod");
+      header("Content-Type: application/json");
+      echo json_encode($obj);
+   }
    
    function returnWithError($err)
    {
