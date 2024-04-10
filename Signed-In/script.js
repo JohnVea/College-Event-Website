@@ -244,19 +244,17 @@ async function createEvent(eventData) {
         });
 
         if (!response.ok) {
-            console.log(JSON.stringify(eventData));
-            //const errorResponse = await response.json();
             console.error('Error creating event:', await response.text());
             throw new Error(`Failed to Create Event:`);
         }
 
-        //const responseData = await response.json();
-        //console.log(responseData.message); // Log the success message
+        const responseData = await response.json();
+        console.log(responseData); // Log the response from the server
     } catch (error) {
-        console.log(JSON.stringify(eventData));
         console.error('Error Creating Event', error);
     }
 }
+
 
 
 
