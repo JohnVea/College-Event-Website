@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "latitude": 95.7128,
             "eventName": "dont know  Yeettt ?????",
             "description": "Tthis whattt ggg ???🤷🏻"
+            
             // time: dateTimeString,
             // timeOfDay: Daytime.value,
             // location: eventLocation.value,
@@ -245,7 +246,7 @@ async function createEvent(eventData) {
         if (!response.ok) {
             console.log(JSON.stringify(eventData));
             //const errorResponse = await response.json();
-            console.error('Error creating event:', response.text());
+            console.error('Error creating event:', await response.text());
             throw new Error(`Failed to Create Event:`);
         }
 
