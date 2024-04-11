@@ -232,30 +232,40 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function createEvent(eventData) {
+    const URL = 'http://unieventverse.com/LAMPAPI/CreateEvent.php';
+    axios.post(URL, eventData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      })
+      .then(response => {
+        console.log('Request successful:', response.data);
+      })
+      .catch(error => {
+        console.error('Request failed:', error);
+      });
+      
 
-    try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(eventData),
-        });
+    // try {
+    //     const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(eventData),
+    //     });
 
-        if (!response.ok) {
-            throw new Error('Login failed');
-        }
+    //     if (!response.ok) {
+    //         throw new Error('Login failed');
+    //     }
 
-        const data = await response.json();
+    //     const data = await response.json();
+    //     console.log('Login successful:', data);
 
-        if (data.error === "No Records Found") {
-            console.log('Login successful:', data);
-        } else {
-            throw new Error(data.error);
-        }
-    } catch (error) {
-        console.error('Error during login:', error.message);
-    }
+    // } catch (error) {
+    //     console.error('Error during login:', error.message);
+    // }
 }
 
 
