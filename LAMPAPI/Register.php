@@ -1,4 +1,15 @@
 <?php
+// Allow requests from any origin
+    header("Access-Control-Allow-Origin: *");
+    
+    // Allow certain methods (e.g., POST)
+    header("Access-Control-Allow-Methods: POST");
+    
+    // Allow specific headers
+    header("Access-Control-Allow-Headers: Content-Type");
+    
+    // Set response content type
+    header("Content-Type: application/json");
   $inData = getRequestInfo();
   $username = $inData["username"];
   $password = $inData["password"];
