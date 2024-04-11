@@ -137,6 +137,7 @@ async function doLogin() {
     } catch (error) {
         console.log('HERRRREEEE');
         const users = await getUsers();
+        console.log(users.contain(username));
         if(users.length >= 0 && users.contain(username)){
             window.location.href = "./Signed-In/home.html";
         }
