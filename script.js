@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
 async function createEvent(eventData) {
 
     try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -247,14 +247,8 @@ async function createEvent(eventData) {
         }
 
         const data = await response.json();
+        console.log('Login successful:', data);
 
-        if (data.error === "") {
-            console.log('Login successful:', data);
-            localStorage.setItem('userData', JSON.stringify(data));
-            window.location.href = "./Signed-In/home.html";
-        } else {
-            throw new Error(data.error);
-        }
     } catch (error) {
         console.error('Error during login:', error.message);
     }
