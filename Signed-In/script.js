@@ -203,13 +203,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(dateTimeString);
         var eventData = {
-            time: "2098-06-07 12:21:00",
-            timeOfDay: "PM",
-            location: "Miami, FL",
-            longitude: 55.006,
-            latitude: 95.7128,
-            eventName: "dont know  Yeettt ?????",
-            description: "Tthis whattt ggg ???🤷🏻"
+            "time": "2043-06-17 12:21:00",
+            "timeOfDay": "PM",
+            "location": "Miami, FL",
+            "longitude": 38.006,
+            "latitude": 58.7128,
+            "eventName": "artight now ????? . . . ",
+            "description": "hereeeee \n alrighthhgtttt"
             
             // time: dateTimeString,
             // timeOfDay: Daytime.value,
@@ -251,8 +251,6 @@ async function createEvent(eventData) {
         const responseData = await response.json();
         console.log(responseData); // Log the response from the server
     } catch (error) {
-        console.log(eventData);
-        console.log(JSON.stringify(eventData));
         console.error('Error Creating Event', error);
     }
 }
