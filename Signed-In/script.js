@@ -201,13 +201,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         var eventData = {
-            "time": "2043-06-17 12:21:00",
+            "time": "2023-07-17 12:21:00",
             "timeOfDay": "PM",
             "location": "Miami, FL",
             "longitude": 38.006,
             "latitude": 58.7128,
-            "eventName": "artight now ????? . . . ",
-            "description": "hereeeee \n alrighthhgtttt"
+            "eventName": "web Testing Event  ????? . . . ",
+            "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
             
             // time: dateTimeString,
             // timeOfDay: Daytime.value,
@@ -232,40 +232,26 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function createEvent(eventData) {
-    const URL = 'http://unieventverse.com/LAMPAPI/CreateEvent.php';
-    axios.post(URL, eventData, {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        withCredentials: true
-      })
-      .then(response => {
-        console.log('Request successful:', response.data);
-      })
-      .catch(error => {
-        console.error('Request failed:', error);
-      });
-      
+    
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(eventData),
+        });
 
-    // try {
-    //     const response = await fetch('http://unieventverse.com/LAMPAPI/CreateEvent.php', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(eventData),
-    //     });
+        if (!response.ok) {
+            throw new Error('Create Event failed');
+        }
 
-    //     if (!response.ok) {
-    //         throw new Error('Login failed');
-    //     }
+        const data = await response.json();
+        console.log('Event Created Successfully:', data);
 
-    //     const data = await response.json();
-    //     console.log('Login successful:', data);
-
-    // } catch (error) {
-    //     console.error('Error during login:', error.message);
-    // }
+    } catch (error) {
+        console.error('Error creating Event:', error.message);
+    }
 }
 
 
