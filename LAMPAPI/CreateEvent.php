@@ -75,20 +75,31 @@ if ($conn->connect_error) {
 
 function returnWithError($err)
 {
-    $response = array(
-        "error" => $err,
-        "debug" => array(
-            "message" => $err,
-            "file" => __FILE__,
-            "line" => __LINE__,
-            "requestData" => $_REQUEST,
-            "serverData" => $_SERVER
-        )
+    // Check if the error is already an array
+    if (!is_array($err)) {
+        // If not, create an array with the error message
+        $err = array("message" => $err);
+    }
+
+    // Add debugging information
+    $err["debug"] = array(
+        "message" => $err["message"],
+        "file" => __FILE__,
+        "line" => __LINE__,
+        "requestData" => $_REQUEST,
+        "serverData" => $_SERVER
     );
-    sendResultInfoAsJson($response);
+
+    // Send response as JSON
+    sendResultInfoAsJson($err);
+    
+    // Set HTTP status code to 500 (Internal Server Error)
     http_response_code(500);
+
+    // Terminate script execution
     exit;
 }
+
 
 
 ?>
