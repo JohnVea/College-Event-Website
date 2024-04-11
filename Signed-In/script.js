@@ -200,8 +200,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
 
 
-
-        console.log(dateTimeString);
         var eventData = {
             "time": "2043-06-17 12:21:00",
             "timeOfDay": "PM",
@@ -220,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // description: eventDescription.value
         };
 
-        console.log(eventData);
+        //console.log(eventData);
         await createEvent(eventData);
 
         
