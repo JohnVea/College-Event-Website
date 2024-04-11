@@ -22,8 +22,26 @@ cancelRegisterButton.addEventListener('click', function() {
     loginContainer.style.display = 'block';
 });
 
-registerUserButton.addEventListener('click', async function() {
-    await doRegister();
+registerUserButton.removeEventListener('click', registerUserButtonClickHandler);
+
+async function registerUserButtonClickHandler() {
+  console.log('Register button clicked');
+  await doRegister();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const registrationForm = document.querySelector('.registration form'); // Select the form inside the registration container
+  
+  registrationForm.addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      try {
+          await doRegister(); 
+      } catch (error) {
+          console.error('Error during registration form submission:', error.message);
+         
+      }
+  });
 });
 
 async function doRegister() {
@@ -66,20 +84,7 @@ async function doRegister() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const registrationForm = document.querySelector('.registration form'); // Select the form inside the registration container
-  
-  registrationForm.addEventListener('submit', async function(event) {
-      event.preventDefault(); // Prevent the default form submission behavior
 
-      try {
-          await doRegister(); 
-      } catch (error) {
-          console.error('Error during registration form submission:', error.message);
-         
-      }
-  });
-});
 
 
 loginButton.addEventListener('click', function() {
