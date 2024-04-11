@@ -242,7 +242,7 @@ async function createEvent(eventData) {
         });
 
         if (!response.ok) {
-            console.error('Error creating event:', await response.text());
+            //console.error('Error creating event:', await response.text());
             throw new Error(`Failed to Create Event:`);
         }
 
