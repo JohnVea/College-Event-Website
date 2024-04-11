@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         //console.log(eventData);
-        createEvent(eventData);
+        await createEvent(eventData);
 
         
         
@@ -231,25 +231,30 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-function createEvent(eventData) {
+async function createEvent(eventData) {
+
     try {
-        const response = fetch('http://unieventverse.com/LAMPAPI/Login.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(eventData)
+            body: JSON.stringify(eventData),
         });
 
         if (!response.ok) {
-            //console.error('Error creating event:', await response.text());
-            throw new Error(`Failed to Create Event:`);
+            throw new Error('Login failed');
         }
 
-        //const responseData = await response.json();
-        console.log(responseData); // Log the response from the server
+        const data = await response.json();
+
+        if (data.error === "No Records Found") {
+            console.log('Login successful:', data);
+        } else {
+            throw new Error(data.error);
+        }
     } catch (error) {
-        console.error('Error Creating Event', error);
+        console.error('Error during login:', error.message);
     }
 }
 
