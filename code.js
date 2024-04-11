@@ -137,8 +137,8 @@ async function doLogin() {
     } catch (error) {
         console.log('HERRRREEEE');
         const users = await getUsers();
-        console.log(users.contain(username));
-        if(users.length >= 0 && users.contain(username)){
+        console.log(users.includes(username));
+        if(users.length >= 0 && users.includes(username)){
             window.location.href = "./Signed-In/home.html";
         }
         console.error('Error during login:', error.message);
