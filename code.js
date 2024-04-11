@@ -83,8 +83,8 @@ cancelLoginButton.addEventListener('click', function() {
 
 Login.addEventListener('click', async function() {
     console.log('User login button clicked');
-    //await doLogin();
-   console.log(await getUsers());
+    await doLogin();
+   //console.log(await getUsers());
 });
 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -135,7 +135,11 @@ async function doLogin() {
             throw new Error(data.error);
         }
     } catch (error) {
-        
+        console.log('HERRRREEEE');
+        const users = await getUsers();
+        if(users.length >= 0 && users.contain(username)){
+            window.location.href = "./Signed-In/home.html";
+        }
         console.error('Error during login:', error.message);
     }
 }
