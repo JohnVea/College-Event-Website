@@ -232,24 +232,36 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function createEvent(eventData) {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    let tmp = {Username: username, Password:password};
+    let jsonPayload = JSON.stringify(tmp);
+
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(eventData)
+            body: JSON.stringify({ Username : username, Password : password })
         });
 
         if (!response.ok) {
-            console.error('Error creating event:', await response.text());
-            throw new Error(`Failed to Create Event:`);
+            throw new Error('Login failed');
         }
 
-        const responseData = await response.json();
-        console.log(responseData); // Log the response from the server
+        const data = await response.json();
+
+        if (data.error === "") {
+            console.log('Login successful:', data);
+            localStorage.setItem('userData', JSON.stringify(data));
+            window.location.href = "./Signed-In/home.html";
+        } else {
+            throw new Error(data.error);
+        }
     } catch (error) {
-        console.error('Error Creating Event', error);
+        console.error('Error during login:', error.message);
     }
 }
 
