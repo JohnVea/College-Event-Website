@@ -33,6 +33,8 @@ async function doRegister() {
     const lastName = document.getElementById("registerLastName").value;
     
 
+    const temp = JSON.stringify({ username : username, password : password, lirstName : firstName, LastName : lastName, email : email });
+    console.log(response.body);
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/Register.php', {
             method: 'POST',
@@ -41,6 +43,8 @@ async function doRegister() {
             },
             body: JSON.stringify({ username : username, password : password, lirstName : firstName, LastName : lastName, email : email })
         });
+
+        
 
         if (!response.ok) {
             throw new Error('Registration failed');
