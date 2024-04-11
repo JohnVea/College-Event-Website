@@ -33,7 +33,7 @@ async function doRegister() {
     const lastName = document.getElementById("registerLastName").value;
     
 
-    const temp = JSON.stringify({ username : username, password : password, lirstName : firstName, LastName : lastName, email : email });
+    const temp = JSON.stringify({ username : username, password : password, firstName : firstName, lastName : lastName, email : email });
 
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/Register.php', {
@@ -41,7 +41,7 @@ async function doRegister() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username : username, password : password, lirstName : firstName, LastName : lastName, email : email })
+            body: JSON.stringify({ username : username, password : password, firstName : firstName, lastName : lastName, email : email })
         });
 
         
@@ -103,8 +103,10 @@ async function doLogin() {
 
     let tmp = {Username: username, Password:password};
     let jsonPayload = JSON.stringify(tmp);
+    console.log("Loggin in ");
 
     try {
+        console.log("Fetching ");
         const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
             headers: {
@@ -113,12 +115,13 @@ async function doLogin() {
             body: JSON.stringify({ Username : username, Password : password })
         });
 
+        console.log("data");
         if (!response.ok) {
             throw new Error('Login failed');
         }
 
         const data = await response.json();
-
+        
         if (data.error === "") {
             console.log('Login successful:', data);
             localStorage.setItem('userData', JSON.stringify(data));
@@ -127,6 +130,7 @@ async function doLogin() {
             throw new Error(data.error);
         }
     } catch (error) {
+        
         console.error('Error during login:', error.message);
     }
 }
