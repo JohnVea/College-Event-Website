@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         //console.log(eventData);
-        await createEvent(eventData);
+        createEvent(eventData);
 
         
         
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-async function createEvent(eventData) {
+function createEvent(eventData) {
     try {
         const response = fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
