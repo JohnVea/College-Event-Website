@@ -1,7 +1,7 @@
 let locationsData; // Define a variable to store locations data globally
 
 // Fetch events from the API and display them
-fetchEvents();
+fetchEvents(); 
 
 function fetchEvents() {
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
