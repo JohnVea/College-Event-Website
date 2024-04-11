@@ -246,7 +246,7 @@ function createEvent(eventData) {
             throw new Error(`Failed to Create Event:`);
         }
 
-        const responseData = await response.json();
+        //const responseData = await response.json();
         console.log(responseData); // Log the response from the server
     } catch (error) {
         console.error('Error Creating Event', error);
