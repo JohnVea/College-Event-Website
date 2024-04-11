@@ -200,16 +200,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
 
 
-
-        console.log(dateTimeString);
         var eventData = {
-            "time": "2098-06-07 12:21:00",
+            "time": "2043-06-17 12:21:00",
             "timeOfDay": "PM",
             "location": "Miami, FL",
-            "longitude": 55.006,
-            "latitude": 95.7128,
-            "eventName": "dont know  Yeettt ?????",
-            "description": "Tthis whattt ggg ???🤷🏻"
+            "longitude": 38.006,
+            "latitude": 58.7128,
+            "eventName": "artight now ????? . . . ",
+            "description": "hereeeee \n alrighthhgtttt"
+            
             // time: dateTimeString,
             // timeOfDay: Daytime.value,
             // location: eventLocation.value,
@@ -219,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // description: eventDescription.value
         };
 
-        console.log(eventData);
+        //console.log(eventData);
         await createEvent(eventData);
 
         
@@ -234,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function createEvent(eventData) {
     try {
-        const response = await fetch('../LAMPAPI/CreateEvent.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -243,17 +242,17 @@ async function createEvent(eventData) {
         });
 
         if (!response.ok) {
-            //const errorResponse = await response.json();
-            console.error('Error creating event:', response.text());
+            console.error('Error creating event:', await response.text());
             throw new Error(`Failed to Create Event:`);
         }
 
-        //const responseData = await response.json();
-        //console.log(responseData.message); // Log the success message
+        const responseData = await response.json();
+        console.log(responseData); // Log the response from the server
     } catch (error) {
         console.error('Error Creating Event', error);
     }
 }
+
 
 
 
