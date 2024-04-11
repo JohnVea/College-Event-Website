@@ -72,5 +72,19 @@ if ($conn->connect_error) {
     // Close database connection
     $conn->close();
 }
+function returnWithError($err)
+{
+    $response = array(
+        "error" => $err,
+        "debug" => array(
+            "message" => $err,
+            "file" => __FILE__,
+            "line" => __LINE__
+        )
+    );
+    sendResultInfoAsJson($response);
+    http_response_code(500);
+    exit;
+}
 
 ?>
