@@ -1,5 +1,4 @@
-<?php
-
+<?
 // Allow requests from any origin
 header("Access-Control-Allow-Origin: *");
 
@@ -72,8 +71,5 @@ if ($conn->connect_error) {
     // Close database connection
     $conn->close();
 }
-
-
-
 
 ?>
