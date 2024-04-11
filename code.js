@@ -21,8 +21,8 @@ cancelRegisterButton.addEventListener('click', function() {
     loginContainer.style.display = 'block';
 });
 
-registerUserButton.addEventListener('click', function() {
-    doRegister();
+registerUserButton.addEventListener('click', async function() {
+    await doRegister();
 });
 
 async function doRegister() {
