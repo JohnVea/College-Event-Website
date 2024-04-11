@@ -72,6 +72,7 @@ if ($conn->connect_error) {
     // Close database connection
     $conn->close();
 }
+
 function returnWithError($err)
 {
     $response = array(
@@ -79,12 +80,15 @@ function returnWithError($err)
         "debug" => array(
             "message" => $err,
             "file" => __FILE__,
-            "line" => __LINE__
+            "line" => __LINE__,
+            "requestData" => $_REQUEST,
+            "serverData" => $_SERVER
         )
     );
     sendResultInfoAsJson($response);
     http_response_code(500);
     exit;
 }
+
 
 ?>
