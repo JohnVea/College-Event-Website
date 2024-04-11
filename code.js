@@ -8,6 +8,7 @@ const loginResult = document.getElementById('loginResult');
 const registrationDiv = document.querySelector('.registration');
 const userRegisterButton = document.querySelector('.userRegisterButton');
 const cancelRegisterButton = document.querySelector('.cancelRegisterButton');
+const registerUserButton = document.querySelector('.registerUserButton');
 
 
 
@@ -60,14 +61,26 @@ async function doRegister() {
             throw new Error(data.error);
         }
     } catch (error) {
-        const users = await getUsers();
-        if(users.length >= 0 && users.contain(username)){
-            window.location.href = "./Signed-In/home.html";
-        }
         
         console.error('Error during registration:', error.message);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const registrationForm = document.querySelector('.registration form'); // Select the form inside the registration container
+  
+  registrationForm.addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      try {
+          await doRegister(); 
+      } catch (error) {
+          console.error('Error during registration form submission:', error.message);
+         
+      }
+  });
+});
+
 
 loginButton.addEventListener('click', function() {
     console.log('Login button clicked');
@@ -82,12 +95,16 @@ cancelLoginButton.addEventListener('click', function() {
 });
 
 async function doLogin() {
+    const UsersList = await getUsers();
+    console.log(UsersList);
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     let tmp = {Username: username, Password:password};
     let jsonPayload = JSON.stringify(tmp);
     console.log("Loggin in ");
+    console.log(tmp);
+    console.log(jsonPayload);
 
     try {
         console.log("Fetching ");
@@ -96,7 +113,7 @@ async function doLogin() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ Username : username, Password : password })
+            body: JSON.stringify({Username: username, Password:password})
         });
 
         console.log("data");
@@ -115,30 +132,32 @@ async function doLogin() {
             throw new Error(data.error);
         }
     } catch (error) {
+        
         console.error('Error during login:', error.message);
     }
 }
 
 Login.addEventListener('click', async function() {
     console.log('User login button clicked');
-    doLogin();
+    await doLogin();
    //console.log(await getUsers());
 });
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     const loginForm = document.querySelector('form');
-    
-//     loginForm.addEventListener('submit', async function(event) {
-//         event.preventDefault(); // Prevent the default form submission behavior
+document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.querySelector('.login form'); // Select the form inside the login container
+  
+  loginForm.addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
 
-//         try {
-//             await doLogin(); // Call the login function
-//         } catch (error) {
-//             console.error('Error during form submission:', error.message);
-//             // Optionally display an error message to the user
-//         }
-//     });
-// });
+      try {
+          await doLogin(); // Call the login function
+      } catch (error) {
+          console.error('Error during form submission:', error.message);
+          // Optionally display an error message to the user
+      }
+  });
+});
+
 
 
 
