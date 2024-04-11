@@ -60,6 +60,11 @@ async function doRegister() {
             throw new Error(data.error);
         }
     } catch (error) {
+        const users = await getUsers();
+        if(users.length >= 0 && users.contain(username)){
+            window.location.href = "./Signed-In/home.html";
+        }
+        
         console.error('Error during registration:', error.message);
     }
 }
@@ -78,8 +83,8 @@ cancelLoginButton.addEventListener('click', function() {
 
 Login.addEventListener('click', async function() {
     console.log('User login button clicked');
-    await doLogin();
-   // await getUsers();
+    //await doLogin();
+   console.log(await getUsers());
 });
 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -122,7 +127,7 @@ async function doLogin() {
 
         const data = await response.json();
         
-        if (data.error === "") {
+        if (data.UserID != 0) {
             console.log('Login successful:', data);
             localStorage.setItem('userData', JSON.stringify(data));
             window.location.href = "./Signed-In/home.html";
