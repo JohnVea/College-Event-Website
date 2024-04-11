@@ -82,20 +82,20 @@ Login.addEventListener('click', async function() {
    // await getUsers();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.querySelector('form');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const loginForm = document.querySelector('form');
+    
+//     loginForm.addEventListener('submit', async function(event) {
+//         event.preventDefault(); // Prevent the default form submission behavior
 
-    loginForm.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-
-        try {
-            await doLogin(); // Call the login function
-        } catch (error) {
-            console.error('Error during form submission:', error.message);
-            // Optionally display an error message to the user
-        }
-    });
-});
+//         try {
+//             await doLogin(); // Call the login function
+//         } catch (error) {
+//             console.error('Error during form submission:', error.message);
+//             // Optionally display an error message to the user
+//         }
+//     });
+// });
 
 async function doLogin() {
     const username = document.getElementById("username").value;
