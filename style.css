@@ -40,7 +40,7 @@ body {
 
 
 .btnLogin-popup {
-    font-family: cursive, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* font-family: cursive, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
     /*background-color: #4CAF50;  Set background color for the login button */
     color: antiquewhite;
     border-radius: 250%; 
@@ -140,14 +140,78 @@ body {
     
 }
 
-.login-container button {
+.userLoginButton{
+    height: 20px;
+    width: 90px; 
+    margin-bottom: 5%;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+}
+.userRegisterButton {
     height: 20px;
     width: 90px; 
     margin-right: 14%;
     margin-bottom: 5%;
+    background-color: greenyellow;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancelLoginButton{
+    height: 20px;
+    width: 90px; 
+    margin-right: 14%;
+    margin-bottom: 5%;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
 }
 
 #searchBar::placeholder {
     color: rgb(252, 237, 218);
 }
 
+.registration{
+    width: 32%;
+    min-width: 210px; 
+    min-height: 40px;
+    max-width: 20%;
+    padding: 5%;
+    border: 5% solid #ccc;
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    box-sizing: border-box;
+    background-color: rgba(199, 197, 197, 0.5);
+    backdrop-filter: blur(50px); 
+    justify-content: center;
+    display: none;
+}
+
+.registerUserButton{
+    height: 20px;
+    width: 70px; 
+    margin-bottom: 5%;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+.cancelRegisterButton{
+    height: 20px;
+    width: 70px; 
+    margin-bottom: 5%;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+}
+
+.registration input#registerPassword {
+    margin-bottom: 4%;
+}
