@@ -232,11 +232,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function createEvent(eventData) {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    let tmp = {Username: username, Password:password};
-    let jsonPayload = JSON.stringify(tmp);
 
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/Login.php', {
@@ -244,7 +239,7 @@ async function createEvent(eventData) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ Username : username, Password : password })
+            body: JSON.stringify(eventData),
         });
 
         if (!response.ok) {
