@@ -249,26 +249,23 @@ document.addEventListener("DOMContentLoaded", function() {
         
 
         // // Call function to create event
-        // const eventCreated = await createEvent(eventData);
+        const eventCreated = await createEvent(eventData);
 
-        // if(eventType === 'private'){
-        //     if(eventCreated){
-        //         const eventID = await searchEvents2(eventData.eventName);
-        //         createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
-        //     }
-        // }
-        // // if(eventCreated){
-
-        // // }
+        if(eventType === 'private'){
+            if(eventCreated){
+                const eventID = await searchEvents2(eventData.eventName);
+                createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
+            }
+        }
+        if(eventCreated){
+            alert("Event Created Successfully");
+        }
         // console.log(eventType);
         // console.log(eventCreated)
         // console.log(eventData);
 
-        console.log(await searchEvents2(eventData.eventName));
-        
-
-        // eventContainer.style.display = "none";
-        // displayEventsContainer.style.display = "block";
+        eventContainer.style.display = "none";
+        displayEventsContainer.style.display = "block";
 
     });
 
