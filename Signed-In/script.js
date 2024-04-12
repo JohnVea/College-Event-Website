@@ -29,7 +29,7 @@ function displayUserCreatedPrivateEvents(){
         .then(locations => {
             locationsData = locations; // Store locations data globally
             const displayEventsUserPrivateContainer = document.querySelector('.userEvents');
-            displayEventsUserPrivateContainer.innerHTML = '';
+            
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
                 // if(event.UserID === userID){
@@ -37,6 +37,7 @@ function displayUserCreatedPrivateEvents(){
                     const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
                     //displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
                     displayEventsUserPrivateContainer.appendChild(eventCard);
+
                     // Set height of event card based on description height
                     const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
                     eventCard.style.height = descriptionHeight + 7 + '%';
