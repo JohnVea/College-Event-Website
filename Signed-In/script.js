@@ -278,6 +278,11 @@ function logData(daTa) {
 }
 
 async function createPrivateEvent(eventID, adminID, superAdminID) {
+    console.log(JSON.stringify({
+        eventID: eventID,
+        adminID: adminID,
+        superAdminID: superAdminID
+    }));
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/CreatePrivateEvent.php', {
             method: 'POST',
