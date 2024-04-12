@@ -223,16 +223,17 @@ document.addEventListener("DOMContentLoaded", function() {
         // Call function to create event
         await createEvent(eventData);
 
-        // const AllEvents = await getEvents();
-        // console.log(AllEvents);
-        // const eventExists = AllEvents.some(event => event.EventName === eventName);
-        // console.log(eventExists);
-        console.log(getEvents())
-
-        eventContainer.style.display = "none";
-        displayEventsContainer.style.display = "block";
+        
 
     });
+
+    const AllEvents = getEvents();
+    console.log(AllEvents);
+    const eventExists = AllEvents.some(event => event.EventName === eventName);
+    console.log(eventExists);
+
+    eventContainer.style.display = "none";
+    displayEventsContainer.style.display = "block";
 
 });
 
