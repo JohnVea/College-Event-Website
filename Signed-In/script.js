@@ -43,15 +43,16 @@ function displayUserCreatedPrivateEvents(){
                     eventCard.style.height = descriptionHeight + 7 + '%';
                 // }
             });
-            const privateEventsData = getPrivateEvents();
-            const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-            if(!(privateEventIDs.has(userData.UserID.toString()))){
-                console.log(displayEventsUserPrivateContainer);
-                alert("You don't have any private events, please create one");
-            }
+            // const privateEventsData = getPrivateEvents();
+            // const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
+            // if(!(privateEventIDs.has(userData.UserID.toString()))){
+            //     console.log(displayEventsUserPrivateContainer);
+            //     alert("You don't have any private events, please create one");
+            // }
         })
         .catch(error => {
-            console.error('Error fetching locations:', error);
+            alert("You don't have any private events, please create one");
+            // console.error('Error fetching locations:', error);
         });
     })
     .catch(error => {
