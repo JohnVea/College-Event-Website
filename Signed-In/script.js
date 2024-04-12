@@ -60,7 +60,7 @@ async function fetchLocations() {
 }
 
 // Function to create an event card based on event data
-function createEventCard(event, locations) {
+async function createEventCard(event, locations) {
     const eventCard = document.createElement('div');
     eventCard.classList.add('eventCard');
     
@@ -91,7 +91,7 @@ function createEventCard(event, locations) {
     eventDescription.textContent = event.Description;
 
     const eventType = document.createElement('h3');
-    const privateEventsData =  getPrivateEvents();
+    const privateEventsData = await getPrivateEvents();
     // console.log(privateEventsData);
     const privateEventIDs = new Set(privateEventsData.map(event => event.EventID));
     eventType.classList.add('eventType');
@@ -408,6 +408,7 @@ async function getPrivateEvents() {
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
+        console.log(response);
 
         const data = await response.json();
         console.log(data);
