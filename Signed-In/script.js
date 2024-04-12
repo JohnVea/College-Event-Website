@@ -222,37 +222,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Call function to create event
         await createEvent(eventData);
-
-        try {
-            const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error(`Failed to fetch events: ${response.statusText}`);
-            }
-    
-            const data = await response.json();
-            const eventExists = data.some(event => event.EventName === eventData.eventName);
-            console.log(eventExists);
-
-            eventContainer.style.display = "none";
-            displayEventsContainer.style.display = "block";
-
-        } catch (error) {
-            console.error('Error fetching events:', error.message);
-            throw error; // Re-throw the error so it can be caught by the caller
-        }
-
-
-
         
-        
+
+        const AllEvents = await getEvents();
+        console.log(AllEvents);
+        const eventExists = AllEvents.some(event => event.EventName === eventName);
+        console.log(eventExists);
+
+        eventContainer.style.display = "none";
+        displayEventsContainer.style.display = "block";
 
     });
+    const AllEvents = getEvents();
+    console.log(AllEvents);
 
 });
 
