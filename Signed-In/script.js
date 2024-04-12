@@ -9,8 +9,9 @@ userProfileButton.addEventListener('click', function(){
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
-        displayUserCreatedPrivateEvents();
+        displayUserCreatedPrivateEvents(userData.UserID.toString());
         // console.log("Event card: " +  eventCard.style.display);
+        console.log(JSON.stringify(userData.UserID));
     }else{
         eventCard.style.display = 'block'
         userEvents.style.display = 'none';
@@ -53,8 +54,8 @@ async function createUserEventCard(event, locations) {
     const privateEventsData = await getPrivateEvents();
     // console.log(privateEventsData);
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-        if(privateEventIDs.has(userData.UserID)){
-            const eventCard = document.createElement('div');
+    if(privateEventIDs.has(userData.UserID)){
+        const eventCard = document.createElement('div');
         eventCard.classList.add('eventCard');
         
 
@@ -117,6 +118,9 @@ document.addEventListener("DOMContentLoaded", function() {
         userData = JSON.parse(userDataJSON);
         profileName.innerHTML = userData.FirstName;
         console.log('User data:', userData);
+        // console.log(JSON.stringify(userData.UserID));
+        // console.log(userData.UserID.toString());
+
     } else {
         console.log('userDataJSON is null or undefined');
     }
