@@ -19,8 +19,8 @@ userProfileButton.addEventListener('click', function(){
     }
 });
 
-const eventCards = document.querySelector('.eventCard');
 document.addEventListener("DOMContentLoaded", function(){
+    const eventCards = document.querySelectorAll('.eventCard');
     if (eventCards && eventCards.length > 0) {
         eventCards.forEach(eventCard => {
             eventCard.addEventListener('click', function() {
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
 });
+
 
 
 
