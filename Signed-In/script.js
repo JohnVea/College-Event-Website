@@ -274,17 +274,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-function logData(daTa) {
-    console.log(daTa);
-}
 
 async function createPrivateEvent(eventID, adminID, superAdminID) {
     console.log("Under Here");
-    console.log(JSON.stringify({
-        eventID: eventID,
-        adminID: adminID,
-        superAdminID: superAdminID
-    }));
+    console.log(eventID);
+    console.log(adminID);
+    console.log(adminID);
+    console.log("----------");
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/CreatePrivateEvent.php', {
             method: 'POST',
