@@ -25,35 +25,36 @@ function displayUserCreatedPrivateEvents(){
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
     .then(response => response.json())
     .then(events => {
-        fetchLocations()
-        .then(locations => {
-            locationsData = locations; // Store locations data globally
-            const displayEventsUserPrivateContainer = document.querySelector('.userEventsContainer');
-            displayEventsUserPrivateContainer.innerHTML = '';
-            
-            // Loop through each event and create HTML elements to display them
-            events.forEach(async event => {
-                // if(event.UserID === userID){
-                    
-                    const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
-                    displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
-
-                    // Set height of event card based on description height
-                    const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                    eventCard.style.height = descriptionHeight + 7 + '%';
-                // }
-            });
-            // const privateEventsData = getPrivateEvents();
-            // const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-            // if(!(privateEventIDs.has(userData.UserID.toString()))){
-            //     console.log(displayEventsUserPrivateContainer);
-            //     alert("You don't have any private events, please create one");
-            // }
-        })
-        .catch(error => {
+        const privateEventsData = getPrivateEvents();
+        const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
+        if(!(privateEventIDs.has(userData.UserID.toString()))){
+            console.log(displayEventsUserPrivateContainer);
             alert("You don't have any private events, please create one");
-            // console.error('Error fetching locations:', error);
-        });
+        }else{
+            fetchLocations()
+            .then(locations => {
+                locationsData = locations; // Store locations data globally
+                const displayEventsUserPrivateContainer = document.querySelector('.userEventsContainer');
+                displayEventsUserPrivateContainer.innerHTML = '';
+                
+                // Loop through each event and create HTML elements to display them
+                events.forEach(async event => {
+                    // if(event.UserID === userID){
+                        
+                        const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
+                        displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
+
+                        // Set height of event card based on description height
+                        const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
+                        eventCard.style.height = descriptionHeight + 7 + '%';
+                    // }
+                });
+                
+            })
+            .catch(error => {
+                console.error('Error fetching locations:', error);
+            });
+        }
     })
     .catch(error => {
         console.error('Error fetching events:', error);
