@@ -21,7 +21,7 @@ userProfileButton.addEventListener('click', function(){
 
 //const eventCards = document.querySelector('.eventCard');
 eventCard.addEventListener('click', function(){
-    console.log("Event card clicked");
+    console.log("Event card clicked" + eventCard.eventCard.eventName);
 });
 
 
