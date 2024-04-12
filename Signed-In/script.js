@@ -324,7 +324,8 @@ function searchEvents2() {
             body: JSON.stringify(searchObject)
         })
         if(response){
-            return response;
+            console.log(JSON.stringify(response));
+            return response.body;
         }
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
