@@ -43,6 +43,9 @@ function displayUserCreatedPrivateEvents(){
                     eventCard.style.height = descriptionHeight + 7 + '%';
                 // }
             });
+            if(!displayEventsUserPrivateContainer){
+                alert("You don't have any private events, please create one");
+            }
         })
         .catch(error => {
             console.error('Error fetching locations:', error);
@@ -103,9 +106,6 @@ async function createUserEventCard(event, locations) {
         eventCard.appendChild(eventType);
 
         return eventCard;
-    }else{
-        alert("You don't have any private evernts, please create One");
-        return null;
     }
     
 
