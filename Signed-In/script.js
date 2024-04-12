@@ -29,6 +29,7 @@ function displayUserCreatedPrivateEvents(){
         .then(locations => {
             locationsData = locations; // Store locations data globally
             const displayEventsUserPrivateContainer = document.querySelector('.userEventsContainer');
+            displayEventsUserPrivateContainer.innerHTML = '';
             
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
