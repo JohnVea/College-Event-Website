@@ -203,13 +203,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Construct event data object
         const eventData = {
-            "time": "2024-01-13 12:21:00",
+            "time": "2024-02-13 12:21:00",
             "timeOfDay": "PM",
             "location": "Miami, FL",
             "longitude": 30.006,
             "latitude": 50.7128,
-            "eventName": "WTST?? . . . ",
-            "description": "WTWS here matehhgtttt"
+            "eventName": "WTST??2222 . . . ",
+            "description": "WTWS22222 here matehhgtttt"
             // eventName: eventName,
             // time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
             // timeOfDay: daytime,
