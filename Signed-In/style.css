@@ -328,6 +328,7 @@ label[for="Daytime"] {
     height: 93%;
     position: relative;
     overflow-y: auto;
+    display: none;
 }
 
 .userEvents:hover{
