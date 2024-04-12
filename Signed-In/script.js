@@ -9,6 +9,7 @@ userProfileButton.addEventListener('click', function(){
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
+        displayUserCreatedEvents(userData.UserID);
         // console.log("Event card: " +  eventCard.style.display);
     }else{
         eventCard.style.display = 'block'
@@ -18,6 +19,36 @@ userProfileButton.addEventListener('click', function(){
         // console.log("Event card: " +  eventCard.style.display);
     }
 });
+
+function displayUserCreatedEvents(userID){  
+    fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
+    .then(response => response.json())
+    .then(events => {
+        fetchLocations()
+        .then(locations => {
+            locationsData = locations; // Store locations data globally
+            const displayEventsContainer = document.querySelector('.displayEventsContainer');
+            
+            // Loop through each event and create HTML elements to display them
+            events.forEach(async event => {
+                if(event.UserID === userID){
+                    const eventCard = await createEventCard(event, locationsData); // Pass locations data
+                    displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
+
+                    // Set height of event card based on description height
+                    const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
+                    eventCard.style.height = descriptionHeight + 7 + '%';
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching locations:', error);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching events:', error);
+    });
+}
 
 
 let userDataJSON;
