@@ -33,15 +33,17 @@ function displayUserCreatedPrivateEvents(){
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
                 // if(event.UserID === userID){
-                    const eventCardContainer = document.createElement('div'); // Create a container for the event card
-                    eventCardContainer.classList.add('eventCardContainer');
-                    
                     const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
-                    displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
-
+                
+                    const eventCardContainer = document.createElement('div'); // Create a container for the event card
+                    eventCardContainer.classList.add('eventCardContainer'); // Add a class to the container
+                    eventCardContainer.appendChild(eventCard); // Append the event card to the container
+    
                     // Set height of event card based on description height
                     const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
                     eventCard.style.height = descriptionHeight + 7 + '%';
+    
+                    displayEventsUserPrivateContainer.appendChild(eventCardContainer); // Append the container to the main display container
                 // }
             });
         })
