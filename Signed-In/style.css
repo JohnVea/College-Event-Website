@@ -311,3 +311,15 @@ label[for="Daytime"] {
     transform: scale(1.03);
     animation: bounce 0.5s;
 }
+
+.userEvents{
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    position: relative;
+    display: none;
+}

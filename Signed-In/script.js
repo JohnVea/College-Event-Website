@@ -1,6 +1,25 @@
 let locationsData; // Define a variable to store locations data globally
 
-// Fetch events from the API and display them
+const userProfileButton = document.querySelector('.userProfile');
+const eventCard = document.querySelector('.eventCard');
+const userEvents = document.querySelector('.userEvents');
+userProfileButton.addEventListener('click', function(){
+    if(eventCard.style.display === 'block'){
+        eventCard.style.display = 'none';
+        userProfileButton.innerHTML = userData.FirstName;
+        userProfileButton.style.color = 'black';
+    }else{
+        eventCard.style.display = 'block'
+        userProfileButton.innerHTML = "close";
+        userProfileButton.style.color = 'red';
+    }
+    if(userEvents.style.display === 'none'){
+        userEvents.style.display = 'block';
+        
+    }else{
+        userEvents.style.display = 'none';
+    }
+});
 
 
 let userDataJSON;
