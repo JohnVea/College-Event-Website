@@ -6,13 +6,14 @@ let locationsData; // Define a variable to store locations data globally
 let userDataJSON;
 let userData;
 document.addEventListener("DOMContentLoaded", function() {
-    // Your existing code here
+    const profileName = document.getElementById("userProfile")
 
     userDataJSON = localStorage.getItem('userData');
     // Check if userDataJSON is not null or undefined
     if (userDataJSON) {
         // Parse the JSON string to an object
         userData = JSON.parse(userDataJSON);
+        profileName.innerHTML = userData.FirstName;
         console.log('User data:', userData);
     } else {
         console.log('userDataJSON is null or undefined');
@@ -59,9 +60,10 @@ async function fetchLocations() {
 }
 
 // Function to create an event card based on event data
-function createEventCard(event, locations) {
+async function createEventCard(event, locations) {
     const eventCard = document.createElement('div');
     eventCard.classList.add('eventCard');
+    
 
     const eventName = document.createElement('h1');
     eventName.textContent = 'Event: ' + (event.EventName ? event.EventName : event.Event_name);
@@ -88,6 +90,12 @@ function createEventCard(event, locations) {
     eventDescription.classList.add('eventDescription');
     eventDescription.textContent = event.Description;
 
+    const eventType = document.createElement('h3');
+    const privateEventsData = await getPrivateEvents();
+    const privateEventIDs = new Set(privateEventsData.map(event => event.EventID));
+    eventType.classList.add('eventType');
+    eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(event.EventID) ? 'Private' : 'Public');
+
     eventCard.appendChild(eventName);
     eventCard.appendChild(eventDate);
     eventCard.appendChild(eventTime);
@@ -95,6 +103,7 @@ function createEventCard(event, locations) {
     eventCard.appendChild(longitude);
     eventCard.appendChild(latitude);
     eventCard.appendChild(eventDescription);
+    eventCard.appendChild(eventType);
 
     return eventCard;
 }
@@ -272,9 +281,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Event Created Successfully");
             fetchEvents();
         }
-        // console.log(eventType);
-        // console.log(eventCreated)
-        // console.log(eventData);
 
         eventContainer.style.display = "none";
         displayEventsContainer.style.display = "block";
@@ -371,6 +377,27 @@ async function createEvent(eventData) {
 async function getEvents() {
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        throw error; 
+    }
+}
+
+async function getPrivateEvents() {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllPrivateEvents.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
