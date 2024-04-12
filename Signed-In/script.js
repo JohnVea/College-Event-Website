@@ -255,15 +255,15 @@ document.addEventListener("DOMContentLoaded", function() {
         if(eventType === 'private'){
             if(eventCreated){
                 
-                setTimeout(async () => {
-                    const eventData = await searchEvents2(eventData.eventName);
-                    console.log(eventData.Events_ID);
-                    console.log(eventData);
-                    console.log(await eventData.json());
-                    const eventData2 = await eventData.json();
-                    const eventID = eventData2[0].Events_ID;
-                    await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
-                }, 2000);
+                // setTimeout(async () => {
+                const eventDat = await searchEvents2(eventData.eventName);
+                console.log(eventDat.Events_ID);
+                console.log(eventData);
+                console.log(await eventDat.json());
+                const eventDat2 = await eventDat.json();
+                const eventID = eventDat2[0].Events_ID;
+                await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
+                // }, 2000);
             }
         }
         if(eventCreated){
