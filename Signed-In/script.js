@@ -60,7 +60,7 @@ async function fetchLocations() {
 }
 
 // Function to create an event card based on event data
-async function createEventCard(event, locations) {
+function createEventCard(event, locations) {
     const eventCard = document.createElement('div');
     eventCard.classList.add('eventCard');
     
@@ -91,7 +91,7 @@ async function createEventCard(event, locations) {
     eventDescription.textContent = event.Description;
 
     const eventType = document.createElement('h3');
-    const privateEventsData = await getPrivateEvents();
+    const privateEventsData =  getPrivateEvents();
     const privateEventIDs = new Set(privateEventsData.map(event => event.EventID));
     eventType.classList.add('eventType');
     eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(event.EventID) ? 'Private' : 'Public');
