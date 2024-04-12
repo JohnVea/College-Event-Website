@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // console.log(eventCreated)
         // console.log(eventData);
 
-        console.log(await searchEvents2("First Test of Private"))
+        console.log(await searchEvents2(eventData.eventName));
         
 
         // eventContainer.style.display = "none";
