@@ -248,25 +248,27 @@ document.addEventListener("DOMContentLoaded", function() {
         
         
 
-        // Call function to create event
-        const eventCreated = await createEvent(eventData);
+        // // Call function to create event
+        // const eventCreated = await createEvent(eventData);
 
-        if(eventType === 'private'){
-            if(eventCreated){
-                const eventID = await searchEvents2(eventData.eventName);
-                createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
-            }
-        }
-        // if(eventCreated){
-
+        // if(eventType === 'private'){
+        //     if(eventCreated){
+        //         const eventID = await searchEvents2(eventData.eventName);
+        //         createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
+        //     }
         // }
-        console.log(eventType);
-        console.log(eventCreated)
-        console.log(eventData);
+        // // if(eventCreated){
+
+        // // }
+        // console.log(eventType);
+        // console.log(eventCreated)
+        // console.log(eventData);
+
+        console.log(await searchEvents2("First Test of Private Event"))
         
 
-        eventContainer.style.display = "none";
-        displayEventsContainer.style.display = "block";
+        // eventContainer.style.display = "none";
+        // displayEventsContainer.style.display = "block";
 
     });
 
@@ -314,7 +316,7 @@ function searchEvents2() {
     };
     
     try {
-        fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+        const response = fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -322,7 +324,7 @@ function searchEvents2() {
             body: JSON.stringify(searchObject)
         })
         if(response){
-            return response.json();
+            return response;
         }
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
