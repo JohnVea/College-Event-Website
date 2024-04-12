@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const eventDat = await searchEvents2(eventData.eventName);
                 console.log(eventDat.Events_ID);
                 console.log(eventData);
-                console.log(await eventDat.json());
+                // console.log(await eventDat.json());
                 const eventDat2 = await eventDat.json();
                 const eventID = eventDat2[0].Events_ID;
                 await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
