@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // console.log(eventCreated)
         // console.log(eventData);
 
-        console.log(await searchEvents2("First Test of Private Event"))
+        console.log(await searchEvents2("First Test of Private"))
         
 
         // eventContainer.style.display = "none";
@@ -307,7 +307,7 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
     }
 }
 
-function searchEvents2() {
+async function searchEvents2() {
     const searchQuery = searchBar.value;
     console.log(searchQuery);
     // Prepare the search object
@@ -324,8 +324,9 @@ function searchEvents2() {
             body: JSON.stringify(searchObject)
         })
         if(response){
-            console.log(JSON.stringify(response));
-            return response.body;
+            console.log(response);
+            const data = await response.json();
+            return data;
         }
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
