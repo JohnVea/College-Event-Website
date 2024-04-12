@@ -26,12 +26,12 @@ function displayUserCreatedPrivateEvents(){
     .then(response => response.json())
     .then(events => {
         fetchLocations()
-        .then(locations => {
+        .then(async locations => {
             locationsData = locations; // Store locations data globally
             const displayEventsUserPrivateContainer = document.querySelector('.userEventsContainer');
             displayEventsUserPrivateContainer.innerHTML = '';
 
-            const privateEventsData = getPrivateEvents();
+            const privateEventsData = await getPrivateEvents();
             console.log(privateEventsData);
             const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
             
