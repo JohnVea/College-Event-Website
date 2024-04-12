@@ -201,16 +201,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const eventDescription = document.getElementById('eventDescription').value;
         const eventType = document.getElementById('eventType').value;
 
-
-        // Event type change event listener
-        const eventTypeSelect = document.getElementById('eventType');
-        eventTypeSelect.addEventListener('change', function(event) {
-            const selectedEventType = event.target.value;
-            console.log('Selected event type:', selectedEventType);
-            // You can perform further actions based on the selected event type here
-        });
-
-        
         // Construct event data object
         const eventData = {
             "time": "2024-02-13 12:21:00",
@@ -230,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // eventType: eventType
         };
         
+        console.log(eventType);
 
         // Call function to create event
         const eventCreated = await createEvent(eventData);
