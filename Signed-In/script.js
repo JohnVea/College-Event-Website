@@ -34,24 +34,26 @@ function displayUserCreatedPrivateEvents(){
             const privateEventsData = await getPrivateEvents();
             console.log(privateEventsData);
             const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-            
+            // if the usedoesn't have any private events 
             if(!(privateEventIDs.has(userData.UserID.toString()))){
                 console.log(displayEventsUserPrivateContainer);
                 alert("You don't have any private events, please create one");
+            }else{
+                // Loop through each event and create HTML elements to display them
+                events.forEach(async event => {
+                    // if(event.UserID === userID){
+                        
+                        const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
+                        displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
+
+                        // Set height of event card based on description height
+                        const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
+                        eventCard.style.height = descriptionHeight + 7 + '%';
+                    // }
+                });
             }
             
-            // Loop through each event and create HTML elements to display them
-            events.forEach(async event => {
-                // if(event.UserID === userID){
-                    
-                    const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
-                    displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
-
-                    // Set height of event card based on description height
-                    const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                    eventCard.style.height = descriptionHeight + 7 + '%';
-                // }
-            });
+            
             
         })
         .catch(error => {
