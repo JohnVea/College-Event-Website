@@ -98,6 +98,4 @@ function returnWithError($err)
     // Terminate script execution
     exit;
 }
-
-
 ?>
