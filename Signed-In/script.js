@@ -223,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const eventDescription = document.getElementById('eventDescription').value;
         const eventType = document.getElementById('eventType').value;
 
+        const formattedTime = `${eventDate} ${eventTimeHours}:${eventTimeMinutes}:00`;
         // Construct event data object
         const eventData = {
             // "time": "2024-03-13 12:21:00",
@@ -233,7 +234,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // "eventName": "WTST??2222 . . . ",
             // "description": "WTWS22222 here matehhgtttt"
             
-            time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
+            //time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
+            time: formattedTime,
             timeOfDay: daytime,
             location: eventLocation,
             longitude: parseFloat(longitude),
@@ -260,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // }
         console.log(eventType);
         console.log(eventCreated)
+        console.log(eventData);
         
 
         eventContainer.style.display = "none";
