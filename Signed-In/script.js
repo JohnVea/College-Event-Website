@@ -3,6 +3,8 @@ let locationsData; // Define a variable to store locations data globally
 // Fetch events from the API and display them
 fetchEvents();
 
+let userDataJSON = localStorage.getItem('userData');
+
 function fetchEvents() {
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
     .then(response => response.json())
@@ -203,34 +205,47 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Construct event data object
         const eventData = {
-            "time": "2024-02-13 12:21:00",
-            "timeOfDay": "PM",
-            "location": "Miami, FL",
-            "longitude": 30.006,
-            "latitude": 50.7128,
-            "eventName": "WTST??2222 . . . ",
-            "description": "WTWS22222 here matehhgtttt"
-            // eventName: eventName,
-            // time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
-            // timeOfDay: daytime,
-            // location: eventLocation,
-            // longitude: parseFloat(longitude),
-            // latitude: parseFloat(latitude),
-            // description: eventDescription,
-            // eventType: eventType
+            // "time": "2024-02-13 12:21:00",
+            // "timeOfDay": "PM",
+            // "location": "Miami, FL",
+            // "longitude": 30.006,
+            // "latitude": 50.7128,
+            // "eventName": "WTST??2222 . . . ",
+            // "description": "WTWS22222 here matehhgtttt"
+            eventName: eventName,
+            time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
+            timeOfDay: daytime,
+            location: eventLocation,
+            longitude: parseFloat(longitude),
+            latitude: parseFloat(latitude),
+            description: eventDescription,
+            eventType: eventType
         };
         
-        console.log(eventType);
+        
 
         // Call function to create event
         const eventCreated = await createEvent(eventData);
 
-        // if(eventType.value === 'private'){
-        //     console.log("Private event");
-        // }
+        if(eventType === 'private'){
+            if(eventCreated){
+                if(userDataJSON) {
+                    const userData = JSON.parse(userDataJSON);
+                    console.log('User data:', userData);
+                    const eventID = await searchEvents2(eventData.eventName);
+                    createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
+                }
+                else{
+                    const eventID = await searchEvents2(eventData.eventName);
+                    createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
+                }
+            }
+        }
         // if(eventCreated){
 
         // }
+        console.log(eventType);
+        console.log(eventCreated)
         
 
         eventContainer.style.display = "none";
@@ -239,6 +254,58 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+
+async function createPrivateEvent(eventID, adminID, superAdminID) {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreatePrivateEvent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                eventID: eventID,
+                adminID: adminID,
+                superAdminID: superAdminID
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to create private event');
+        }
+
+        const data = await response.json();
+        console.log('Private event created successfully:', data);
+        // Call any additional functions or handle the response as needed
+    } catch (error) {
+        console.error('Error creating private event:', error.message);
+        // Handle error, e.g., show error message to the user
+    }
+}
+
+function searchEvents2() {
+    const searchQuery = searchBar.value;
+    console.log(searchQuery);
+    // Prepare the search object
+    const searchObject = {
+        keyword: searchQuery
+    };
+    
+    try {
+        fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(searchObject)
+        })
+        if(response){
+            return response.json();
+        }
+    } catch (error) {
+        console.error('Error calling SearchEvent API:', error);
+    }
+}
+
 
 async function createEvent(eventData) {
     try {
