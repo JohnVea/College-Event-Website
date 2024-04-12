@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if userDataJSON is not null or undefined
     if (userDataJSON) {
         // Parse the JSON string to an object
-        const userData = JSON.parse(userDataJSON);
+        let userData = JSON.parse(userDataJSON);
         console.log('User data:', userData);
     } else {
         console.log('userDataJSON is null or undefined');
@@ -250,12 +250,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // // Call function to create event
         const eventCreated = await createEvent(eventData);
-
+        console.log(userData);
         if(eventType === 'private'){
             if(eventCreated){
+                fetchEvents();
                 const eventID = await searchEvents2(eventData.eventName);
                 console.log(eventID.Events_ID);
-                await createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
+                await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
             }
         }
         if(eventCreated){
@@ -279,7 +280,7 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
     console.log("Under Here");
     console.log(eventID);
     console.log(adminID);
-    console.log(adminID);
+    console.log(superAdminID);
     console.log("----------");
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/CreatePrivateEvent.php', {
