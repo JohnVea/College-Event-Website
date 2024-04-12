@@ -51,8 +51,10 @@ function displayUserCreatedPrivateEvents(){
                     // if(event.UserID === userID){
                         
                         const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
-                        //displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
-                        displayEventsUserPrivateContainer.appendChild(eventCard);
+                        if(eventCard != null && eventCard != undefined){
+                            displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
+                        }
+                        // displayEventsUserPrivateContainer.appendChild(eventCard);
                         // Set height of event card based on description height
                         const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
                         eventCard.style.height = descriptionHeight + 7 + '%';
@@ -124,7 +126,6 @@ async function createUserEventCard(event, locations) {
         return eventCard;
     }
     
-
     
 }
 
