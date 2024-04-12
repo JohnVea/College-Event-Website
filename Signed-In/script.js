@@ -4,12 +4,12 @@ const userProfileButton = document.querySelector('.userProfile');
 const eventCard = document.querySelector('.eventCard');
 const userEvents = document.querySelector('.userEvents');
 userProfileButton.addEventListener('click', function(){
-    if(eventCard.style.display){
+    if(eventCard.style.display == 'block'){
         eventCard.style.display = 'none';
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = userData.FirstName;
         userProfileButton.style.color = 'black';
-    }else{
+    }else if(eventCard.style.display == 'none'){
         eventCard.style.display = 'block'
         userEvents.style.display = 'none';
         userProfileButton.innerHTML = "close";
