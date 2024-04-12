@@ -103,6 +103,9 @@ async function createUserEventCard(event, locations) {
         eventCard.appendChild(eventType);
 
         return eventCard;
+    }else{
+        alert("You don't have any private evernts, please create One");
+        return null;
     }
     
 
