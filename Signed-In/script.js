@@ -9,7 +9,7 @@ userProfileButton.addEventListener('click', function(){
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
-        displayUserCreatedPrivateEvents(userData.UserID.toString());
+        displayUserCreatedPrivateEvents(userData.UserID);
         // console.log("Event card: " +  eventCard.style.display);
         console.log(JSON.stringify(userData.UserID));
     }else{
@@ -57,7 +57,7 @@ async function createUserEventCard(event, locations) {
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
     console.log("User ID:", userData.UserID);
     console.log("Event ID:", event.EventID);
-    console.log("Is user super admin:", privateEventIDs.has((userData.UserID).toString));
+    console.log("Is user super admin:", privateEventIDs.has(userData.UserID));
     console.log("Is event private:", privateIDs.has(event.EventID));
     console.log(privateEventIDs);
     console.log(privateIDs);
