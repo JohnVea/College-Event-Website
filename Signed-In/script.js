@@ -212,14 +212,14 @@ document.addEventListener("DOMContentLoaded", function() {
             // "latitude": 50.7128,
             // "eventName": "WTST??2222 . . . ",
             // "description": "WTWS22222 here matehhgtttt"
-            eventName: eventName,
+            
             time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
             timeOfDay: daytime,
             location: eventLocation,
             longitude: parseFloat(longitude),
             latitude: parseFloat(latitude),
-            description: eventDescription,
-            eventType: eventType
+            eventName: eventName,
+            description: eventDescription
         };
         
         
