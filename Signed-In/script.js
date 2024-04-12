@@ -256,12 +256,14 @@ document.addEventListener("DOMContentLoaded", function() {
             if(eventCreated){
                 fetchEvents();
                 setTimeout(async () => {
-                    const eventID = await searchEvents2(eventData.eventName);
-                    console.log(eventID.Events_ID);
-                    console.log(eventID);
-                    console.log(await eventID.json());
+                    const eventData = await searchEvents2(eventData.eventName);
+                    console.log(eventData.Events_ID);
+                    console.log(eventData);
+                    console.log(await eventData.json());
+                    const eventData2 = await eventData.json();
+                    const eventID = eventData2[0].Events_ID;
                     await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
-                }, 5000);
+                }, 2000);
             }
         }
         if(eventCreated){
