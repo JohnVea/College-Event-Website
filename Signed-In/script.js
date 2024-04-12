@@ -260,25 +260,25 @@ async function createEvent(eventData) {
 
 async function getEvents() {
     try {
-      const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-      });
-  
-      
-  
-      if (!response.ok) {
-        throw new Error(`Failed to fetch events: ${response.statusText}`);
-      }
-  
-      const data = await response.json();
-      return data;
+
+        const data = await response.json();
+        return data;
     } catch (error) {
-      console.error('Error fetching eventa:', error.message);
+        console.error('Error fetching events:', error.message);
+        throw error; // Re-throw the error so it can be caught by the caller
     }
-  }
+}
+
 
 
 
