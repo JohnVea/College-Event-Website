@@ -33,7 +33,7 @@ function displayUserCreatedPrivateEvents(){
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
                 // if(event.UserID === userID){
-                    const eventCard = await createEventCard(event, locationsData); // Pass locations data
+                    const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
                     displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
 
                     // Set height of event card based on description height
