@@ -1,8 +1,8 @@
 let locationsData; // Define a variable to store locations data globally
 
 const userProfileButton = document.querySelector('.userProfile');
-const eventCard = document.querySelector('.eventCard');
-const userEvents = document.querySelector('.userEvents');
+const eventCard = document.querySelector('.displayEventsContainer');
+const userEvents = document.querySelector('.userEventsContainer');
 userProfileButton.addEventListener('click', function(){
     if(userEvents.style.display === 'none'){
         eventCard.style.display = 'none';

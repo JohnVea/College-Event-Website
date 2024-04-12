@@ -321,5 +321,17 @@ label[for="Daytime"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     text-align: center;
     position: relative;
-    display: none;
+    transition: transform 0.3s ease;
+}
+
+.userEventsContainer{
+    height: 93%;
+    position: relative;
+    overflow-y: auto;
+}
+
+.userEvents:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    transform: scale(1.03);
 }
