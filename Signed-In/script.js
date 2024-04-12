@@ -20,24 +20,23 @@ userProfileButton.addEventListener('click', function(){
 });
 
 
-function displayComments(){
+function displayComments() {
     const eventCards = document.querySelectorAll('.eventCard');
-    eventCards.addEventListener("click", function(){
-        
-        if (eventCards && eventCards.length > 0) {
-            eventCards.forEach(eventCard => {
-                eventCard.addEventListener('click', function() {
-                    const eventName = eventCard.querySelector('h1');
-                    if (eventName) {
-                        console.log("Event card clicked: " + eventName.textContent);
-                    } else {
-                        console.log("Event card clicked: No event name found");
-                    }
-                });
+    
+    if (eventCards && eventCards.length > 0) {
+        eventCards.forEach(eventCard => {
+            eventCard.addEventListener('click', function() {
+                const eventName = eventCard.querySelector('h1');
+                if (eventName) {
+                    console.log("Event card clicked: " + eventName.textContent);
+                } else {
+                    console.log("Event card clicked: No event name found");
+                }
             });
-        }
-    });
+        });
+    }
 }
+
 
 
 
