@@ -254,7 +254,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if(eventType === 'private'){
             if(eventCreated){
                 const eventID = await searchEvents2(eventData.eventName);
-                createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
+                console.log(eventID.Events_ID);
+                await createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
             }
         }
         if(eventCreated){
@@ -278,6 +279,7 @@ function logData(daTa) {
 }
 
 async function createPrivateEvent(eventID, adminID, superAdminID) {
+    console.log("Under Here");
     console.log(JSON.stringify({
         eventID: eventID,
         adminID: adminID,
