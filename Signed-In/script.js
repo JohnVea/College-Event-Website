@@ -44,6 +44,7 @@ function displayUserCreatedPrivateEvents(){
                 // }
             });
             if(!displayEventsUserPrivateContainer){
+                console.log(displayEventsUserPrivateContainer);
                 alert("You don't have any private events, please create one");
             }
         })
