@@ -1,11 +1,30 @@
 let locationsData; // Define a variable to store locations data globally
 
 // Fetch events from the API and display them
-fetchEvents();
 
-let userDataJSON = localStorage.getItem('userData');
+
+let userDataJSON;
+document.addEventListener("DOMContentLoaded", function() {
+    // Your existing code here
+
+    userDataJSON = localStorage.getItem('userData');
+    // Check if userDataJSON is not null or undefined
+    if (userDataJSON) {
+        // Parse the JSON string to an object
+        const userData = JSON.parse(userDataJSON);
+        console.log('User data:', userData);
+    } else {
+        console.log('userDataJSON is null or undefined');
+    }
+    fetchEvents();
+
+    // More of your existing code here
+});
+
+
 
 function fetchEvents() {
+    
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
     .then(response => response.json())
     .then(events => {
@@ -197,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const eventTimeHours = document.getElementById('eventTimeHours').value;
         const eventTimeMinutes = document.getElementById('eventTimeMinutes').value;
         const daytime = document.getElementById('Daytime').value;
+        
         const longitude = document.getElementById('longitude').value;
         const latitude = document.getElementById('latitude').value;
         const eventLocation = document.getElementById('eventLocation').value;
@@ -205,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Construct event data object
         const eventData = {
-            // "time": "2024-02-13 12:21:00",
+            // "time": "2024-03-13 12:21:00",
             // "timeOfDay": "PM",
             // "location": "Miami, FL",
             // "longitude": 30.006,
@@ -221,6 +241,8 @@ document.addEventListener("DOMContentLoaded", function() {
             eventName: eventName,
             description: eventDescription
         };
+
+        
         
         
 
@@ -229,16 +251,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(eventType === 'private'){
             if(eventCreated){
-                if(userDataJSON) {
-                    const userData = JSON.parse(userDataJSON);
-                    console.log('User data:', userData);
-                    const eventID = await searchEvents2(eventData.eventName);
-                    createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
-                }
-                else{
-                    const eventID = await searchEvents2(eventData.eventName);
-                    createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
-                }
+                const eventID = await searchEvents2(eventData.eventName);
+                createPrivateEvent(eventID.Events_ID, userDataJSON.UserID, userDataJSON.UserID);
             }
         }
         // if(eventCreated){
@@ -253,7 +267,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
+    
+
 });
+
+function logData(daTa) {
+    console.log(daTa);
+}
 
 async function createPrivateEvent(eventID, adminID, superAdminID) {
     try {
