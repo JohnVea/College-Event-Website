@@ -221,20 +221,19 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         // Call function to create event
-        await createEvent(eventData);
-        
+        const eventCreated = await createEvent(eventData);
+        if(eventType.value === 'private'){
+            console.log("Private event");
+        }
+        // if(eventCreated){
 
-        const AllEvents = await getEvents();
-        console.log(AllEvents);
-        const eventExists = AllEvents.some(event => event.EventName === eventName);
-        console.log(eventExists);
+        // }
+        
 
         eventContainer.style.display = "none";
         displayEventsContainer.style.display = "block";
 
     });
-    const AllEvents = getEvents();
-    console.log(AllEvents);
 
 });
 
@@ -254,10 +253,12 @@ async function createEvent(eventData) {
         }
 
         console.log('Event Created Successfully:');
+        return true;
 
     } catch (error) {
         console.error('Error creating Event:', error.message);
         alert("Event already exists");
+        return false;
     }
 }
 
@@ -278,7 +279,7 @@ async function getEvents() {
         return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
-        throw error; // Re-throw the error so it can be caught by the caller
+        throw error; 
     }
 }
 
