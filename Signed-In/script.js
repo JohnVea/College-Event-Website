@@ -61,6 +61,9 @@ async function createUserEventCard(event, locations) {
     console.log("Is event private:", privateIDs.has(event.EventID));
     console.log("Type of userData.UserID:", typeof userData.UserID);
     console.log("Type of privateIDs: ", typeof privateEventIDs[0]);
+    console.log("Type of privateEventsData:", typeof privateEventsData);
+    console.log("Value of privateEventsData:", privateEventsData);
+
     console.log(privateEventIDs);
     console.log(privateIDs);
     if(privateEventIDs.has(userData.UserID) && (privateIDs.has(event.EventID))){
