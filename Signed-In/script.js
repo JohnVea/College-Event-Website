@@ -57,8 +57,8 @@ async function createUserEventCard(event, locations) {
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
     console.log("User ID:", userData.UserID);
     console.log("Event ID:", event.EventID);
-    console.log("Is user super admin:", privateEventIDs.has(userData.UserID));
-    console.log("Is event private:", privateEventIDs.has(event.EventID));
+    console.log("Is user super admin:", privateEventIDs.has((userData.UserID).toString));
+    console.log("Is event private:", privateIDs.has(event.EventID));
     console.log(privateEventIDs);
     console.log(privateIDs);
     if(privateEventIDs.has(userData.UserID) && (privateIDs.has(event.EventID))){
