@@ -33,6 +33,9 @@ function displayUserCreatedPrivateEvents(){
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
                 // if(event.UserID === userID){
+                    const eventCardContainer = document.createElement('div'); // Create a container for the event card
+                    eventCardContainer.classList.add('eventCardContainer');
+                    
                     const eventCard = await createUserEventCard(event, locationsData); // Pass locations data
                     displayEventsUserPrivateContainer.insertBefore(eventCard, displayEventsUserPrivateContainer.lastChild);
 
@@ -55,9 +58,9 @@ async function createUserEventCard(event, locations) {
     // console.log(privateEventsData);
     const privateIDs = new Set(privateEventsData.map(event => event.EventID));
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-    const eventCard = document.createElement('div');
+    
     if(privateEventIDs.has(userData.UserID.toString()) && (privateIDs.has(event.EventID))){
-        
+        const eventCard = document.createElement('div');
         eventCard.classList.add('eventName');
         
 
@@ -100,10 +103,10 @@ async function createUserEventCard(event, locations) {
         eventCard.appendChild(eventDescription);
         eventCard.appendChild(eventType);
 
-       
+        return eventCard;
     }
     
-    return eventCard;
+
     
 }
 
