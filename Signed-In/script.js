@@ -307,8 +307,7 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
     }
 }
 
-async function searchEvents2() {
-    const searchQuery = searchBar.value;
+async function searchEvents2(searchQuery) {
     console.log(searchQuery);
     // Prepare the search object
     const searchObject = {
