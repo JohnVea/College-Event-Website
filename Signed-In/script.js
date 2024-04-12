@@ -1,7 +1,7 @@
 let locationsData; // Define a variable to store locations data globally
 
 // Fetch events from the API and display them
-fetchEvents(); 
+fetchEvents();
 
 function fetchEvents() {
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
@@ -167,69 +167,106 @@ function searchEvents() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const createEventButton = document.getElementById('createEvent');
-    const eventContainer = document.getElementById('createEventContainer');
-    const submitEvent = document.getElementById('submitEvent');
-    const closeCreateEventForm = document.getElementById('closeCreateEventForm');
-    const displayEventsContainer = document.querySelector('.displayEventsContainer');
-    const eventName = document.getElementById('eventName');
-    const eventDate = document.getElementById('eventDate');
-    const eventTimeHours = document.getElementById('eventTimeHours');
-    const eventTimeMinutes = document.getElementById('eventTimeMinutes');
-    const Daytime = document.getElementById('Daytime');
-    const longitude = document.getElementById('longitude');
-    const latitude = document.getElementById('latitude');
-    const eventLocation = document.getElementById('eventLocation');
-    const eventDescription = document.getElementById('eventDescription');
-    const eventType = document.getElementById('eventType');
+// document.addEventListener("DOMContentLoaded", function() {
+//     const createEventButton = document.getElementById('createEvent');
+//     const eventContainer = document.getElementById('createEventContainer');
+//     const submitEvent = document.getElementById('submitEvent');
+//     const closeCreateEventForm = document.getElementById('closeCreateEventForm');
+//     const displayEventsContainer = document.querySelector('.displayEventsContainer');
+//     const eventName = document.getElementById('eventName');
+//     const eventDate = document.getElementById('eventDate');
+//     const eventTimeHours = document.getElementById('eventTimeHours');
+//     const eventTimeMinutes = document.getElementById('eventTimeMinutes');
+//     const Daytime = document.getElementById('Daytime');
+//     const longitude = document.getElementById('longitude');
+//     const latitude = document.getElementById('latitude');
+//     const eventLocation = document.getElementById('eventLocation');
+//     const eventDescription = document.getElementById('eventDescription');
+//     const eventType = document.getElementById('eventType');
     
     
 
-    createEventButton.onclick = function() {
-        eventContainer.style.display = "block";
-        displayEventsContainer.style.display = "none";
-    };
+//     createEventButton.onclick = function() {
+//         eventContainer.style.display = "block";
+//         displayEventsContainer.style.display = "none";
+//     };
 
-    closeCreateEventForm.onclick = function() {
-        eventContainer.style.display = "none";
-        displayEventsContainer.style.display = "block";
-    };
+//     closeCreateEventForm.onclick = function() {
+//         eventContainer.style.display = "none";
+//         displayEventsContainer.style.display = "block";
+//     };
 
-    submitEvent.onclick = async function() {
-        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
+//     submitEvent.onclick = async function() {
+//         const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
 
 
-        var eventData = {
-            "time": "2023-07-17 12:21:00",
-            "timeOfDay": "PM",
-            "location": "Miami, FL",
-            "longitude": 38.006,
-            "latitude": 58.7128,
-            "eventName": "web Testing Event  ????? . . . ",
-            "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
+//         var eventData = {
+//             "time": "2023-07-17 12:21:00",
+//             "timeOfDay": "PM",
+//             "location": "Miami, FL",
+//             "longitude": 38.006,
+//             "latitude": 58.7128,
+//             "eventName": "web Testing Event  ????? . . . ",
+//             "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
             
-            // time: dateTimeString,
-            // timeOfDay: Daytime.value,
-            // location: eventLocation.value,
-            // longitude: parseFloat(longitude.value),
-            // latitude: parseFloat(latitude.value),
-            // eventName: eventName.value,
-            // description: eventDescription.value
+//             // time: dateTimeString,
+//             // timeOfDay: Daytime.value,
+//             // location: eventLocation.value,
+//             // longitude: parseFloat(longitude.value),
+//             // latitude: parseFloat(latitude.value),
+//             // eventName: eventName.value,
+//             // description: eventDescription.value
+//         };
+
+//         //console.log(eventData);
+//         await createEvent(eventData);
+
+        
+        
+//         //eventContainer.style.display = "none";
+//         //displayEventsContainer.style.display = "block";
+//         //console.log(JSON.stringify(eventData));
+//     };
+
+    
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const createEventForm = document.querySelector('.createEventContainer form');
+    
+    createEventForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        // Get input values
+        const eventName = document.getElementById("eventName").value;
+        const eventDate = document.getElementById("eventDate").value;
+        const eventTimeHours = document.getElementById("eventTimeHours").value;
+        const eventTimeMinutes = document.getElementById("eventTimeMinutes").value;
+        const daytime = document.getElementById("Daytime").value;
+        const longitude = document.getElementById("longitude").value;
+        const latitude = document.getElementById("latitude").value;
+        const eventLocation = document.getElementById("eventLocation").value;
+        const eventDescription = document.getElementById("eventDescription").value;
+        const eventType = document.getElementById("eventType").value;
+
+        // Construct event data object
+        const eventData = {
+            eventName: eventName,
+            time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
+            timeOfDay: daytime,
+            location: eventLocation,
+            longitude: parseFloat(longitude),
+            latitude: parseFloat(latitude),
+            description: eventDescription,
+            eventType: eventType
         };
 
-        //console.log(eventData);
+        // Call function to create event
         await createEvent(eventData);
-
-        
-        
-        //eventContainer.style.display = "none";
-        //displayEventsContainer.style.display = "block";
-        //console.log(JSON.stringify(eventData));
-    };
-
-    
+    });
 });
+
+
 
 async function createEvent(eventData) {
     
