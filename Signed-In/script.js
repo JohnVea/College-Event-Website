@@ -59,6 +59,7 @@ async function createUserEventCard(event, locations) {
     console.log("Event ID:", event.EventID);
     console.log("Is user super admin:", privateEventIDs.has(userData.UserID));
     console.log("Is event private:", privateIDs.has(event.EventID));
+    console.log("Is user super admin String:", privateEventIDs.has(userData.UserID.toString()));
     console.log("Type of userData.UserID:", typeof userData.UserID);
     console.log("Type of userData.UserID String:", typeof userData.UserID.toString());
     console.log("Type of privateIDs: ", typeof privateEventIDs);
