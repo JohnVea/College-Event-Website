@@ -6,18 +6,14 @@ const userEvents = document.querySelector('.userEvents');
 userProfileButton.addEventListener('click', function(){
     if(eventCard.style.display === 'block'){
         eventCard.style.display = 'none';
+        userEvents.style.display = 'block';
         userProfileButton.innerHTML = userData.FirstName;
         userProfileButton.style.color = 'black';
     }else{
         eventCard.style.display = 'block'
+        userEvents.style.display = 'none';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
-    }
-    if(userEvents.style.display === 'block'){
-        userEvents.style.display = 'none';
-        
-    }else{
-        userEvents.style.display = 'block';
     }
 });
 
