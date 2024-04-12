@@ -38,7 +38,13 @@ function fetchEvents() {
             // Loop through each event and create HTML elements to display them
             events.forEach(event => {
                 const eventCard = createEventCard(event, locationsData); // Pass locations data
-                displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
+                // displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
+                if (displayEventsContainer.hasChildNodes()) {
+                    displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
+                } else {
+                    displayEventsContainer.appendChild(eventCard);
+                }
+                
 
                 // Set height of event card based on description height
                 const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
