@@ -519,10 +519,10 @@ async function getPrivateEvents() {
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        console.log(response);
+        // console.log(response);
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
