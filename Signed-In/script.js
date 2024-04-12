@@ -4,17 +4,18 @@ const userProfileButton = document.querySelector('.userProfile');
 const eventCard = document.querySelector('.eventCard');
 const userEvents = document.querySelector('.userEvents');
 userProfileButton.addEventListener('click', function(){
-    if(userProfileButton.style.display === 'none'){
+    if(userEvents.style.display === 'none'){
         eventCard.style.display = 'none';
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
+        // console.log("Event card: " +  eventCard.style.display);
     }else{
         eventCard.style.display = 'block'
         userEvents.style.display = 'none';
         userProfileButton.innerHTML = userData.FirstName;
         userProfileButton.style.color = 'black';
-        
+        // console.log("Event card: " +  eventCard.style.display);
     }
 });
 
