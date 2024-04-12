@@ -53,8 +53,9 @@ function displayUserCreatedPrivateEvents(){
 async function createUserEventCard(event, locations) {
     const privateEventsData = await getPrivateEvents();
     // console.log(privateEventsData);
+    const privateHasIDs = new Set(privateEventsData.map(event => event.EventID));
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-    if(privateEventIDs.has(userData.UserID)){
+    if(privateSuperAdminIDs.has(userData.UserID) && (privateHasIDs.has(event.EventID))){
         const eventCard = document.createElement('div');
         eventCard.classList.add('eventCard');
         
