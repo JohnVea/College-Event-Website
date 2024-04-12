@@ -27,6 +27,7 @@ function displayUserCreatedPrivateEvents(){
     .then(events => {
         const privateEventsData = getPrivateEvents();
         const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
+        console.log(privateEventIDs);
         console.log(privateEventIDs.has(userData.UserID.toString()));
         if(!(privateEventIDs.has(userData.UserID.toString()))){
             console.log(displayEventsUserPrivateContainer);
