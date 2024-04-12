@@ -20,22 +20,19 @@ userProfileButton.addEventListener('click', function(){
 });
 
 
-function displayComments() {
-    const eventCards = document.querySelectorAll('.eventCard');
-    
-    if (eventCards && eventCards.length > 0) {
-        eventCards.forEach(eventCard => {
-            eventCard.addEventListener('click', function() {
-                const eventName = eventCard.querySelector('h1');
-                if (eventName) {
-                    console.log("Event card clicked: " + eventName.textContent);
-                } else {
-                    console.log("Event card clicked: No event name found");
-                }
-            });
-        });
-    }
-}
+document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('eventCard')) {
+            const eventName = event.target.querySelector('h1');
+            if (eventName) {
+                console.log("Event card clicked: " + eventName.textContent);
+            } else {
+                console.log("Event card clicked: No event name found");
+            }
+        }
+    });
+});
+
 
 
 
@@ -203,7 +200,7 @@ function fetchEvents() {
     .catch(error => {
         console.error('Error fetching events:', error);
     });
-    displayComments();
+    // displayComments();
 }
 
 async function fetchLocations() {
