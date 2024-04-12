@@ -20,18 +20,20 @@ userProfileButton.addEventListener('click', function(){
 });
 
 const eventCards = document.querySelector('.eventCard');
-if (eventCards && eventCards.length > 0) {
-    eventCards.forEach(eventCard => {
-        eventCard.addEventListener('click', function() {
-            const eventName = eventCard.querySelector('h1');
-            if (eventName) {
-                console.log("Event card clicked: " + eventName.textContent);
-            } else {
-                console.log("Event card clicked: No event name found");
-            }
+document.addEventListener("DOMContentLoaded", function(){
+    if (eventCards && eventCards.length > 0) {
+        eventCards.forEach(eventCard => {
+            eventCard.addEventListener('click', function() {
+                const eventName = eventCard.querySelector('h1');
+                if (eventName) {
+                    console.log("Event card clicked: " + eventName.textContent);
+                } else {
+                    console.log("Event card clicked: No event name found");
+                }
+            });
         });
-    });
-}
+    }
+});
 
 
 
