@@ -219,12 +219,20 @@ document.addEventListener("DOMContentLoaded", function() {
             // description: eventDescription,
             // eventType: eventType
         };
+        // Event type change event listener
+        const eventTypeSelect = document.getElementById('eventType');
+        eventTypeSelect.addEventListener('change', function(event) {
+            const selectedEventType = event.target.value;
+            console.log('Selected event type:', selectedEventType);
+            // You can perform further actions based on the selected event type here
+        });
 
         // Call function to create event
         const eventCreated = await createEvent(eventData);
-        if(eventType.value === 'private'){
-            console.log("Private event");
-        }
+
+        // if(eventType.value === 'private'){
+        //     console.log("Private event");
+        // }
         // if(eventCreated){
 
         // }
