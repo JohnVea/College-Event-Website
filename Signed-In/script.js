@@ -36,8 +36,15 @@ function displayUserCreatedPrivateEvents(){
             const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
             // if the usedoesn't have any private events 
             if(!(privateEventIDs.has(userData.UserID.toString()))){
+                const userProfileButton = document.querySelector('.userProfile');
+                const eventCard = document.querySelector('.displayEventsContainer');
+                const userEvents = document.querySelector('.userEventsContainer');
                 console.log(displayEventsUserPrivateContainer);
                 alert("You don't have any private events, please create one");
+                eventCard.style.display = 'block'
+                userEvents.style.display = 'none';
+                userProfileButton.innerHTML = userData.FirstName;
+                userProfileButton.style.color = 'black';
             }else{
                 // Loop through each event and create HTML elements to display them
                 events.forEach(async event => {
