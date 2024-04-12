@@ -223,10 +223,11 @@ document.addEventListener("DOMContentLoaded", function() {
         // Call function to create event
         await createEvent(eventData);
 
-        const AllEvents = getEvents();
+        const AllEvents = await getEvents();
+        console.log(AllEvents);
         const eventExists = AllEvents.some(event => event.EventName === eventName);
         console.log(eventExists);
-        
+
         eventContainer.style.display = "none";
         displayEventsContainer.style.display = "block";
 
