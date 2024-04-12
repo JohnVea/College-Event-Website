@@ -9,7 +9,7 @@ userProfileButton.addEventListener('click', function(){
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
-        displayUserCreatedEvents(userData.UserID);
+        displayUserCreatedPrivateEvents();
         // console.log("Event card: " +  eventCard.style.display);
     }else{
         eventCard.style.display = 'block'
@@ -20,7 +20,7 @@ userProfileButton.addEventListener('click', function(){
     }
 });
 
-function displayUserCreatedEvents(userID){  
+function displayUserCreatedPrivateEvents(){  
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
     .then(response => response.json())
     .then(events => {
@@ -31,14 +31,14 @@ function displayUserCreatedEvents(userID){
             
             // Loop through each event and create HTML elements to display them
             events.forEach(async event => {
-                if(event.UserID === userID){
+                // if(event.UserID === userID){
                     const eventCard = await createEventCard(event, locationsData); // Pass locations data
                     displayEventsContainer.insertBefore(eventCard, displayEventsContainer.lastChild);
 
                     // Set height of event card based on description height
                     const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
                     eventCard.style.height = descriptionHeight + 7 + '%';
-                }
+                // }
             });
         })
         .catch(error => {
@@ -48,6 +48,60 @@ function displayUserCreatedEvents(userID){
     .catch(error => {
         console.error('Error fetching events:', error);
     });
+}
+async function createUserEventCard(event, locations) {
+    const privateEventsData = await getPrivateEvents();
+    // console.log(privateEventsData);
+    const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
+        if(privateEventIDs.has(userData.UserID)){
+            const eventCard = document.createElement('div');
+        eventCard.classList.add('eventCard');
+        
+
+        const eventName = document.createElement('h1');
+        eventName.textContent = 'Event: ' + (event.EventName ? event.EventName : event.Event_name);
+
+        const eventDate = document.createElement('h2');
+        eventDate.textContent = "Date: " + event.EventDate;
+
+        const eventTime = document.createElement('h2');
+        eventTime.textContent = "Time: " + event.EventTime;
+
+        // Find the location that matches the event's location
+        const location = locations.find(location => location.LocID === event.Location);
+
+        const eventLocation = document.createElement('h3');
+        eventLocation.textContent = "Event Location: " + location.Name;
+
+        const longitude = document.createElement('h3');
+        longitude.textContent = "\tLongitude: " + location.Longitude;
+
+        const latitude = document.createElement('h3');
+        latitude.textContent = "\tLatitude: " + location.Latitude;
+
+        const eventDescription = document.createElement('p');
+        eventDescription.classList.add('eventDescription');
+        eventDescription.textContent = event.Description;
+
+        const eventType = document.createElement('h3');
+        
+        eventType.classList.add('eventType');
+        eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(event.EventID) ? 'Private' : 'Public');
+
+        eventCard.appendChild(eventName);
+        eventCard.appendChild(eventDate);
+        eventCard.appendChild(eventTime);
+        eventCard.appendChild(eventLocation);
+        eventCard.appendChild(longitude);
+        eventCard.appendChild(latitude);
+        eventCard.appendChild(eventDescription);
+        eventCard.appendChild(eventType);
+
+        return eventCard;
+    }
+    
+
+    
 }
 
 
