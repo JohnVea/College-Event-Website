@@ -203,12 +203,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Construct event data object
         const eventData = {
-            "time": "2023-07-17 12:21:00",
+            "time": "2024-01-12 12:21:00",
             "timeOfDay": "PM",
             "location": "Miami, FL",
-            "longitude": 38.006,
-            "latitude": 58.7128,
-            "eventName": "web Testing Event  ????? . . . ",
+            "longitude": 39.006,
+            "latitude": 59.7128,
+            "eventName": "web Testing Event 2.0??? ????? . . . ",
             "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
             // eventName: eventName,
             // time: eventDate + ' ' + eventTimeHours + ':' + eventTimeMinutes + ':00',
