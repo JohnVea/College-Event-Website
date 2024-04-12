@@ -222,8 +222,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Call function to create event
         await createEvent(eventData);
+
+        const AllEvents = getEvents();
+        const eventExists = AllEvents.some(event => event.EventName === eventName);
+        console.log(eventExists);
+        
         eventContainer.style.display = "none";
         displayEventsContainer.style.display = "block";
+
     });
 
 });
@@ -243,8 +249,7 @@ async function createEvent(eventData) {
             throw new Error('Create Event failed');
         }
 
-        const data = await response.json();
-        console.log('Event Created Successfully:', data);
+        console.log('Event Created Successfully:');
 
     } catch (error) {
         console.error('Error creating Event:', error.message);
@@ -252,6 +257,27 @@ async function createEvent(eventData) {
     }
 }
 
+async function getEvents() {
+    try {
+      const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      
+  
+      if (!response.ok) {
+        throw new Error(`Failed to fetch events: ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching eventa:', error.message);
+    }
+  }
 
 
 
