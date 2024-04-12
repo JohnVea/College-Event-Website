@@ -13,11 +13,11 @@ userProfileButton.addEventListener('click', function(){
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
     }
-    if(userEvents.style.display === 'none'){
-        userEvents.style.display = 'block';
+    if(userEvents.style.display === 'block'){
+        userEvents.style.display = 'none';
         
     }else{
-        userEvents.style.display = 'none';
+        userEvents.style.display = 'block';
     }
 });
 
