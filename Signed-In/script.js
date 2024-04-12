@@ -55,19 +55,7 @@ async function createUserEventCard(event, locations) {
     // console.log(privateEventsData);
     const privateIDs = new Set(privateEventsData.map(event => event.EventID));
     const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
-    console.log("User ID:", userData.UserID);
-    console.log("Event ID:", event.EventID);
-    console.log("Is user super admin:", privateEventIDs.has(userData.UserID));
-    console.log("Is event private:", privateIDs.has(event.EventID));
-    console.log("Is user super admin String:", privateEventIDs.has(userData.UserID.toString()));
-    console.log("Type of userData.UserID:", typeof userData.UserID);
-    console.log("Type of userData.UserID String:", typeof userData.UserID.toString());
-    console.log("Type of privateIDs: ", typeof privateEventIDs);
-    console.log("Type of privateEventsData:", typeof privateEventsData);
-    console.log("Value of privateEventsData:", privateEventsData);
-
-    console.log(privateEventIDs);
-    console.log(privateIDs);
+    
     if(privateEventIDs.has(userData.UserID.toString()) && (privateIDs.has(event.EventID))){
         const eventCard = document.createElement('div');
         eventCard.classList.add('eventCard');
@@ -101,7 +89,7 @@ async function createUserEventCard(event, locations) {
         const eventType = document.createElement('h3');
         
         eventType.classList.add('eventType');
-        eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(event.EventID) ? 'Private' : 'Public');
+        eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(userData.UserID.toString()) ? 'Private' : 'Public');
 
         eventCard.appendChild(eventName);
         eventCard.appendChild(eventDate);
