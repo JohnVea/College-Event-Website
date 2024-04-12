@@ -229,7 +229,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const AllEvents = getEvents();
     console.log(AllEvents);
-    const eventExists = AllEvents.some(event => event.EventName === eventName);
+    const eventExists = AllEvents.some(event => event.EventName === "WTST?? . . . ");
+
     console.log(eventExists);
 
     eventContainer.style.display = "none";
