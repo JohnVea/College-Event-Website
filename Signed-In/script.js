@@ -59,6 +59,8 @@ async function createUserEventCard(event, locations) {
     console.log("Event ID:", event.EventID);
     console.log("Is user super admin:", privateEventIDs.has(userData.UserID));
     console.log("Is event private:", privateEventIDs.has(event.EventID));
+    console.log(privateEventIDs);
+    console.log(privateIDs);
     if(privateEventIDs.has(userData.UserID) && (privateIDs.has(event.EventID))){
         const eventCard = document.createElement('div');
         eventCard.classList.add('eventCard');
