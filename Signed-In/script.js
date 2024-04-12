@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(async () => {
                     const eventID = await searchEvents2(eventData.eventName);
                     console.log(eventID.Events_ID);
+                    console.log(eventID);
                     await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
                 }, 5000);
             }
