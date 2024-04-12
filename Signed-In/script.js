@@ -236,6 +236,7 @@ async function createEvent(eventData) {
         });
 
         if (!response.ok) {
+            console.log(response);
             throw new Error('Create Event failed');
         }
 
