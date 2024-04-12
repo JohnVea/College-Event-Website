@@ -248,6 +248,7 @@ async function createEvent(eventData) {
 
     } catch (error) {
         console.error('Error creating Event:', error.message);
+        alert("Event already exists");
     }
 }
 
