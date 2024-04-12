@@ -68,7 +68,7 @@ async function createUserEventCard(event, locations) {
 
     console.log(privateEventIDs);
     console.log(privateIDs);
-    if(privateEventIDs.has(userData.UserID) && (privateIDs.has(event.EventID))){
+    if(privateEventIDs.has(userData.UserID.toString()) && (privateIDs.has(event.EventID))){
         const eventCard = document.createElement('div');
         eventCard.classList.add('eventCard');
         
