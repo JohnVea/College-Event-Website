@@ -166,73 +166,7 @@ function searchEvents() {
     });
 }
 
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const createEventButton = document.getElementById('createEvent');
-//     const eventContainer = document.getElementById('createEventContainer');
-//     const submitEvent = document.getElementById('submitEvent');
-//     const closeCreateEventForm = document.getElementById('closeCreateEventForm');
-//     const displayEventsContainer = document.querySelector('.displayEventsContainer');
-//     const eventName = document.getElementById('eventName');
-//     const eventDate = document.getElementById('eventDate');
-//     const eventTimeHours = document.getElementById('eventTimeHours');
-//     const eventTimeMinutes = document.getElementById('eventTimeMinutes');
-//     const Daytime = document.getElementById('Daytime');
-//     const longitude = document.getElementById('longitude');
-//     const latitude = document.getElementById('latitude');
-//     const eventLocation = document.getElementById('eventLocation');
-//     const eventDescription = document.getElementById('eventDescription');
-//     const eventType = document.getElementById('eventType');
-    
-    
-
-//     createEventButton.onclick = function() {
-//         eventContainer.style.display = "block";
-//         displayEventsContainer.style.display = "none";
-//     };
-
-//     closeCreateEventForm.onclick = function() {
-//         eventContainer.style.display = "none";
-//         displayEventsContainer.style.display = "block";
-//     };
-
-//     submitEvent.onclick = async function() {
-//         const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
-
-
-//         var eventData = {
-//             "time": "2023-07-17 12:21:00",
-//             "timeOfDay": "PM",
-//             "location": "Miami, FL",
-//             "longitude": 38.006,
-//             "latitude": 58.7128,
-//             "eventName": "web Testing Event  ????? . . . ",
-//             "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
-            
-//             // time: dateTimeString,
-//             // timeOfDay: Daytime.value,
-//             // location: eventLocation.value,
-//             // longitude: parseFloat(longitude.value),
-//             // latitude: parseFloat(latitude.value),
-//             // eventName: eventName.value,
-//             // description: eventDescription.value
-//         };
-
-//         //console.log(eventData);
-//         await createEvent(eventData);
-
-        
-        
-//         //eventContainer.style.display = "none";
-//         //displayEventsContainer.style.display = "block";
-//         //console.log(JSON.stringify(eventData));
-//     };
-
-    
-// });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const createEventForm = document.querySelector('.createEventContainer form');
+const createEventForm = document.querySelector('.createEventContainer form');
     
     createEventForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -264,9 +198,71 @@ document.addEventListener('DOMContentLoaded', function() {
         // Call function to create event
         await createEvent(eventData);
     });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const createEventButton = document.getElementById('createEvent');
+    const eventContainer = document.getElementById('createEventContainer');
+    const submitEvent = document.getElementById('submitEvent');
+    const closeCreateEventForm = document.getElementById('closeCreateEventForm');
+    const displayEventsContainer = document.querySelector('.displayEventsContainer');
+    const eventName = document.getElementById('eventName');
+    const eventDate = document.getElementById('eventDate');
+    const eventTimeHours = document.getElementById('eventTimeHours');
+    const eventTimeMinutes = document.getElementById('eventTimeMinutes');
+    const Daytime = document.getElementById('Daytime');
+    const longitude = document.getElementById('longitude');
+    const latitude = document.getElementById('latitude');
+    const eventLocation = document.getElementById('eventLocation');
+    const eventDescription = document.getElementById('eventDescription');
+    const eventType = document.getElementById('eventType');
+    
+    
+
+    createEventButton.onclick = function() {
+        eventContainer.style.display = "block";
+        displayEventsContainer.style.display = "none";
+    };
+
+    closeCreateEventForm.onclick = function() {
+        eventContainer.style.display = "none";
+        displayEventsContainer.style.display = "block";
+    };
+
+    submitEvent.onclick = async function() {
+        const dateTimeString = eventDate.value + ' ' + eventTimeHours.value + ':' + eventTimeMinutes.value + ':00';
+
+
+        var eventData = {
+            "time": "2023-07-17 12:21:00",
+            "timeOfDay": "PM",
+            "location": "Miami, FL",
+            "longitude": 38.006,
+            "latitude": 58.7128,
+            "eventName": "web Testing Event  ????? . . . ",
+            "description": "herrrrrrrrrreeeee \n alrighthhgtttt"
+            
+            // time: dateTimeString,
+            // timeOfDay: Daytime.value,
+            // location: eventLocation.value,
+            // longitude: parseFloat(longitude.value),
+            // latitude: parseFloat(latitude.value),
+            // eventName: eventName.value,
+            // description: eventDescription.value
+        };
+
+        //console.log(eventData);
+        await createEvent(eventData);
+
+        
+        
+        //eventContainer.style.display = "none";
+        //displayEventsContainer.style.display = "block";
+        //console.log(JSON.stringify(eventData));
+    };
+
+    
 });
-
-
 
 async function createEvent(eventData) {
     
