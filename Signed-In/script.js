@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(userData.UserID);
         if(eventType === 'private'){
             if(eventCreated){
-                fetchEvents();
+                
                 setTimeout(async () => {
                     const eventData = await searchEvents2(eventData.eventName);
                     console.log(eventData.Events_ID);
@@ -268,6 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         if(eventCreated){
             alert("Event Created Successfully");
+            fetchEvents();
         }
         // console.log(eventType);
         // console.log(eventCreated)
