@@ -323,11 +323,8 @@ async function searchEvents2(searchQuery) {
             body: JSON.stringify(searchObject)
         })
         if(response){
-            console.log(JSON.stringify(searchObject));
-            console.log(response);
-            const data = await response.json();
-            console.log(data);
-            return data;
+            console.log(response.Description);
+            return response;
         }
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
