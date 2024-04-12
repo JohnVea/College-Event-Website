@@ -22,7 +22,7 @@ userProfileButton.addEventListener('click', function(){
 
 function displayComments(){
     const eventCards = document.querySelectorAll('.eventCard');
-    eventCards.addEventListener("DOMContentLoaded", function(){
+    eventCards.addEventListener("click", function(){
         
         if (eventCards && eventCards.length > 0) {
             eventCards.forEach(eventCard => {
