@@ -4,7 +4,7 @@ const userProfileButton = document.querySelector('.userProfile');
 const eventCard = document.querySelector('.eventCard');
 const userEvents = document.querySelector('.userEvents');
 userProfileButton.addEventListener('click', function(){
-    if(eventCard.style.display === 'block'){
+    if(eventCard.style.display){
         eventCard.style.display = 'none';
         userEvents.style.display = 'block';
         userProfileButton.innerHTML = userData.FirstName;
