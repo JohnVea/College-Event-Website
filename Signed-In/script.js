@@ -315,7 +315,7 @@ async function searchEvents2(searchQuery) {
     };
     
     try {
-        const response = fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
