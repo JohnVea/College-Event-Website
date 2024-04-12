@@ -4,6 +4,7 @@ let locationsData; // Define a variable to store locations data globally
 
 
 let userDataJSON;
+let userData;
 document.addEventListener("DOMContentLoaded", function() {
     // Your existing code here
 
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if userDataJSON is not null or undefined
     if (userDataJSON) {
         // Parse the JSON string to an object
-        let userData = JSON.parse(userDataJSON);
+        userData = JSON.parse(userDataJSON);
         console.log('User data:', userData);
     } else {
         console.log('userDataJSON is null or undefined');
