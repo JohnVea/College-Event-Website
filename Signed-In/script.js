@@ -263,7 +263,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     const eventDat2 = await eventDat.json();
                     const eventID = eventDat2[0].Events_ID;
                     console.log(eventDat2[0]);
-                    await createPrivateEvent(eventID.Events_ID, userData.UserID, userData.UserID);
+                    console.log(eventDat2[0].Events_ID);
+                    await createPrivateEvent(eventDat2[0].Events_ID, userData.UserID, userData.UserID);
                 }, 5000);
             }
         }
