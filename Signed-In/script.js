@@ -10,8 +10,6 @@ userProfileButton.addEventListener('click', function(){
         userProfileButton.innerHTML = "close";
         userProfileButton.style.color = 'red';
         displayUserCreatedPrivateEvents(userData.UserID);
-        // console.log("Event card: " +  eventCard.style.display);
-        console.log(JSON.stringify(userData.UserID));
     }else{
         eventCard.style.display = 'block'
         userEvents.style.display = 'none';
@@ -20,6 +18,13 @@ userProfileButton.addEventListener('click', function(){
         // console.log("Event card: " +  eventCard.style.display);
     }
 });
+
+const eventCards = document.querySelector('.eventCard');
+eventCards.addEventListener('click', function(){
+    console.log("Event card clicked");
+});
+
+
 
 function displayUserCreatedPrivateEvents(){  
     fetch('http://unieventverse.com/LAMPAPI/GetAllEvents.php')
@@ -32,14 +37,14 @@ function displayUserCreatedPrivateEvents(){
             displayEventsUserPrivateContainer.innerHTML = '';
 
             const privateEventsData = await getPrivateEvents();
-            console.log(privateEventsData);
+            // console.log(privateEventsData);
             const privateEventIDs = new Set(privateEventsData.map(event => event.SuperAdminID));
             // if the usedoesn't have any private events 
             if(!(privateEventIDs.has(userData.UserID.toString()))){
                 const userProfileButton = document.querySelector('.userProfile');
                 const eventCard = document.querySelector('.displayEventsContainer');
                 const userEvents = document.querySelector('.userEventsContainer');
-                console.log(displayEventsUserPrivateContainer);
+                // console.log(displayEventsUserPrivateContainer);
                 alert("You don't have any private events, please create one");
                 eventCard.style.display = 'block'
                 userEvents.style.display = 'none';
