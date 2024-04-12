@@ -291,3 +291,23 @@ label[for="Daytime"] {
 .eventTimeMinutes{
     width: 5%;
 }
+
+.userProfile{
+    position: absolute;
+    bottom: 8%;
+    right: 0%; 
+    height: 30px;
+    width: 10%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2%;
+    z-index: 1;
+}
+.userProfile:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    animation: bounce 0.5s;
+}

@@ -92,7 +92,7 @@ function createEventCard(event, locations) {
 
     const eventType = document.createElement('h3');
     const privateEventsData =  getPrivateEvents();
-    console.log(privateEventsData);
+    // console.log(privateEventsData);
     const privateEventIDs = new Set(privateEventsData.map(event => event.EventID));
     eventType.classList.add('eventType');
     eventType.textContent = "\tEvent Type: " + (privateEventIDs.has(event.EventID) ? 'Private' : 'Public');
@@ -410,6 +410,7 @@ async function getPrivateEvents() {
         }
 
         const data = await response.json();
+        console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
