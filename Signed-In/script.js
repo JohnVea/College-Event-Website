@@ -76,22 +76,16 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventType').textContent = eventType;
 
             let CommenterName = document.querySelector('.commentedUser');
-            console.log(await getAllComments());
-            // console.log(eventCard.target.EventID);
             console.log("Event Name Log :" + eventTitle.textContent);
             const iD = await searchEvents2(eventTitle.textContent);
             const iDJson = await iD.json();
-            console.log(iD);
-            console.log(iDJson);
             eventID = iDJson[0].Events_ID;
-            console.log(eventID);
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
             commentsContainer.innerHTML = ''; // Clear previous comments
 
             filteredComments.forEach(comment => {
-                comsole.log(comment);
                 const commentUser = document.createElement('h3');
                 commentUser.textContent = comment.CommentedUser;
                 commentsContainer.appendChild(commentUser);
@@ -100,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentText.textContent = comment.UserComment;
                 commentsContainer.appendChild(commentText);
             });
+            popUp.querySelector('.commentsContainer').appendChild(commentsContainer);
 
 
 
