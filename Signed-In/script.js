@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             console.log(eventData);
-            console.log(eventData.children);
+            console.log(eventData.querySelectorAll('h3'));
             // const children = eventData.children; // Get all children elements of the event card
             // console.log(child);
             // for (let i = 0; i < children.length; i++) {
