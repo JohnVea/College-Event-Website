@@ -86,10 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
             const comments = await getAllComments();
-            const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
+            const commentsJson = await comments.json();
+            const filteredComments = commentsJson.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
             // commentsContainer.innerHTML = ''; // Clear previous comments
             console.log("Filtered comments: " +filteredComments);
+            console.log("CommentsJson: " + commentsJson);
             console.log("Comments: " + comments);
             console.log("Comments: " + await comments.json());
 
