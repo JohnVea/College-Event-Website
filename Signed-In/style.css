@@ -452,16 +452,22 @@ label[for="Daytime"] {
 }
 
 .createCommentContainer{
-    background-color: white;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    height: 30%;
+    transform: translate(-50%, -50%);
     padding: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.5); 
-    backdrop-filter: blur(5px); 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-    text-align: center;
-    position: relative;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(35px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+    justify-content: center;
     display: none;
 }
 
