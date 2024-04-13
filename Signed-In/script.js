@@ -32,9 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
             // const eventTime = event.target.querySelector('h3');
             
             
-            const eventData = event.target.querySelector('.eventCard'); // Select the event card
-            const children = eventData.children; // Get all children elements of the event card
+            const eventData = event.target; // Select the event card
             console.log(eventData);
+            const children = eventData.children; // Get all children elements of the event card
+            console.log(children);
             for (let i = 0; i < children.length; i++) {
                 const child = children[i];
                 if (child.textContent.trim().startsWith('Time:')) {
