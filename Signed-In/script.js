@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const comments = await getAllComments();
             console.log("Comments: " + comments);
+            console.log("CommentsJson1: " + JSON.stringify(comments));
             const commentsJson =  JSON.stringify(comments);
             // const commentsJson = await comments.json();
             const filteredComments = commentsJson.filter(comment => comment.CommentedEventID === eventID);
