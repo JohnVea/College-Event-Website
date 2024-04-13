@@ -32,22 +32,33 @@ document.addEventListener("DOMContentLoaded", function() {
             // const eventTime = event.target.querySelector('h3');
             
             
-            const eventData = event.target; // Select the event card
-            console.log(eventData);
+            const eventData = event.target.querySelector(".displayEventsContainer"); // Select the event card
+            // console.log(eventData);
             const children = eventData.children; // Get all children elements of the event card
-            console.log(children);
+            // console.log(child);
+            let eventTime = null;
+            let location = null;
             for (let i = 0; i < children.length; i++) {
                 const child = children[i];
                 if (child.textContent.trim().startsWith('Time:')) {
                     // Extract time value
                     const timeText = child.textContent.trim().substring(6); // Adjust substring start index
                     eventTime = timeText; 
-                    break; // No need to continue once time is found
+                    // break; // No need to continue once time is found
+                }
+                if (child.textContent.trim().startsWith('Event Location:')) {
+                    // Extract time value
+                    const locationText = child.textContent.trim().substring(6); // Adjust substring start index
+                    location = locationText; 
+                    // break; // No need to continue once time is found
                 }
             }
+
+
+
             // const eventTime = event.target.querySelector('.eventTime');
-            console.log("Event Time : " + eventTime);
-            console.log(event.target);
+            // console.log("Event Time : " + eventTime);
+            // console.log(event.target);
             //const longitude = eventCard.querySelector('h3.longitude');
             
             let longitude = null;
@@ -80,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
-            popUp.querySelector('.eventTime').textContent = eventTime;
+            popUp.querySelector('.eventTime').textContent = "Time: " + eventTime;
+            popUp.querySelector('.eventLocation').textContent = "Location: " + location;
             popUp.querySelector('.longitude').textContent = longitude;
             // popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
