@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
+            console.log(event.Events_ID);
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
             commentsContainer = document.querySelector('.commentsContainer');
@@ -84,11 +85,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
             filteredComments.forEach(comment => {
                 const commentUser = document.createElement('h3');
-                commentUser.textContent = filteredComments.CommentedUser;
+                commentUser.textContent = comment.CommentedUser;
                 commentsContainer.appendChild(commentUser);
 
                 const commentText = document.createElement('p');
-                commentText.textContent = filteredComments.UserComment;
+                commentText.textContent = comment.UserComment;
                 commentsContainer.appendChild(commentText);
             });
 
