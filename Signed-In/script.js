@@ -28,7 +28,7 @@ closeEventPopUpButton.addEventListener('click', function(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')) {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventLocation').textContent = eventLocation;
             popUp.querySelector('.eventDescription').textContent = eventTitle.textContent;
             popUp.querySelector('.eventType').textContent = eventType;
+
+            let CommenterName = document.querySelector('.commentedUser');
+            console.log(await getAllComments());
+
+
+
             eventPopUpContainer.style.alignItems = 'center';
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
@@ -628,6 +634,31 @@ async function getPrivateEvents() {
         throw error; 
     }
 }
+
+
+async function getAllComments() {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllComments.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        const data = await response.json();
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        throw error; 
+    }
+}
+
 
 
 
