@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(await getAllComments());
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
+            commentsContainer = document.querySelector('.commentsContainer');
             commentsContainer.innerHTML = ''; // Clear previous comments
 
             filteredComments.forEach(comment => {
