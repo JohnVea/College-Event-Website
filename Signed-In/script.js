@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
             // console.log(eventCard.target.EventID);
-            const iD = searchEvents(eventName.textContent);
-            eventID = iD.eventID;
+            const iD = searchEvents2(eventName.textContent);
+            eventID = iD[0].eventID;
             console.log(eventID);
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
