@@ -94,14 +94,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const commentsArray = JSON.parse(commentsJson);
             console.log("CommentsArray: ", commentsArray);
             // const commentsJson = await comments.json();
-            const filteredComments = commentsArray.filter(comment => comment.CommentedEventID === eventID.toString());
+            const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
             // commentsContainer.innerHTML = ''; // Clear previous comments
             console.log("Filtered comments: " +filteredComments);
             console.log("CommentsJson: " + commentsJson);
             
             
-
+            if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
+                commentsContainer.innerHTML = '';
+            }
             filteredComments.forEach(comment => {
                 console.log("Comment " +comment);
                 const commentUser = document.createElement('h3');
