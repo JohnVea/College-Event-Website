@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //     }
             // });
             const eventTime = event.target.querySelector('.eventTime');
-            console.log("Event Time : " + eventTime.textContent);
+            console.log("Event Time : " + eventTime);
             console.log(event.target);
             //const longitude = eventCard.querySelector('h3.longitude');
             
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
-            popUp.querySelector('.eventTime').textContent = eventTime.textContent;
+            popUp.querySelector('.eventTime').textContent = eventTime;
             popUp.querySelector('.longitude').textContent = longitude;
             // popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
