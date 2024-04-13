@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 if (child.textContent.trim().startsWith('Event Location:')) {
                     // Extract time value
-                    const eventLocationText = child.textContent.trim().substring(30);
+                    const eventLocationText = child.textContent.trim().substring(20);
                     eventLocation = eventLocationText; 
                 }
             });
 
-            console.log("Lon : " + eventTime);
+            console.log("LOCATION : " + eventLocation);
             
             // const children = eventData.children; // Get all children elements of the event card
             // console.log(child);
@@ -100,8 +100,8 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
             popUp.querySelector('.eventTime').textContent = eventTime;
-            popUp.querySelector('.longitude').textContent = longitude;
-            popUp.querySelector('.latitude').textContent = latitude;
+            popUp.querySelector('.longitude').textContent = 'Longitude: '+longitude;
+            popUp.querySelector('.latitude').textContent = 'Latitude: '+latitude;
             popUp.querySelector('.eventLocation').textContent = eventLocation;
             // popUp.querySelector('.eventDescription').textContent = eventDescription;
             // popUp.querySelector('.eventType').textContent = eventType;
