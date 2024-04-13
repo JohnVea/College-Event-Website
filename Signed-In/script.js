@@ -117,11 +117,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 // commentsContainer.appendChild(commentText);
 
 
+                // Create a div to hold both the user name and the comment
                 const commentParagraph = document.createElement('div');
-                const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
-                commentParagraph.textContent = commentContent;
+                commentParagraph.classList.add('comment');
 
-                // Append the paragraph to the comments container
+                // Append the user name and comment to the div
+                commentParagraph.appendChild(commentUser);
+                commentParagraph.appendChild(commentText);
+
+                // Append the div to the comments container
                 commentsContainer.appendChild(commentParagraph);
             });
             popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
