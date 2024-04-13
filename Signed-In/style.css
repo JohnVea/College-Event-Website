@@ -451,3 +451,22 @@ label[for="Daytime"] {
     margin-right: 10px; /* Adjust margin as needed */
 }
 
+.createCommentContainer{
+    background-color: white;
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(5px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    position: relative;
+    display: none;
+}
+
+.CommentText{
+    width: 80%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
