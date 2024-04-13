@@ -33,10 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
-            let eventTime = null;
-            let longitude = null;
-            
-            let eventLocation = null;
+            let eventTime = null, latitude = null, longitude = null, eventLocation = null;
             Array.from(eventData).forEach(child => {
                 console.log(child);
                 if (child.textContent.trim().startsWith('Time:')) {
@@ -49,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const longitudeText = child.textContent.trim().substring(11);
                     longitude = parseFloat(longitudeText);
                 }
-                // if (child.textContent.trim().startsWith('Event:')) {
-                //     // Extract time value
-                //     const eventNameText = child.textContent.trim().substring(50);
-                //     eventName = eventNameText; 
-                // }
+                if (child.textContent.trim().startsWith('Latitude:')) {
+                    // Extract time value
+                    const longitudeText = child.textContent.trim().substring(11);
+                    longitude = parseFloat(longitudeText); 
+                }
                 if (child.textContent.trim().startsWith('Event Location:')) {
                     // Extract time value
                     const eventLocationText = child.textContent.trim().substring(30);
