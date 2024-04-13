@@ -23,20 +23,13 @@ userProfileButton.addEventListener('click', function(){
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('eventCard')) {
-            // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
-            //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
-            const h3Elements = eventCard.querySelectorAll('h3');
-            // const eventTime = event.target.querySelector('h3');
-            
-            
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null;
             const eventTitle = event.target.querySelector('p');
             Array.from(eventData).forEach(child => {
-                console.log(child);
                 if (child.textContent.trim().startsWith('Time:')) {
                     // Extract time value
                     const timeText = child.textContent.trim().substring(6);
@@ -64,44 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
-            console.log("LOCATION : " + eventLocation);
-            
-            // const children = eventData.children; // Get all children elements of the event card
-            // console.log(child);
-            // for (let i = 0; i < children.length; i++) {
-            //     const child = children[i];
-            //     if (child.textContent.trim().startsWith('Time:')) {
-            //         // Extract time value
-            //         const timeText = child.textContent.trim().substring(6); // Adjust substring start index
-            //         eventTime = timeText; 
-            //         break; // No need to continue once time is found
-            //     }
-            // }
-            // const eventTime = event.target.querySelector('.eventTime');
-            console.log("Event Time : " + eventTime);
-            console.log(event.target);
-            //const longitude = eventCard.querySelector('h3.longitude');
-            
-            
-            // const latitude = eventCard.querySelector('.latitude').textContent;
-            // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
-            // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
-            // const eventType = eventCard.querySelector('.eventType').textContent;
             const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
-
-
-            
-            if (eventName) {
-                console.log("Event card clicked: " + eventName.textContent);
-                console.log(eventDate);
-                const eventCard = event.target;
-                console.log("Event card:", eventCard);
-                console.log("Longitude element:", longitude);
-                
-                
-            } else {
-                console.log("Event card clicked: No event name found");
-            }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
