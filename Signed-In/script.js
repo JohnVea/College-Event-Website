@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventLocation').textContent = eventLocation;
             popUp.querySelector('.eventDescription').textContent = eventTitle.textContent;
             popUp.querySelector('.eventType').textContent = eventType;
-
+            eventPopUpContainer.style.alignItems = 'center';
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
         }

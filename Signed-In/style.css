@@ -378,6 +378,7 @@ label[for="Daytime"] {
     align-items: center;
     z-index: 1000; /* Ensure it's above other content */
     display: none;
+
 }
 
 .eventPopUp {
@@ -388,6 +389,7 @@ label[for="Daytime"] {
     max-width: 80%;
     overflow-y: auto; 
     text-align: center;
+    justify-content: center;
 }
 
 .eventPopUp h1 {
