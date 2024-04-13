@@ -340,3 +340,28 @@ label[for="Daytime"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
     transform: scale(1.03);
 }
+
+
+
+/* .eventPopUp{
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    position: relative;
+    
+}
+
+.eventPopUp{
+    transition: transform 0.3s ease;
+}
+
+.eventPopUpContainer{
+    height: 93%;
+    position: relative;
+    overflow-y: auto;
+    display: none;
+} */

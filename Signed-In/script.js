@@ -23,12 +23,31 @@ userProfileButton.addEventListener('click', function(){
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('eventCard')) {
-            const eventName = event.target.querySelector('h1');
+            // const eventName = event.target.querySelector('h1');
+            const eventName = eventCard.querySelector('.eventName').textContent;
+            const eventDate = eventCard.querySelector('.eventDate').textContent;
+            const eventTime = eventCard.querySelector('.eventTime').textContent;
+            const longitude = eventCard.querySelector('.longitude').textContent;
+            const latitude = eventCard.querySelector('.latitude').textContent;
+            const eventLocation = eventCard.querySelector('.eventLocation').textContent;
+            const eventDescription = eventCard.querySelector('.eventDescription').textContent;
+            const eventType = eventCard.querySelector('.eventType').textContent;
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
             } else {
                 console.log("Event card clicked: No event name found");
             }
+            const popUp = eventPopUpContainer.querySelector('.eventPopUp');
+            popUp.querySelector('.eventName').textContent = eventName;
+            popUp.querySelector('.eventDate').textContent = eventDate;
+            popUp.querySelector('.eventTime').textContent = eventTime;
+            popUp.querySelector('.longitude').textContent = longitude;
+            popUp.querySelector('.latitude').textContent = latitude;
+            popUp.querySelector('.eventLocation').textContent = eventLocation;
+            popUp.querySelector('.eventDescription').textContent = eventDescription;
+            popUp.querySelector('.eventType').textContent = eventType;
+
+            eventPopUpContainer.style.display = 'block';
         }
     });
 });
