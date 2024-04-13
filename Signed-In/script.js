@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventDate = event.target.querySelector('h2');
             const eventTime = event.target.querySelector('h3');
             //const longitude = eventCard.querySelector('h3.longitude');
+            const h3Elements = eventCard.querySelectorAll('h3');
+            let longitude = null;
             h3Elements.forEach(h3Element => {
                 if (h3Element.textContent.trim().startsWith('Longitude:')) {
                     // Extract longitude value
