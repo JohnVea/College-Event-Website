@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventType').textContent = eventType;
 
             let CommenterName = document.querySelector('.commentedUser');
-            console.log("Event Name Log :" + eventTitle.textContent);
             const iD = await searchEvents2(eventTitle.textContent);
             const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
@@ -86,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
             commentsContainer.innerHTML = ''; // Clear previous comments
 
             filteredComments.forEach(comment => {
+                console.log("Comment " +comment);
                 const commentUser = document.createElement('h3');
                 commentUser.textContent = comment.CommentedUser;
                 commentsContainer.appendChild(commentUser);
