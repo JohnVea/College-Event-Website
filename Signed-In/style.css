@@ -419,3 +419,14 @@ label[for="Daytime"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: black;
 }
+
+.closeEventPopUp{
+    height: 30px;
+    width: 10%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(218, 210, 210, 0.5);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: red;
+}
