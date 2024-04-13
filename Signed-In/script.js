@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
-            const eventDate = eventCard.querySelector('.eventDate').textContent;
+            const eventDate = eventCard.querySelector('.eventDate');
             const eventTime = eventCard.querySelector('h3');
             const longitude = eventCard.querySelector('h3').textContent;
             // const latitude = eventCard.querySelector('.latitude').textContent;
