@@ -32,19 +32,19 @@ document.addEventListener("DOMContentLoaded", function() {
             // const eventTime = event.target.querySelector('h3');
             
             
-            const eventData = event.target.querySelector(".eventCard"); // Select the event card
+            const eventData = event.target.querySelectorAll(".eventCard"); // Select the event card
             console.log(eventData);
-            const children = eventData.querySelectorAll('h3'); // Get all children elements of the event card
-            console.log(child);
-            for (let i = 0; i < children.length; i++) {
-                const child = children[i];
-                if (child.textContent.trim().startsWith('Time:')) {
-                    // Extract time value
-                    const timeText = child.textContent.trim().substring(6); // Adjust substring start index
-                    eventTime = timeText; 
-                    break; // No need to continue once time is found
-                }
-            }
+            // const children = eventData.children; // Get all children elements of the event card
+            // console.log(child);
+            // for (let i = 0; i < children.length; i++) {
+            //     const child = children[i];
+            //     if (child.textContent.trim().startsWith('Time:')) {
+            //         // Extract time value
+            //         const timeText = child.textContent.trim().substring(6); // Adjust substring start index
+            //         eventTime = timeText; 
+            //         break; // No need to continue once time is found
+            //     }
+            // }
             // const eventTime = event.target.querySelector('.eventTime');
             console.log("Event Time : " + eventTime);
             console.log(event.target);
