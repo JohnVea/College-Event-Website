@@ -26,21 +26,20 @@ closeEventPopUpButton.addEventListener('click', function(){
     eventCard.style.display = 'block';
 });
 
-const addComment = document.getElementById("addComment");
-const createCommentContainer = document.querySelector('.createCommentContainer');
-addComment.addEventListener('click', function(){
-    createCommentContainer.style.display = 'block';
-    eventCard.style.display = 'none';
-    console.log("add comment button clicked");
-    // eventPopUpContainer.style.display = 'none';
+document.addEventListener("DOMContentLoaded", function() {
+    const addCommentButton = document.getElementById("addComment");
+    const createCommentContainer = document.getElementById("createCommentContainer");
+    const closeButton = document.getElementById("CancelComment");
+
+    addCommentButton.addEventListener("click", function() {
+        createCommentContainer.style.display = "block";
+    });
+
+    closeButton.addEventListener("click", function() {
+        createCommentContainer.style.display = "none";
+    });
 });
 
-const CancelComment = document.getElementById("addComment");
-addComment.addEventListener('click', function(){
-    createCommentContainer.style.display = 'none';
-    // eventCard.style.display = 'none';
-    eventPopUpContainer.style.display = 'block';
-});
     
 
 
