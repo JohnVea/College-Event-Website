@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
             // console.log(eventCard.target.EventID);
+            console.log(eventName.textContent);
             const iD = await searchEvents2(eventName.textContent);
             const iDJson = await iD.json();
             console.log(iD);
