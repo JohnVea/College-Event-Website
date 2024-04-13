@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 if (child.textContent.trim().startsWith('Longitude:')) {
                     // Extract time value
-                    const longitudeText = child.textContent;
+                    const longitudeText = child.textContent.trim().substring(10);
                     longitude = parseFloat(longitudeText);
                 }
                 if (child.textContent.trim().startsWith('Latitude:')) {
                     // Extract time value
-                    const latitudeText = child.textContent;
+                    const latitudeText = child.textContent.trim().substring(10);
                     latitude = parseFloat(latitudeText); 
                 }
                 if (child.textContent.trim().startsWith('Event Location:')) {
