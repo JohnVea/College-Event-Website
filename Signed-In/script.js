@@ -147,20 +147,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentsContainer.appendChild(commentParagraph);
             });
             popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
+            eventPopUpContainer.style.alignItems = 'center';
+            eventCardContainer.style.display = 'none';
+            eventPopUpContainer.style.display = 'block';
 
             const SubmitCommentButton = document.querySelector('.SubmitComment');
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
+                CommentText.innerHTML = '';
                 closeCommentContainer();
             });
 
 
 
-            eventPopUpContainer.style.alignItems = 'center';
-            eventCardContainer.style.display = 'none';
-            eventPopUpContainer.style.display = 'block';
+            
         }
     });
 });
