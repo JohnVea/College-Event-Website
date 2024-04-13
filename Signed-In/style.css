@@ -419,6 +419,11 @@ label[for="Daytime"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: black;
 }
+.addComment:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    animation: bounce 0.5s;
+}
 
 .closeEventPopUp{
     height: 30px;
@@ -429,4 +434,10 @@ label[for="Daytime"] {
     backdrop-filter: blur(10px); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: red;
+}
+
+.closeEventPopUp:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    animation: bounce 0.5s;
 }
