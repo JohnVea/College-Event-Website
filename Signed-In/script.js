@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.classList.contains('eventCard')) {
             // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            const eventName = event.target.querySelector('.eventName');
+            const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
-            // const eventDate = eventCard.querySelector('.eventDate').textContent;
-            // const eventTime = eventCard.querySelector('.eventTime').textContent;
-            // const longitude = eventCard.querySelector('.longitude').textContent;
+            const eventDate = eventCard.querySelector('h2');
+            const eventTime = eventCard.querySelector('h3');
+            const longitude = eventCard.querySelector('h3').textContent;
             // const latitude = eventCard.querySelector('.latitude').textContent;
             // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName.textContent;
-            // popUp.querySelector('.eventDate').textContent = eventDate;
-            // popUp.querySelector('.eventTime').textContent = eventTime;
-            // popUp.querySelector('.longitude').textContent = longitude;
+            popUp.querySelector('.eventDate').textContent = eventDate.textContent;
+            popUp.querySelector('.eventTime').textContent = eventTime.textContent;
+            popUp.querySelector('.longitude').textContent = longitude.textContent;
             // popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
             // popUp.querySelector('.eventDescription').textContent = eventDescription;
