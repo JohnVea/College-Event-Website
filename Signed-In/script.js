@@ -79,8 +79,10 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(await getAllComments());
             // console.log(eventCard.target.EventID);
             const iD = await searchEvents2(eventName.textContent);
+            const iDJson = await iD.json();
             console.log(iD);
-            eventID = iD[0].eventID;
+            console.log(iDJson);
+            eventID = iDJson[0].eventID;
             console.log(eventID);
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
