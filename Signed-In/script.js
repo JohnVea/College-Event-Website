@@ -62,11 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     const eventTypeText = child.textContent;
                     eventType = eventTypeText; 
                 }
-                // if (child.textContent.trim().startsWith('Event Type:')) {
-                //     // Extract time value
-                //     const eventTypeText = child.textContent;
-                //     eventType = eventTypeText; 
-                // }
             });
 
             const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
@@ -83,13 +78,16 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
             // console.log(eventCard.target.EventID);
-            console.log(event.target)
+            const iD = searchEvents(eventName.textContent);
+            eventID = iD.eventID;
+            console.log(eventID);
             const comments = await getAllComments();
-            const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
+            const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
             commentsContainer.innerHTML = ''; // Clear previous comments
 
             filteredComments.forEach(comment => {
+                comsole.log(comment);
                 const commentUser = document.createElement('h3');
                 commentUser.textContent = comment.CommentedUser;
                 commentsContainer.appendChild(commentUser);
