@@ -41,8 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
             //         eventTime = longitudeText; 
             //     }
             // });
-            const eventTime = eventCard.querySelector('.eventTime');
+            const eventTime = event.tartget.querySelector('.eventTime');
             console.log("Event Time : " + eventTime.textContent);
+            console.log(event.target);
             //const longitude = eventCard.querySelector('h3.longitude');
             
             let longitude = null;
