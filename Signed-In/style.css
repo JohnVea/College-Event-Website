@@ -455,8 +455,8 @@ label[for="Daytime"] {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 80%;
-    height: 30%;
+    width: 20%;
+    height: 20%;
     transform: translate(-50%, -50%);
     padding: 20%;
     border-radius: 10px;
