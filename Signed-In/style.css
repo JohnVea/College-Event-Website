@@ -468,7 +468,7 @@ label[for="Daytime"] {
     justify-content: space-around; 
     align-items: center;
     justify-content: center;
-    display: none;
+    /* display: none; */
 }
 
 .CommentText{
@@ -477,7 +477,7 @@ label[for="Daytime"] {
     margin-left: 9%;
 }
 
-/* .SubmitComment{
+.SubmitComment{
     height: 30px;
     width: 10%;
     border: 1px solid transparent;
@@ -509,4 +509,4 @@ label[for="Daytime"] {
 .CancelComment:hover{
     cursor: pointer;
     background-color: rgba(164, 77, 77, 0.5);
-} */
+}
