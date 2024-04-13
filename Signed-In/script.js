@@ -29,7 +29,14 @@ document.addEventListener("DOMContentLoaded", function() {
             //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
             const eventTime = event.target.querySelector('h3');
-            const longitude = eventCard.querySelector('h3.longitude');
+            //const longitude = eventCard.querySelector('h3.longitude');
+            h3Elements.forEach(h3Element => {
+                if (h3Element.textContent.trim().startsWith('Longitude:')) {
+                    // Extract longitude value
+                    const longitudeText = h3Element.textContent.trim().substring(11);
+                    longitude = parseFloat(longitudeText); // Convert to number
+                }
+            });
             // const latitude = eventCard.querySelector('.latitude').textContent;
             // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
@@ -43,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(eventDate);
                 const eventCard = event.target;
                 console.log("Event card:", eventCard);
-                console.log("Longitude element:", longitude.textContent);
+                console.log("Longitude element:", longitude);
                 
                 
             } else {
@@ -53,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
             popUp.querySelector('.eventTime').textContent = eventTime.textContent;
-            popUp.querySelector('.longitude').textContent = longitude.textContent;
+            popUp.querySelector('.longitude').textContent = longitude;
             // popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
             // popUp.querySelector('.eventDescription').textContent = eventDescription;
