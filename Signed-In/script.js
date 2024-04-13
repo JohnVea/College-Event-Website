@@ -23,7 +23,7 @@ userProfileButton.addEventListener('click', function(){
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('eventCard')) {
-            const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
+        
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
@@ -34,18 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             const eventDescription = eventCard.querySelector('.eventDescription').textContent;
             const eventType = eventCard.querySelector('.eventType').textContent;
+            const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
 
-            // eventPopUpContainer.innerHTML = `
-            //     <div class="eventPopUpContainer">
-            //         <span class="eventPopUp">&times;</span>
-            //         <h1>${eventName}</h1>
-            //         <h2>${eventDate}</h2>
-            //         <h3>${eventTime}</h3>
-            //         <h3>${eventLocation}</h3>
-            //         <p>${eventDescription}</p>
-            //         <h3>${eventType}</h3>
-            //     </div>
-            // `;
+
             
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
