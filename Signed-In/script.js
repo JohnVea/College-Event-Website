@@ -115,6 +115,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 const commentText = document.createElement('p');
                 commentText.textContent = comment.UserComment;
                 // commentsContainer.appendChild(commentText);
+
+
+                const commentParagraph = document.createElement('div');
                 const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
                 commentParagraph.textContent = commentContent;
 
