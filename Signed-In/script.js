@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const iD = await searchEvents2(eventTitle.textContent);
             const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
+            console.log("Gettting comments " + await getAllComments());
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
