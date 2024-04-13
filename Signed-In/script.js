@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
 function closeCommentContainer(){
     const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
     eventPopUpContainer.style.display = 'none';
-    fetchEvents();
     eventCard.style.display = 'block';
 }
     
