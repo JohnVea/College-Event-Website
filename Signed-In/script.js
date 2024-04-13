@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             console.log(eventData);
-            // console.log(eventData.querySelector('h3'));
-            Array.from(eventData).forEach(child => {
-                console.log(child);
-            });
+            console.log(eventData.child);
+            // Array.from(eventData).forEach(child => {
+            //     console.log(child);
+            // });
             
             // const children = eventData.children; // Get all children elements of the event card
             // console.log(child);
