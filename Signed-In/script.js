@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             let eventTime = null, latitude = null, longitude = null, eventLocation = null;
+            const eventTitle = event.target.querySelector('p');
             Array.from(eventData).forEach(child => {
                 console.log(child);
                 if (child.textContent.trim().startsWith('Time:')) {
@@ -56,6 +57,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const eventLocationText = child.textContent;
                     eventLocation = eventLocationText; 
                 }
+                // if (child.textContent.trim().startsWith('Event Location:')) {
+                //     // Extract time value
+                //     const eventTitleText = child.textContent;
+                //     eventTitle = eventTitleText; 
+                // }
             });
 
             console.log("LOCATION : " + eventLocation);
@@ -103,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.longitude').textContent = 'Longitude: '+longitude;
             popUp.querySelector('.latitude').textContent = 'Latitude: '+latitude;
             popUp.querySelector('.eventLocation').textContent = eventLocation;
-            // popUp.querySelector('.eventDescription').textContent = eventDescription;
+            popUp.querySelector('.eventDescription').textContent = eventTitle.textContent;
             // popUp.querySelector('.eventType').textContent = eventType;
 
             eventCardContainer.style.display = 'none';
