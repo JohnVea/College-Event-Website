@@ -439,3 +439,12 @@ label[for="Daytime"] {
     cursor: pointer;
     background-color: rgba(250, 175, 175, 0.5);
 }
+
+.commentContainer {
+    display: flex;
+    align-items: center;
+}
+
+.commentContainer h3 {
+    margin-right: 10px; /* Adjust margin as needed */
+}

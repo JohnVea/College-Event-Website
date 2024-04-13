@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("CommentsArray: ", commentsArray);
             // const commentsJson = await comments.json();
             const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
-            commentsContainer = document.querySelector('.commentsContainer');
+            const commentsContainer = document.querySelector('.commentsContainer');
             // commentsContainer.innerHTML = ''; // Clear previous comments
             console.log("Filtered comments: " +filteredComments);
             console.log("CommentsJson: " + commentsJson);
