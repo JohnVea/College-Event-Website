@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(eventDate);
                 const eventCard = event.target;
                 console.log("Event card:", eventCard);
-                console.log("Longitude element:", longitude);
+                console.log("Longitude element:", longitude.textContent);
                 
                 
             } else {
