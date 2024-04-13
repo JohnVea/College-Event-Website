@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Parse the JSON string back into an array
             const commentsArray = JSON.parse(commentsJson);
             console.log("CommentsArray: ", commentsArray);
-            console.log("CommentsArray22: ", JSON.parse(comments));
+            console.log("CommentsArray22: ", JSON.parse(comments.json()));
             // const commentsJson = await comments.json();
             const filteredComments = commentsArray.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
