@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Parse the JSON string back into an array
             const commentsArray = JSON.parse(commentsJson);
             console.log("CommentsArray: ", commentsArray);
+            console.log("CommentsArray22: ", JSON.parse(comments));
             // const commentsJson = await comments.json();
             const filteredComments = commentsArray.filter(comment => comment.CommentedEventID === eventID);
             commentsContainer = document.querySelector('.commentsContainer');
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Filtered comments: " +filteredComments);
             console.log("CommentsJson: " + commentsJson);
             
-            console.log("Comments: " + await comments.json());
+            
 
             filteredComments.forEach(comment => {
                 console.log("Comment " +comment);
