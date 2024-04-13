@@ -107,22 +107,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentsContainer.innerHTML = 'Comments:';
             }
             filteredComments.forEach(comment => {
-                // Create a container for the comment and its user
-                const commentContainer = document.createElement('div');
-                commentContainer.classList.add('commentContainer');
-            
-                // Create elements for the commented user and comment text
+                console.log("Comment " +comment);
                 const commentUser = document.createElement('h3');
                 commentUser.textContent = comment.CommentedUser;
+                //commentsContainer.appendChild(commentUser);
+
                 const commentText = document.createElement('p');
                 commentText.textContent = comment.UserComment;
-            
-                // Append user and comment text to the comment container
-                commentContainer.appendChild(commentUser);
-                commentContainer.appendChild(commentText);
-            
-                // Append the comment container to the comments container
-                commentsContainer.appendChild(commentContainer);
+                commentsContainer.appendChild(commentUser + "  -  " + commentText);
             });
             popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
 
