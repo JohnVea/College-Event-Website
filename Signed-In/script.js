@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
+                console.log(eventDate.textContent);
                 
                 
             } else {
