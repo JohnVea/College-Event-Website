@@ -443,8 +443,11 @@ label[for="Daytime"] {
 .commentContainer {
     display: flex;
     align-items: center;
+    background-color: rgba(162, 207, 237, 0.5);
+    backdrop-filter: blur(10px); 
 }
 
 .commentContainer h3 {
     margin-right: 10px; /* Adjust margin as needed */
 }
+
