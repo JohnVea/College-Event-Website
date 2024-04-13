@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.classList.contains('eventCard')) {
             // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            //const eventName = event.target.querySelector('h1');
+            const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
             const h3Elements = eventCard.querySelectorAll('h3');
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             let eventTime = null;
             let longitude = null;
-            let eventName = null;
+            
             let eventLocation = null;
             Array.from(eventData).forEach(child => {
                 console.log(child);
@@ -49,11 +49,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const longitudeText = child.textContent.trim().substring(11);
                     longitude = parseFloat(longitudeText);
                 }
-                if (child.textContent.trim().startsWith('Event:')) {
-                    // Extract time value
-                    const eventNameText = child.textContent.trim().substring(50);
-                    eventName = eventNameText; 
-                }
+                // if (child.textContent.trim().startsWith('Event:')) {
+                //     // Extract time value
+                //     const eventNameText = child.textContent.trim().substring(50);
+                //     eventName = eventNameText; 
+                // }
                 if (child.textContent.trim().startsWith('Event Location:')) {
                     // Extract time value
                     const eventLocationText = child.textContent.trim().substring(30);
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Event card clicked: No event name found");
             }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
-            popUp.querySelector('.eventName').textContent = eventName;
+            popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
             popUp.querySelector('.eventTime').textContent = eventTime;
             popUp.querySelector('.longitude').textContent = longitude;
