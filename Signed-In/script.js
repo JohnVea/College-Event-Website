@@ -33,6 +33,13 @@ addComment.addEventListener('click', function(){
     eventCard.style.display = 'none';
     // eventPopUpContainer.style.display = 'none';
 });
+
+const CancelComment = document.getElementById("addComment");
+addComment.addEventListener('click', function(){
+    createCommentContainer.style.display = 'none';
+    // eventCard.style.display = 'none';
+    eventPopUpContainer.style.display = 'block';
+});
     
 
 

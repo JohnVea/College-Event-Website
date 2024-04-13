@@ -476,3 +476,37 @@ label[for="Daytime"] {
     margin: 5px; 
     margin-left: 9%;
 }
+
+.SubmitComment{
+    height: 30px;
+    width: 10%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(79, 153, 96, 0.5);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: black;
+}
+
+
+.SubmitComment:hover{
+    cursor: pointer;
+    background-color: rgba(47, 93, 62, 0.5);
+}
+
+
+.CancelComment{
+    height: 30px;
+    width: 10%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(218, 210, 210, 0.5);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: red;
+}
+
+.CancelComment:hover{
+    cursor: pointer;
+    background-color: rgba(164, 77, 77, 0.5);
+}
