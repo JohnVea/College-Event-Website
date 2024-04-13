@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
             commentsContainer = document.querySelector('.commentsContainer');
             // commentsContainer.innerHTML = ''; // Clear previous comments
             console.log("Filtered comments: " +filteredComments);
+            console.log("Comments: " + comments);
 
             filteredComments.forEach(comment => {
                 console.log("Comment " +comment);
