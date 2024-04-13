@@ -103,6 +103,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
                 commentsContainer.innerHTML = '';
+            }else{
+                commentsContainer.innerHTML = 'Comments:';
             }
             filteredComments.forEach(comment => {
                 console.log("Comment " +comment);
