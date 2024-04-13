@@ -114,7 +114,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 const commentText = document.createElement('p');
                 commentText.textContent = comment.UserComment;
-                commentsContainer.appendChild(commentUser + "  -  " + commentText);
+                // commentsContainer.appendChild(commentText);
+                const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
+                commentParagraph.textContent = commentContent;
+
+                // Append the paragraph to the comments container
+                commentsContainer.appendChild(commentParagraph);
             });
             popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
 
