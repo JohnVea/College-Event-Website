@@ -33,8 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             let eventTime = null;
             h3Elements.forEach(h3Element => {
+                console.log("Found Time?:", h3Element);
+                console.log("Found Time-----:", h3Element.textContent);
                 if (h3Element.textContent.trim().startsWith('Time:')) {
-                    console.log("Found Time:", h3Element.textContent);
                     // Extract longitude value
                     const longitudeText = h3Element.textContent.trim().substring(11);
                     eventTime = longitudeText; 
