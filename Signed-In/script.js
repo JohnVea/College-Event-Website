@@ -35,19 +35,18 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventDescription = eventCard.querySelector('.eventDescription').textContent;
             const eventType = eventCard.querySelector('.eventType').textContent;
 
-            eventPopUpContainer.innerHTML = `
-                <div class="eventPopUpContainer">
-                    <span class="eventPopUp">&times;</span>
-                    <h1>${eventName}</h1>
-                    <h2>${eventDate}</h2>
-                    <h3>${eventTime}</h3>
-                    <h3>${eventLocation}</h3>
-                    <p>${eventDescription}</p>
-                    <h3>${eventType}</h3>
-                </div>
-            `;
-            eventCardContainer.style.display = 'none';
-            eventPopUpContainer.style.display = 'block';
+            // eventPopUpContainer.innerHTML = `
+            //     <div class="eventPopUpContainer">
+            //         <span class="eventPopUp">&times;</span>
+            //         <h1>${eventName}</h1>
+            //         <h2>${eventDate}</h2>
+            //         <h3>${eventTime}</h3>
+            //         <h3>${eventLocation}</h3>
+            //         <p>${eventDescription}</p>
+            //         <h3>${eventType}</h3>
+            //     </div>
+            // `;
+            
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
                 
@@ -57,14 +56,15 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName;
-            popUp.querySelector('.eventDate').textContent = eventDate;
-            popUp.querySelector('.eventTime').textContent = eventTime;
-            popUp.querySelector('.longitude').textContent = longitude;
-            popUp.querySelector('.latitude').textContent = latitude;
-            popUp.querySelector('.eventLocation').textContent = eventLocation;
-            popUp.querySelector('.eventDescription').textContent = eventDescription;
-            popUp.querySelector('.eventType').textContent = eventType;
+            // popUp.querySelector('.eventDate').textContent = eventDate;
+            // popUp.querySelector('.eventTime').textContent = eventTime;
+            // popUp.querySelector('.longitude').textContent = longitude;
+            // popUp.querySelector('.latitude').textContent = latitude;
+            // popUp.querySelector('.eventLocation').textContent = eventLocation;
+            // popUp.querySelector('.eventDescription').textContent = eventDescription;
+            // popUp.querySelector('.eventType').textContent = eventType;
 
+            eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
         }
     });
