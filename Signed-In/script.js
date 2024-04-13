@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
-            console.log(eventCard.target.EventID);
+            // console.log(eventCard.target.EventID);
             console.log(event.target)
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
