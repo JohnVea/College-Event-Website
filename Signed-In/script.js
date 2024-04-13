@@ -1,4 +1,10 @@
-let locationsData; // Define a variable to store locations data globally
+let locationsData; 
+
+
+document.querySelector('.btnLogout').addEventListener('click', function() {
+    localStorage.clear();
+    window.location.href = "./index.html";
+});
 
 const userProfileButton = document.querySelector('.userProfile');
 const eventCard = document.querySelector('.displayEventsContainer');
