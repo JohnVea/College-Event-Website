@@ -386,7 +386,8 @@ label[for="Daytime"] {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
     max-width: 80%;
-    overflow-y: auto; /* Enable scrolling if content overflows */
+    overflow-y: auto; 
+    text-align: center;
 }
 
 .eventPopUp h1 {
