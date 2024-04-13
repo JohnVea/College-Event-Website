@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.classList.contains('eventCard')) {
             // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            const eventName = event.target.querySelector('h1');
+            //const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
             const h3Elements = eventCard.querySelectorAll('h3');
@@ -33,14 +33,31 @@ document.addEventListener("DOMContentLoaded", function() {
             
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
-            console.log(eventData);
+            let eventTime = null;
+            let longitude = null;
+            let eventName = null;
+            let eventLocation = null;
             Array.from(eventData).forEach(child => {
                 console.log(child);
                 if (child.textContent.trim().startsWith('Time:')) {
                     // Extract time value
-                    const timeText = child.textContent.trim().substring(6); // Adjust substring start index
+                    const timeText = child.textContent.trim().substring(6);
                     eventTime = timeText; 
-                    // break; // No need to continue once time is found
+                }
+                if (child.textContent.trim().startsWith('Longitude:')) {
+                    // Extract time value
+                    const longitudeText = child.textContent.trim().substring(11);
+                    longitude = parseFloat(longitudeText);
+                }
+                if (child.textContent.trim().startsWith('Event:')) {
+                    // Extract time value
+                    const eventNameText = child.textContent.trim().substring(50);
+                    eventName = eventNameText; 
+                }
+                if (child.textContent.trim().startsWith('Event Location:')) {
+                    // Extract time value
+                    const eventLocationText = child.textContent.trim().substring(30);
+                    eventLocation = eventLocationText; 
                 }
             });
             
@@ -60,14 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(event.target);
             //const longitude = eventCard.querySelector('h3.longitude');
             
-            let longitude = null;
-            h3Elements.forEach(h3Element => {
-                if (h3Element.textContent.trim().startsWith('Longitude:')) {
-                    // Extract longitude value
-                    const longitudeText = h3Element.textContent.trim().substring(11);
-                    longitude = parseFloat(longitudeText); // Convert to number
-                }
-            });
+            
             // const latitude = eventCard.querySelector('.latitude').textContent;
             // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
@@ -88,11 +98,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Event card clicked: No event name found");
             }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
-            popUp.querySelector('.eventName').textContent = eventName.textContent;
+            popUp.querySelector('.eventName').textContent = eventName;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
             popUp.querySelector('.eventTime').textContent = eventTime;
             popUp.querySelector('.longitude').textContent = longitude;
-            // popUp.querySelector('.latitude').textContent = latitude;
+            popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
             // popUp.querySelector('.eventDescription').textContent = eventDescription;
             // popUp.querySelector('.eventType').textContent = eventType;
