@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     eventTime = longitudeText; 
                 }
             });
+            console.log("Event Time : " + eventTime);
             //const longitude = eventCard.querySelector('h3.longitude');
             
             let longitude = null;
