@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             //const eventName = event.target.querySelector('h1');
-            const eventName = eventCard.querySelector('h1').textContent;
-            const eventDate = eventCard.querySelector('.eventDate').textContent;
-            const eventTime = eventCard.querySelector('.eventTime').textContent;
-            const longitude = eventCard.querySelector('.longitude').textContent;
-            const latitude = eventCard.querySelector('.latitude').textContent;
-            const eventLocation = eventCard.querySelector('.eventLocation').textContent;
-            const eventDescription = eventCard.querySelector('.eventDescription').textContent;
-            const eventType = eventCard.querySelector('.eventType').textContent;
+            // const eventName = eventCard.querySelector('h1').textContent;
+            // const eventDate = eventCard.querySelector('.eventDate').textContent;
+            // const eventTime = eventCard.querySelector('.eventTime').textContent;
+            // const longitude = eventCard.querySelector('.longitude').textContent;
+            // const latitude = eventCard.querySelector('.latitude').textContent;
+            // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
+            // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
+            // const eventType = eventCard.querySelector('.eventType').textContent;
             const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
 
 
