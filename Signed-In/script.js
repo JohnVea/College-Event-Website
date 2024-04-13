@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
             const eventData = event.target.querySelectorAll('*'); // Select the event card
-            let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null;
+            let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null, eventID = null;
             const eventTitle = event.target.querySelector('p');
             Array.from(eventData).forEach(child => {
                 if (child.textContent.trim().startsWith('Time:')) {
@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const eventTypeText = child.textContent;
                     eventType = eventTypeText; 
                 }
+                // if (child.textContent.trim().startsWith('Event Type:')) {
+                //     // Extract time value
+                //     const eventTypeText = child.textContent;
+                //     eventType = eventTypeText; 
+                // }
             });
 
             const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
@@ -77,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
-            console.log(event.Events_ID);
+            console.log(eventCard.EventID);
             const comments = await getAllComments();
             const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
             commentsContainer = document.querySelector('.commentsContainer');
