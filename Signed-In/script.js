@@ -76,7 +76,10 @@ document.addEventListener("DOMContentLoaded", function() {
             popUp.querySelector('.eventType').textContent = eventType;
 
             let CommenterName = document.querySelector('.commentedUser');
-            const iD = await searchEvents2(eventTitle.textContent);
+            let iD;
+            // const iD = await searchEvents2(eventTitle.textContent);
+            getAllComments().then(response => iD=response);
+            console.log("ID : " +iD);
             const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
             getAllComments().then(response => console.log("Gettting comments ", response));
