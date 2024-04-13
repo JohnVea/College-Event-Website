@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function closeCommentContainer(){
+    const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
+    eventPopUpContainer.style.display = 'none';
+}
     
 
 
@@ -143,6 +147,13 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
 
+            const SubmitCommentButton = document.querySelector('.SubmitComment');
+            const CommentText = document.getElementById("CommentText");
+            
+            SubmitCommentButton.addEventListener('click', async function(){
+                await CreateComments(userData.FirstName, CommentText.value, eventID);
+                closeCommentContainer();
+            });
 
 
 
