@@ -468,7 +468,7 @@ label[for="Daytime"] {
     justify-content: space-around; 
     align-items: center;
     justify-content: center;
-    /* display: none; */
+    display: none;
 }
 
 .CommentText{
@@ -497,7 +497,7 @@ label[for="Daytime"] {
 
 .CancelComment{
     height: 30px;
-    width: 10%;
+    width: 20%;
     border: 1px solid transparent;
     border-radius: 20px;
     background-color: rgba(218, 210, 210, 0.5);
