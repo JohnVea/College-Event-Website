@@ -28,9 +28,19 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
-            const eventTime = event.target.querySelector('h3');
-            //const longitude = eventCard.querySelector('h3.longitude');
             const h3Elements = eventCard.querySelectorAll('h3');
+            // const eventTime = event.target.querySelector('h3');
+            
+            let eventTime = null;
+            h3Elements.forEach(h3Element => {
+                if (h3Element.textContent.trim().startsWith('Time:')) {
+                    // Extract longitude value
+                    const longitudeText = h3Element.textContent.trim().substring(11);
+                    longitude = longitudeText; 
+                }
+            });
+            //const longitude = eventCard.querySelector('h3.longitude');
+            
             let longitude = null;
             h3Elements.forEach(h3Element => {
                 if (h3Element.textContent.trim().startsWith('Longitude:')) {
@@ -61,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
             popUp.querySelector('.eventName').textContent = eventName.textContent;
             popUp.querySelector('.eventDate').textContent = eventDate.textContent;
-            popUp.querySelector('.eventTime').textContent = eventTime.textContent;
+            popUp.querySelector('.eventTime').textContent = eventTime;
             popUp.querySelector('.longitude').textContent = longitude;
             // popUp.querySelector('.latitude').textContent = latitude;
             // popUp.querySelector('.eventLocation').textContent = eventLocation;
