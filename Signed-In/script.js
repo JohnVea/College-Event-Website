@@ -31,17 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const h3Elements = eventCard.querySelectorAll('h3');
             // const eventTime = event.target.querySelector('h3');
             
-            // let eventTime = null;
-            // h3Elements.forEach(h3Element => {
-            //     console.log("Found Time?:", h3Element);
-            //     console.log("Found Time-----:", h3Element.textContent);
-            //     if (h3Element.textContent.trim().startsWith('Time:')) {
-            //         // Extract longitude value
-            //         const longitudeText = h3Element.textContent.trim().substring(11);
-            //         eventTime = longitudeText; 
-            //     }
-            // });
-            const eventTime = event.target.querySelector('.eventTime');
+            
+            let eventTime = null;
+            event.target.forEach(event => {
+                if (event.textContent.trim().startsWith('Time:')) {
+                    // Extract longitude value
+                    const TimeText = event.textContent.trim().substring(11);
+                    eventTime = TimeText; 
+                }
+            });
+            // const eventTime = event.target.querySelector('.eventTime');
             console.log("Event Time : " + eventTime);
             console.log(event.target);
             //const longitude = eventCard.querySelector('h3.longitude');
