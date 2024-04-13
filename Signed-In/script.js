@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentText.textContent = comment.UserComment;
                 commentsContainer.appendChild(commentText);
             });
-            popUp.querySelector('.commentsContainer').appendChild(commentsContainer);
+            popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
 
 
 
