@@ -31,7 +31,7 @@ const createCommentContainer = document.querySelector('.createCommentContainer')
 addComment.addEventListener('click', function(){
     createCommentContainer.style.display = 'block';
     eventCard.style.display = 'none';
-    console.long("add comment button clicked");
+    console.log("add comment button clicked");
     // eventPopUpContainer.style.display = 'none';
 });
 
