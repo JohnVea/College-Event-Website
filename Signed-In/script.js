@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             
             let eventTime = null;
-            const eventData = event.target.querySelectorAll('div');
+            const eventData = event.target;
             console.log(eventData);
             eventData.forEach(event => {
                 if (event.textContent.trim().startsWith('Time:')) {
