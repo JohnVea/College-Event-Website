@@ -77,6 +77,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             console.log(await getAllComments());
+            const comments = await getAllComments();
+            const filteredComments = comments.filter(comment => comment.CommentedEventID === event.Events_ID);
+            commentsContainer.innerHTML = ''; // Clear previous comments
+
+            filteredComments.forEach(comment => {
+                const commentUser = document.createElement('h3');
+                commentUser.textContent = filteredComments.CommentedUser;
+                commentsContainer.appendChild(commentUser);
+
+                const commentText = document.createElement('p');
+                commentText.textContent = filteredComments.UserComment;
+                commentsContainer.appendChild(commentText);
+            });
+
 
 
 
