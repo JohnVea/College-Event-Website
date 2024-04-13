@@ -188,3 +188,9 @@ async function getUsers() {
       console.error('Error fetching users:', error.message);
     }
   }
+
+document.querySelector('.btnLogout').addEventListener('click', function() {
+
+    localStorage.clear();
+    window.location.href = "./index.html";
+});
