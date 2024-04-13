@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 if (child.textContent.trim().startsWith('Event Location:')) {
                     // Extract time value
-                    const eventLocationText = child.textContent.trim().substring(50);
+                    const eventLocationText = child.textContent;
                     eventLocation = eventLocationText; 
                 }
             });
