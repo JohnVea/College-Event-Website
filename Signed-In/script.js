@@ -19,6 +19,13 @@ userProfileButton.addEventListener('click', function(){
     }
 });
 
+const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
+const closeEventPopUpButton = document.selectItemByID("closeEventPopUp");
+closeEventPopUpButton.addEventListener('click', function(){
+    eventPopUpContainer.style.display = 'none';
+    eventCard.style.display = 'block';
+});
+
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
