@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.classList.contains('eventCard')) {
             // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            const eventName = event.target.querySelector('h1').textContent;
+            const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
             // const eventDate = eventCard.querySelector('.eventDate').textContent;
             // const eventTime = eventCard.querySelector('.eventTime').textContent;
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Event card clicked: No event name found");
             }
             const popUp = eventPopUpContainer.querySelector('.eventPopUp');
-            popUp.querySelector('.eventName').textContent = eventName;
+            popUp.querySelector('.eventName').textContent = eventName.textContent;
             // popUp.querySelector('.eventDate').textContent = eventDate;
             // popUp.querySelector('.eventTime').textContent = eventTime;
             // popUp.querySelector('.longitude').textContent = longitude;
