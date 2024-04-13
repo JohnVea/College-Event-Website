@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             
             const eventData = event.target.querySelector(".displayEventsContainer"); // Select the event card
-            // console.log(eventData);
+            console.log(eventData);
             const children = eventData.children; // Get all children elements of the event card
             // console.log(child);
             let eventTime = null;
