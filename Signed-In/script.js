@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             
             let eventTime = null;
-            event.target.forEach(event => {
+            const eventData = event.target.querySelectorAll('div');
+            console.log(eventData);
+            eventData.forEach(event => {
                 if (event.textContent.trim().startsWith('Time:')) {
                     // Extract longitude value
                     const TimeText = event.textContent.trim().substring(11);
