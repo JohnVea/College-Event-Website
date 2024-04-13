@@ -34,10 +34,15 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const eventData = event.target.querySelectorAll('*'); // Select the event card
             console.log(eventData);
-            console.log(eventData.child);
-            // Array.from(eventData).forEach(child => {
-            //     console.log(child);
-            // });
+            Array.from(eventData).forEach(child => {
+                console.log(child);
+                if (child.textContent.trim().startsWith('Time:')) {
+                    // Extract time value
+                    const timeText = child.textContent.trim().substring(6); // Adjust substring start index
+                    eventTime = timeText; 
+                    // break; // No need to continue once time is found
+                }
+            });
             
             // const children = eventData.children; // Get all children elements of the event card
             // console.log(child);
