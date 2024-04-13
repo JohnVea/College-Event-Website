@@ -23,6 +23,7 @@ userProfileButton.addEventListener('click', function(){
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('eventCard')) {
+            const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
             // const eventName = event.target.querySelector('h1');
             const eventName = eventCard.querySelector('.eventName').textContent;
             const eventDate = eventCard.querySelector('.eventDate').textContent;
