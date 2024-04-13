@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventName = event.target.querySelector('h1');
             //const eventName = eventCard.querySelector('.eventName');
             const eventDate = event.target.querySelector('h2');
-            const eventTime = eventCard.querySelector('h3');
-            const longitude = eventCard.querySelector('h3').textContent;
+            const eventTime = event.target.querySelector('h3');
+            const longitude = event.target.querySelector('h3');
             // const latitude = eventCard.querySelector('.latitude').textContent;
             // const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             // const eventDescription = eventCard.querySelector('.eventDescription').textContent;
