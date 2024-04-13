@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (h3Element.textContent.trim().startsWith('Time:')) {
                     // Extract longitude value
                     const longitudeText = h3Element.textContent.trim().substring(11);
-                    longitude = longitudeText; 
+                    eventTime = longitudeText; 
                 }
             });
             //const longitude = eventCard.querySelector('h3.longitude');
