@@ -3,7 +3,7 @@ let locationsData;
 
 document.querySelector('.Signout').addEventListener('click', function() {
     localStorage.clear();
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 });
 
 const userProfileButton = document.querySelector('.userProfile');
