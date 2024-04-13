@@ -421,8 +421,7 @@ label[for="Daytime"] {
 }
 .addComment:hover{
     cursor: pointer;
-    transform: scale(1.03);
-    animation: bounce 0.5s;
+    background-color: rgba(129, 154, 251, 0.5);
 }
 
 .closeEventPopUp{
@@ -438,6 +437,5 @@ label[for="Daytime"] {
 
 .closeEventPopUp:hover{
     cursor: pointer;
-    transform: scale(1.03);
-    animation: bounce 0.5s;
+    background-color: rgba(250, 175, 175, 0.5);
 }
