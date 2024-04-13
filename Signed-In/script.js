@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
                 console.log(eventDate);
+                const eventCard = event.target;
+                console.log("Event card:", eventCard);
+                console.log("Longitude element:", longitude);
                 
                 
             } else {
