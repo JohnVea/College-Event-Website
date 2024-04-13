@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.classList.contains('eventCard')) {
             // const eventCard = event.target;
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            const eventName = event.target.querySelector('h1');
+            const eventName = event.target.querySelector('.eventName');
             //const eventName = eventCard.querySelector('.eventName');
             // const eventDate = eventCard.querySelector('.eventDate').textContent;
             // const eventTime = eventCard.querySelector('.eventTime').textContent;
