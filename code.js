@@ -73,8 +73,9 @@ async function doRegister() {
 
         if (data.error === "") {
             console.log('Registration successful:', data);
-            localStorage.setItem('userData', JSON.stringify(data));
-            window.location.href = "./Signed-In/home.html";
+            // localStorage.setItem('userData', JSON.stringify(data));
+            alert("Registration successful, Please Loggin");
+            window.location.href = "./index.html";
         } else {
             throw new Error(data.error);
         }
