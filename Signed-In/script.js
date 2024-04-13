@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('eventCard')) {
             const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
-            //const eventName = event.target.querySelector('h1');
-            const eventName = eventCard.querySelector('.eventName');
+            const eventCardContainer = document.querySelector('.displayEventsContainer');
+            const eventName = event.target.querySelector('h1');
+            //const eventName = eventCard.querySelector('.eventName');
             const eventDate = eventCard.querySelector('.eventDate').textContent;
             const eventTime = eventCard.querySelector('.eventTime').textContent;
             const longitude = eventCard.querySelector('.longitude').textContent;
@@ -33,8 +34,24 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventLocation = eventCard.querySelector('.eventLocation').textContent;
             const eventDescription = eventCard.querySelector('.eventDescription').textContent;
             const eventType = eventCard.querySelector('.eventType').textContent;
+
+            eventPopUpContainer.innerHTML = `
+                <div class="eventPopUpContainer">
+                    <span class="eventPopUp">&times;</span>
+                    <h1>${eventName}</h1>
+                    <h2>${eventDate}</h2>
+                    <h3>${eventTime}</h3>
+                    <h3>${eventLocation}</h3>
+                    <p>${eventDescription}</p>
+                    <h3>${eventType}</h3>
+                </div>
+            `;
+            eventCardContainer.style.display = 'none';
+            eventPopUpContainer.style.display = 'block';
             if (eventName) {
                 console.log("Event card clicked: " + eventName.textContent);
+                
+                
             } else {
                 console.log("Event card clicked: No event name found");
             }
