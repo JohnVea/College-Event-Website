@@ -26,6 +26,16 @@ closeEventPopUpButton.addEventListener('click', function(){
     eventCard.style.display = 'block';
 });
 
+const addComment = document.getElementById("addComment");
+const createCommentContainer = document.querySelector('.createCommentContainer');
+addComment.addEventListener('click', function(){
+    createCommentContainer.style.display = 'block';
+    eventCard.style.display = 'none';
+    eventPopUpContainer.style.display = 'none';
+});
+    
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
@@ -702,6 +712,35 @@ async function getAllComments() {
         const data = await response.json();
         // console.log(data);
         return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        throw error; 
+    }
+}
+
+async function CreateComments(name, comment, eventID) {
+    const commentData = {
+        CommentedUser: name,
+        UserComment: comment,
+        CommentedEventID: parseInt(eventID)
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateComment.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(commentData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        // const data = await response.json();
+        alert("Comment created successfully");
+        // return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
         throw error; 
