@@ -1,7 +1,7 @@
 let locationsData; 
 
 
-document.querySelector('.btnLogout').addEventListener('click', function() {
+document.querySelector('.Signout').addEventListener('click', function() {
     localStorage.clear();
     window.location.href = "./index.html";
 });
