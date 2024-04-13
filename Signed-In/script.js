@@ -20,7 +20,7 @@ userProfileButton.addEventListener('click', function(){
 });
 
 const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
-const closeEventPopUpButton = document.selectItemByID("closeEventPopUp");
+const closeEventPopUpButton = document.getElementById("closeEventPopUp");
 closeEventPopUpButton.addEventListener('click', function(){
     eventPopUpContainer.style.display = 'none';
     eventCard.style.display = 'block';
