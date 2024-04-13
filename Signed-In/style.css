@@ -484,7 +484,7 @@ label[for="Daytime"] {
     background-color: rgba(79, 153, 96, 0.5);
     backdrop-filter: blur(10px); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 
@@ -496,9 +496,9 @@ label[for="Daytime"] {
 
 .CancelComment{
     height: 30px;
-    width: 20%;
+    width: 30%;
     border: 1px solid transparent;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: rgba(218, 210, 210, 0.5);
     backdrop-filter: blur(10px); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
