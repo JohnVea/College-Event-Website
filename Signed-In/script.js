@@ -141,11 +141,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
                         const commentParagraph = document.createElement('div');
-                        const commentContent = `${commentUser.textContent} - ${commentText.textContent} ${deleteButton}`;
+                        const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
                         commentParagraph.textContent = commentContent;
     
                         // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
+                        commentsContainer.appendChild(deleteButton);
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
