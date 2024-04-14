@@ -150,6 +150,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
                         // });
                         
+                        const editButton = document.createElement('button');
+                        editButton.classList.add('editCommentButton');
+                        editButton.innerHTML = '<i class="material-icons">delete</i>';
+                        editButton.style.border = 'none';
+                        editButton.style.padding = '0';
+                        editButton.style.fontSize = '0';
+                        editButton.style.verticalAlign = 'top';
+                        editButton.style.color = 'yellow';
+                        editButton.style.background = 'none';
                         
 
                         
@@ -161,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         if(commentUser.textContent === userData.FirstName){
                             commentParagraph.appendChild(deleteButton);
+                            commentParagraph.appendChild(editButton);
                         }
                         
     
@@ -177,6 +187,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButton = document.querySelector('.deleteCommentButton');
                         deleteCommentButton.addEventListener('click', async function(event) {
                         console.log("Delete button clicked ");
+                    });
+
+                    const editCommentButton = document.querySelector('.editCommentButton');
+                    editCommentButton.addEventListener('click', async function(event) {
+                        console.log("Edit button clicked ");
                     });
 
                     
