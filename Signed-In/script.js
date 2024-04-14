@@ -159,7 +159,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
                         commentParagraph.textContent = commentContent;
 
-                        commentParagraph.appendChild(deleteButton);
+                        if(commentUser.textContent.length === userData.FirstName){
+                            commentParagraph.appendChild(deleteButton);
+                        }
+                        
     
                         // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
