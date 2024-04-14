@@ -4,11 +4,14 @@
         <meta charset = "utf-8">
         <link rel="stylesheet" href="./style.css">
         <title>Univentverse</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <button class="createEvent" id="createEvent">Create Event</button>
+        <button class="createEvent" id="createEvent">
+            Create Event
+        </button>
         <button class="userProfile" id="userProfile"></button>
         <button class="ROSs" id="RSOs">Registered Student Organizations</button>
         <button class="CreateedROSs" id="CreateedRSOs">Created Student Organizations</button>
@@ -54,6 +57,9 @@
                     <h2>Comments:</h2>
                     <h3 class="commentedUser"></h3>
                     <p class="eventComments"></p>
+                    <button class="deleteCommentButton" id="deleteCommentButton">
+                        <i class="material-icons md-48">delete</i>
+                    </button>
                 </div>
                 <div class="createCommentContainer" id="createCommentContainer">
                     <form>
