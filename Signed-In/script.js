@@ -138,15 +138,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         const deleteButton = document.createElement('button');
                         deleteButton.classList.add('deleteCommentButton');
                         deleteButton.innerHTML = '<i class="material-icons md-48">delete</i>';
+                        
     
     
                         const commentParagraph = document.createElement('div');
-                        const commentContent = `${commentUser.textContent} - ${commentText.textContent}` + deleteButton;
+                        const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
                         commentParagraph.textContent = commentContent;
     
                         // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
                         // commentsContainer.appendChild(deleteButton);
+                        commentContent.appendChild(deleteButton);
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
