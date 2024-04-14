@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                         const editButton = document.createElement('button');
                         editButton.classList.add('editCommentButton');
-                        editButton.innerHTML = '<i class="far fa-edit"></i>';
+                        editButton.innerHTML = '<i class="fa fa-edit"></i>';
                         editButton.style.border = 'none';
                         editButton.style.padding = '0';
                         editButton.style.fontSize = '0';
