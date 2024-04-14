@@ -192,13 +192,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const deleteCommentButton = document.querySelector(".deleteCommentButton");
-        deleteCommentButton.addEventListener('click', async function(event){
+    // Add event listener for delete buttons
+    document.addEventListener('click', async function(event) {
+        if (event.target.classList.contains('deleteCommentButton')) {
             console.log("Delete button clicked");
-        });
+            // Perform delete operation here
+        }
     });
-    
+
 });
 
 
