@@ -136,6 +136,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     commentText.textContent = comment.UserComment;
                     // commentsContainer.appendChild(commentText);
 
+                    const deleteButton = document.createElement('button');
+                    deleteButton.classList.add('deleteCommentButton');
+                    deleteButton.innerHTML = '<i class="material-icons md-48">delete</i>';
+
 
                     const commentParagraph = document.createElement('div');
                     const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
