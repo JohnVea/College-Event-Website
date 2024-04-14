@@ -146,19 +146,11 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.verticalAlign = 'top';
                         deleteButton.style.color = 'red';
 
-                        // deleteButton.addEventListener('mouseover', function () {
-                        //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
-                        // });
-                        // Add event listener for mouseenter and mouseleave to change styles on hover
-                        deleteButton.addEventListener('mouseenter', function() {
-                            deleteButton.style.cursor = 'pointer';
+                        deleteButton.addEventListener('mouseover', function () {
                             deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
                         });
-
-                        deleteButton.addEventListener('mouseleave', function() {
-                            deleteButton.style.cursor = 'default'; // Reset cursor to default
-                            deleteButton.style.backgroundColor = 'transparent'; // Reset background color
-                        });
+                        // Add event listener for mouseenter and mouseleave to change styles on hover
+                        
 
                         
     
