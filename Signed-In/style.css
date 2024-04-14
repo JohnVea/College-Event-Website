@@ -575,4 +575,6 @@ label[for="Daytime"] {
     animation: bounce 0.5s;
 }
 
-.material-icons.md-48 { font-size: 13px; }
+.material-icons.md-36 { 
+    font-size: 10px; 
+}
