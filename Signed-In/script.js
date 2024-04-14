@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.padding = '0';
                         deleteButton.style.background = 'none';
                         deleteButton.style.fontSize = '0'; // Set font size of icon to 0
-                        deleteButton.style.verticalAlign = 'middle';
+                        deleteButton.style.verticalAlign = 'top';
                         
     
     
