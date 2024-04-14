@@ -149,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         // deleteButton.addEventListener('mouseover', function () {
                         //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
                         // });
-                        const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                        deleteCommentButton.addEventListener('click', async function(event) {
+                        // const deleteCommentButton = document.querySelector('.deleteCommentButton');
+                        deleteButton.addEventListener('click', async function(event) {
                             console.log("Delete button clicked ");
                         });
                         
