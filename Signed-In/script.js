@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.background = 'none';
                         deleteButton.style.fontSize = '0'; // Set font size of icon to 0
                         deleteButton.style.verticalAlign = 'top';
+                        deleteButton.style.color = 'red';
                         
     
     
