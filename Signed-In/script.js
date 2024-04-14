@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     const deleteCommentButton = document.querySelector('.deleteCommentButton');
                     deleteCommentButton.addEventListener('click', async function(event) {
-                        console.log("Delete button clicked");
+                        console.log("Delete button clicked " +event.target.textContent);
                     });
                 }
                 
