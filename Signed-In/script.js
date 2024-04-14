@@ -146,10 +146,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.verticalAlign = 'top';
                         deleteButton.style.color = 'red';
 
-                        deleteButton.addEventListener('mouseover', function () {
-                            deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
-                        });
-                        // Add event listener for mouseenter and mouseleave to change styles on hover
+                        // deleteButton.addEventListener('mouseover', function () {
+                        //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
+                        // });
                         
 
                         
@@ -168,6 +167,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
+                    // Add event listener for delete buttons
+
+                    const deleteCommentButton = document.querySelector('.deleteCommentButton');
+                    document.addEventListener('click', async function(event) {
+                        console.log("Delete button clicked");
+                    });
                 }
                 
             }
@@ -200,13 +205,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Add event listener for delete buttons
-    document.addEventListener('click', async function(event) {
-        if (event.target.classList.contains('deleteCommentButton')) {
-            console.log("Delete button clicked");
-            // Perform delete operation here
-        }
-    });
+    
 
 });
 
