@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
- 
+function closeEventPopUp() {
+    eventPopUpContainer.style.display = 'none';
+    eventCard.style.display = 'block';
+}
 
 
 
@@ -157,10 +160,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             SubmitCommentButton.addEventListener('click', async function(){
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
-                CommentText.innerHTML = '';
+                CommentText.value = ''; 
+                closeEventPopUp();
                 
-                eventPopUpContainer.style.display = 'none';
-                eventCardContainer.style.display = 'block';
             });
 
 
