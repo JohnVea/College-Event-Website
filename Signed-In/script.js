@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                         const editButton = document.createElement('button');
                         editButton.classList.add('editCommentButton');
-                        editButton.innerHTML = '<i class="material-icons">delete</i>';
+                        editButton.innerHTML = '<i class="far fa-edit"></i>';
                         editButton.style.border = 'none';
                         editButton.style.padding = '0';
                         editButton.style.fontSize = '0';
