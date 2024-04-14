@@ -139,6 +139,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.classList.add('deleteCommentButton');
                         deleteButton.innerHTML = '<i class="material-icons">delete</i>';
                         // deleteButton.style.fontSize = '10px';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.padding = '0';
+                        deleteButton.style.background = 'none';
                         
     
     
