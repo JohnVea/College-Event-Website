@@ -182,10 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 fetchComments();
             });
 
-            const deleteCommentButton = document.querySelector(".deleteCommentButton");
-            deleteCommentButton.addEventListener('click', async function(event){
-                console.log("Delete button clicked");
-            });
+            
 
             
 
@@ -195,6 +192,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const deleteCommentButton = document.querySelector(".deleteCommentButton");
+    deleteCommentButton.addEventListener('click', async function(event){
+        console.log("Delete button clicked");
+    });
+});
+
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function(event) {
