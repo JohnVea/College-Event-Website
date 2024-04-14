@@ -587,4 +587,5 @@ label[for="Daytime"] {
     border-radius: 5px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: small;
 }
