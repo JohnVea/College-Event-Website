@@ -150,9 +150,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
                         // });
                         // const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                        deleteButton.addEventListener('click', async function(event) {
-                            console.log("Delete button clicked ");
-                        });
+                        // deleteButton.addEventListener('click', async function(event) {
+                        //     console.log("Delete button clicked ");
+                        // });
                         
 
                         
@@ -167,6 +167,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
                         // commentsContainer.appendChild(deleteButton);
+
+                        deleteButton.addEventListener('click', async function(event) {
+                            console.log("Delete button clicked ");
+                        });
 
                         
 
