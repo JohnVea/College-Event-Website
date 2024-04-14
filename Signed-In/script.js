@@ -105,53 +105,50 @@ document.addEventListener("DOMContentLoaded", function() {
             // let iD;
             const iD = await searchEvents2(eventTitle.textContent);
             // getAllComments().then(response => iD=response);
-            console.log("ID : " +iD);
             const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
-            console.log("ID2 : " +eventID);
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
-            const comments = await getAllComments();
-            console.log("Comments: " + comments);
-            console.log("CommentsJson1: " + JSON.stringify(comments));
-            const commentsJson =  JSON.stringify(comments);
 
-            // Parse the JSON string back into an array
-            const commentsArray = JSON.parse(commentsJson);
-            console.log("CommentsArray: ", commentsArray);
-            // const commentsJson = await comments.json();
-            const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
-            const commentsContainer = document.querySelector('.commentsContainer');
-            // commentsContainer.innerHTML = ''; // Clear previous comments
-            console.log("Filtered comments: " +filteredComments);
-            console.log("CommentsJson: " + commentsJson);
-            
-            
-            if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
-                commentsContainer.innerHTML = '';
-            }else{
-                commentsContainer.innerHTML = 'Comments:';
+            async function fetchComments() {
+                const comments = await getAllComments();
+                const commentsJson =  JSON.stringify(comments);
+
+                // Parse the JSON string back into an array
+                const commentsArray = JSON.parse(commentsJson);
+                // const commentsJson = await comments.json();
+                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
+                const commentsContainer = document.querySelector('.commentsContainer');
+                
+                
+                if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
+                    commentsContainer.innerHTML = '';
+                }else{
+                    commentsContainer.innerHTML = 'Comments:';
+                }
+                filteredComments.forEach(comment => {
+                    console.log("Comment " +comment);
+                    const commentUser = document.createElement('h3');
+                    commentUser.textContent = comment.CommentedUser;
+                    //commentsContainer.appendChild(commentUser);
+
+                    const commentText = document.createElement('p');
+                    commentText.textContent = comment.UserComment;
+                    // commentsContainer.appendChild(commentText);
+
+
+                    const commentParagraph = document.createElement('div');
+                    const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
+                    commentParagraph.textContent = commentContent;
+
+                    // Append the paragraph to the comments container
+                    commentsContainer.appendChild(commentParagraph);
+                });
+                popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
+                eventPopUpContainer.style.alignItems = 'center';
             }
-            filteredComments.forEach(comment => {
-                console.log("Comment " +comment);
-                const commentUser = document.createElement('h3');
-                commentUser.textContent = comment.CommentedUser;
-                //commentsContainer.appendChild(commentUser);
-
-                const commentText = document.createElement('p');
-                commentText.textContent = comment.UserComment;
-                // commentsContainer.appendChild(commentText);
-
-
-                const commentParagraph = document.createElement('div');
-                const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
-                commentParagraph.textContent = commentContent;
-
-                // Append the paragraph to the comments container
-                commentsContainer.appendChild(commentParagraph);
-            });
-            popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
-            eventPopUpContainer.style.alignItems = 'center';
+            fetchComments();
+            
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
 
@@ -166,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
+                fetchComments();
             });
             
 
