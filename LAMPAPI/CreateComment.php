@@ -59,25 +59,13 @@ function sendResultInfoAsJson($obj)
 {
     echo json_encode($obj);
 }
+
 function returnWithError($err)
 {
-    $errorInfo = array(
-        "error" => $err,
-        "script" => basename(__FILE__),
-        "line" => __LINE__
-    );
-    sendResultInfoAsJson($errorInfo);
+    $response = array("error" => $err);
+    sendResultInfoAsJson($response);
     http_response_code(500);
     exit;
 }
-
-
-// function returnWithError($err)
-// {
-//     $response = array("error" => $err);
-//     sendResultInfoAsJson($response);
-//     http_response_code(500);
-//     exit;
-// }
 
 ?>
