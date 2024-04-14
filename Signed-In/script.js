@@ -126,34 +126,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 }else{
                     commentsContainer.innerHTML = 'Comments:';
                     filteredComments.forEach(comment => {
-                        const commentWrapper = document.createElement('div');
-                        commentWrapper.classList.add('commentWrapper');
-
+                        console.log("Comment " +comment);
                         const commentUser = document.createElement('h3');
                         commentUser.textContent = comment.CommentedUser;
-
+                        //commentsContainer.appendChild(commentUser);
+    
                         const commentText = document.createElement('p');
                         commentText.textContent = comment.UserComment;
-
+                        // commentsContainer.appendChild(commentText);
+    
                         const deleteButton = document.createElement('button');
                         deleteButton.classList.add('deleteCommentButton');
                         deleteButton.innerHTML = '<i class="material-icons md-48">delete</i>';
-
-                        deleteButton.addEventListener('click', async () => {
-                            // Handle delete comment functionality here
-                            // You can call a function to delete the comment from the database
-                            // and then update the UI accordingly
-                            console.log('Delete comment clicked for:', comment);
-                        });
-
-                        const commentContent = document.createElement('div');
-                        commentContent.classList.add('commentContent');
-                        commentContent.appendChild(commentUser);
-                        commentContent.appendChild(commentText);
-                        commentContent.appendChild(deleteButton);
-
-                        commentWrapper.appendChild(commentContent);
-                        commentsContainer.appendChild(commentWrapper);
+    
+    
+                        const commentParagraph = document.createElement('div');
+                        const commentContent = `${commentUser.textContent} - ${commentText.textContent} ${deleteButton}`;
+                        commentParagraph.textContent = commentContent;
+    
+                        // Append the paragraph to the comments container
+                        commentsContainer.appendChild(commentParagraph);
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
