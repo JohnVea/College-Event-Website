@@ -161,8 +161,8 @@ document.addEventListener("DOMContentLoaded", function() {
             SubmitCommentButton.addEventListener('click', async function(){
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 CommentText.value = ''; 
-                closeEventPopUp();
-                
+                eventCardContainer.style.display = 'block';
+                eventPopUpContainer.style.display = 'none';
             });
 
 
