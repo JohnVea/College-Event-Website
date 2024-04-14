@@ -149,6 +149,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         // deleteButton.addEventListener('mouseover', function () {
                         //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
                         // });
+                        const deleteCommentButton = document.querySelector('.deleteCommentButton');
+                        deleteCommentButton.addEventListener('click', async function(event) {
+                            console.log("Delete button clicked ");
+                        });
                         
 
                         
@@ -164,15 +168,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         commentsContainer.appendChild(commentParagraph);
                         // commentsContainer.appendChild(deleteButton);
 
+                        
+
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     // Add event listener for delete buttons
 
-                    const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                    deleteCommentButton.addEventListener('click', async function(event) {
-                        console.log("Delete button clicked " +event.target.textContent);
-                    });
+                    
                 }
                 
             }
@@ -194,12 +197,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 createCommentContainer.style.display = 'none';
                 fetchComments();
             });
-
-            
-
-            
-
-
 
             
         }
