@@ -510,7 +510,8 @@ label[for="Daytime"] {
 
 .ROSs{
     position: absolute;
-    top: 82%;
+    top: 83%;
+    bottom: 10%;
     right: 0%; 
     height: 35px;
     width: 15%;
@@ -537,7 +538,8 @@ label[for="Daytime"] {
 
 .CreateedROSs{
     position: absolute;
-    Top: 85%;
+    bottom: 20%;
+    top: 78%;
     right: 0%; 
     height: 35px;
     width: 15%;
@@ -558,7 +560,7 @@ label[for="Daytime"] {
     backdrop-filter: blur(10px); 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin-bottom: 2%;
-    z-index: 1;
+    z-index: 3;
 }
 
 .ROSs:hover{
@@ -572,3 +574,5 @@ label[for="Daytime"] {
     transform: scale(1.03);
     animation: bounce 0.5s;
 }
+
+.material-icons.md-48 { font-size: 13px; }
