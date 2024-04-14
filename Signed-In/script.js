@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Add event listener for delete buttons
 
                     const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                    document.addEventListener('click', async function(event) {
+                    deleteCommentButton.addEventListener('click', async function(event) {
                         console.log("Delete button clicked");
                     });
                 }
