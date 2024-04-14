@@ -159,12 +159,15 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
+                const createCommentContainer = document.getElementById("createCommentContainer");
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 CommentText.value = ''; 
-                eventCardContainer.style.display = 'block';
-                eventPopUpContainer.style.display = 'none';
+                // eventCardContainer.style.display = 'block';
+                // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
+                createCommentContainer.style.display = 'none';
             });
+            
 
 
 
