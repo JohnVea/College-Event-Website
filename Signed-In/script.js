@@ -144,13 +144,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.background = 'none';
                         deleteButton.style.fontSize = '0'; // Set font size of icon to 0
                         deleteButton.style.verticalAlign = 'top';
-                        deleteButton.style.height = '10px'; 
                         
     
     
                         const commentParagraph = document.createElement('div');
                         const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
                         commentParagraph.textContent = commentContent;
+
                         commentParagraph.appendChild(deleteButton);
     
                         // Append the paragraph to the comments container
@@ -181,6 +181,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 createCommentContainer.style.display = 'none';
                 fetchComments();
             });
+
+            const deleteCommentButton = document.querySelector(".deleteCommentButton");
+            deleteCommentButton.addEventListener('click', async function(event){
+                console.log("Delete button clicked");
+            });
+
             
 
 
