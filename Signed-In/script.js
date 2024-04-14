@@ -163,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 CommentText.value = ''; 
                 eventCardContainer.style.display = 'block';
                 eventPopUpContainer.style.display = 'none';
+                window.location.reload();
             });
 
 
