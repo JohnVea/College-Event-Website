@@ -201,6 +201,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
+                            await DeleteComment(commentText1);
+                            fetchComments();
                         });
                     });
 
@@ -850,7 +852,32 @@ async function CreateComments(name, comment, eventID) {
     }
 }
 
+async function DeleteComment(comment) {
+    const commentData = {
+        UserComment: comment
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/DeleteComment.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(commentData)
+        });
 
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        // const data = await response.json();
+        alert("Comment Deleted successfully");
+        // return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        throw error; 
+    }
+}
 
 
 
