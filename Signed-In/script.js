@@ -200,11 +200,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
-                            
-                            alert("Comment Deleted successfully");
-                            continueAfterAlert();
-                            // fetchComments();
-                            
+                            event.stopPropagation();
+                            fetchComments();
+                            // alert("Comment Deleted successfully");
                         });
                     });
 
@@ -229,9 +227,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
-                                alert("Successfully Edited Comment");
-                                continueAfterAlert();
-                                // fetchComments();
+                                // await alert("Successfully Edited Comment");
+                                fetchComments();
                                 editCommentContainer.style.display = 'none';
                                 
                             });
@@ -250,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 
             }
-            // fetchComments();
+            fetchComments();
             
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
@@ -268,12 +265,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
-                alert("Comment created successfully");
-                continueAfterAlert();
-                // fetchComments();
+                // alert("Comment created successfully");
+                fetchComments();
                 
             });
-            fetchComments();
 
             
         }
@@ -420,9 +415,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
-                            alert("Comment Deleted successfully");
                             fetchComments();
-                            
+                            alert("Comment Deleted successfully");
                         });
                     });
 
@@ -446,10 +440,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
-                                alert("Successfully Edited Comment");
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                
+                                alert("Successfully Edited Comment");
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
@@ -482,9 +475,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
-                alert("Comment created successfully");
                 fetchComments();
-                
+                alert("Comment created successfully");
             });
 
             
