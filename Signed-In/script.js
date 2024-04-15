@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
+var lastAddCommentClick = 0;
+var delay = 20;
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')) {
@@ -201,8 +202,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
                             event.stopPropagation();
-                            fetchComments();
-                            // alert("Comment Deleted successfully");
+                            
+                            alert("Comment Deleted successfully");
                         });
                     });
 
@@ -245,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     
                 }
+                fetchComments();
                 
             }
             fetchComments();
@@ -256,6 +258,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
+                if (lastAddCommentClick >= (Date.now() - delay)){
+                    return;
+                }
+                lastAddCommentClick = Date.now();
                 // event.stopPropagation();
                 const createCommentContainer = document.getElementById("createCommentContainer");
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
