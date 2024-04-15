@@ -584,3 +584,23 @@ label[for="Daytime"] {
     cursor: pointer;
     background-color: rgba(104, 2, 2, 0.5);
 }
+
+.EditCommentContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20%;
+    height: 20%;
+    transform: translate(-50%, -50%);
+    padding: 20%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.743);
+    backdrop-filter: blur(5px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    z-index: 1;
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+    justify-content: center;
+    display: none;
+}

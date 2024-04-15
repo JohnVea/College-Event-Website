@@ -203,9 +203,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
 
-                            const createCommentContainer = document.getElementById("createCommentContainer");
-                            const submitComment = document.getElementById("SubmitComment");
-                            const CommentText = document.getElementById("CommentText");
+                            const createCommentContainer = document.getElementById("EditCommentContainer");
+                            const submitComment = document.getElementById("SubmitEditComment");
+                            const CommentText = document.getElementById("CommentEditText");
                             CommentText.value = commentText1; 
                             createCommentContainer.style.display = 'block';
                             // eventCardContainer.style.display = 'block';
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 createCommentContainer.style.display = 'none';
                             });
 
-                            const closeButton = document.getElementById("CancelComment");
+                            const closeButton = document.getElementById("CancelEditComment");
                             closeButton.addEventListener("click", function() {
                                 CommentText.value = '';
                                 createCommentContainer.style.display = "none";
