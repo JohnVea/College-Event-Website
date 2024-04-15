@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
                             console.log("Delete button clicked " + deleteCommentButtons.length);
-                            console.log(event.target);
+                            console.log(button.parentElement.textContent);
                         });
                     });
 
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     editCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
                             console.log("Edit button clicked " + editCommentButtons.length);
-                            console.log(event.target);
+                            console.log(button.parentElement.textContent);
                         });
                     });
 
