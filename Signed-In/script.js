@@ -51,23 +51,6 @@ function closeEventPopUp() {
     eventCard.style.display = 'block';
 }
 
-// Add event listeners for delete buttons
-const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
-deleteCommentButtons.forEach(button => {
-    button.addEventListener('click', async function(event) {
-        console.log("Delete button clicked " + deleteCommentButtons.length);
-        console.log();
-    });
-});
-
-// Add event listeners for edit buttons
-const editCommentButtons = document.querySelectorAll('.editCommentButton');
-editCommentButtons.forEach(button => {
-    button.addEventListener('click', async function(event) {
-        console.log("Edit button clicked " + editCommentButtons.length);
-        console.log();
-    });
-});
 
 
 
@@ -210,6 +193,25 @@ document.addEventListener("DOMContentLoaded", function() {
                     // editCommentButton.addEventListener('click', async function(event) {
                     //     console.log("Edit button clicked ");
                     // });
+
+                    // Add event listeners for delete buttons
+                    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+                    deleteCommentButtons.forEach(button => {
+                        button.addEventListener('click', async function(event) {
+                            console.log("Delete button clicked " + deleteCommentButtons.length);
+                            console.log();
+                        });
+                    });
+
+                    // Add event listeners for edit buttons
+                    const editCommentButtons = document.querySelectorAll('.editCommentButton');
+                    editCommentButtons.forEach(button => {
+                        button.addEventListener('click', async function(event) {
+                            console.log("Edit button clicked " + editCommentButtons.length);
+                            console.log();
+                        });
+                    });
+
 
                     
                 }
