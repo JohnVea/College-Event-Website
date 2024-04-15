@@ -209,10 +209,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         button.addEventListener('click', async function(event) {
                             console.log("Edit button clicked " + editCommentButtons.length);
                             console.log(button.parentElement.textContent);
-                            const stripedComment1 = button.parentElement.textContent.strip('-');
-                            const stripedComment2 = stripedComment1[2].split('deleteedit');
-                            console.log("strip '-' " + stripedComment2);
-                            console.log("strip 'deleteedit' " + stripedComment2);
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            console.log("Comment Text: " + commentText);
                         });
                     });
 
