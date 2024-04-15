@@ -246,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     
                 }
-                fetchComments();
                 
             }
             fetchComments();
