@@ -56,6 +56,7 @@ const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
 deleteCommentButtons.forEach(button => {
     button.addEventListener('click', async function(event) {
         console.log("Delete button clicked ");
+        console.log(deleteCommentButtons.length);
     });
 });
 
@@ -64,6 +65,7 @@ const editCommentButtons = document.querySelectorAll('.editCommentButton');
 editCommentButtons.forEach(button => {
     button.addEventListener('click', async function(event) {
         console.log("Edit button clicked ");
+        console.log(editCommentButtons.length);
     });
 });
 
