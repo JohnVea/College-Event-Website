@@ -211,6 +211,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log(button.parentElement.textContent);
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             console.log("Comment Text: " + commentText);
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Comment Text1: " + commentText1);
                         });
                     });
 
