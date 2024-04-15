@@ -223,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 CommentText.value = '';
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
+                                alert("Successfully Edited Comment");
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
@@ -916,7 +917,7 @@ async function EditComment(oldComment, newComment) {
         // console.log(response);
 
         // const data = await response.json();
-        alert("Successfully Edited Comment");
+        
         // return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
