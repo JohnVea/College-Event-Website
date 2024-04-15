@@ -50,11 +50,12 @@ function closeEventPopUp() {
     eventPopUpContainer.style.display = 'none';
     eventCard.style.display = 'block';
 }
-// document.addEventListener("DOMContentLoaded", function() {
-//     const editCommentContainer = document.getElementById("EditCommentContainer");
-//     editCommentContainer.style.display = 'none';
 
-// });
+document.addEventListener("DOMContentLoaded", function() {
+    const editCommentContainer = document.getElementById("EditCommentContainer");
+    editCommentContainer.style.display = 'none';
+
+});
 
 
 
@@ -209,29 +210,25 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
 
-                            document.addEventListener("DOMContentLoaded", function() {
-                                const editCommentContainer = document.getElementById("EditCommentContainer");
-                                const submitComment = document.getElementById("SubmitEditComment");
-                                const CommentText = document.getElementById("CommentEditText");
-                                CommentText.value = commentText1; 
+                            const editCommentContainer = document.getElementById("EditCommentContainer");
+                            const submitComment = document.getElementById("SubmitEditComment");
+                            const CommentText = document.getElementById("CommentEditText");
+                            CommentText.value = commentText1; 
+                            editCommentContainer.style.display = 'block';
+                            // eventCardContainer.style.display = 'block';
+                            // eventPopUpContainer.style.display = 'none';
+                            // window.location.reload();
+                            submitComment.addEventListener('click', async function(){
+                                await EditComment(commentText1, CommentText.value);
+                                CommentText.value = '';
+                                fetchComments();
+                                editCommentContainer.style.display = 'none';
+                            });
 
-                                editCommentContainer.style.display = 'block';
-                                // eventCardContainer.style.display = 'block';
-                                // eventPopUpContainer.style.display = 'none';
-                                // window.location.reload();
-                                submitComment.addEventListener('click', async function(){
-                                    await EditComment(commentText1, CommentText.value);
-                                    CommentText.value = '';
-                                    fetchComments();
-                                    editCommentContainer.style.display = 'none';
-                                });
-
-                                const closeButton = document.getElementById("CancelEditComment");
-                                closeButton.addEventListener("click", function() {
-                                    CommentText.value = '';
-                                    editCommentContainer.style.display = "none";
-                                });
-                            
+                            const closeButton = document.getElementById("CancelEditComment");
+                            closeButton.addEventListener("click", function() {
+                                CommentText.value = '';
+                                editCommentContainer.style.display = "none";
                             });
                         });
                     });
