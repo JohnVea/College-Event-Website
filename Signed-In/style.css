@@ -604,3 +604,70 @@ label[for="Daytime"] {
     justify-content: center;
     display: none;
 }
+
+.EditPrivateEvent{
+    height: 30px;
+    width: 10%;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: rgba(218, 210, 210, 0.5);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: rgb(255, 234, 0);
+    display:none;
+}
+
+
+.EditPrivateEvent:hover{
+    cursor: pointer;
+    background-color: rgba(247, 250, 175, 0.5);
+}
+
+.EventeditContainer{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(35px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.EventeditContainer button {
+    width: 81%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.EventeditContainer #eventeditName,
+.EventeditContainer #eventeditDate,
+.EventeditContainer #eventeditLocation,
+.EventeditContainer #longitudeedit,
+.EventeditContainer #latitudeedit,
+.EventeditContainer #eventeditDescription {
+    width: 80%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.EventeditContainer #eventeditTimeHours {
+    width: 5%; 
+    margin-left: 9%;
+}
+.EventeditContainer #eventeditTimeMinutes {
+    width: 5%; 
+}
+
+.EventeditContainer button:hover,.EventeditContainer input:hover{
+    cursor: pointer;
+}

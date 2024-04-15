@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')) {
