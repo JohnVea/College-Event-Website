@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 } else {
     // Now insert the comment into the Comments table
     $stmt = $conn->prepare("UPDATE Comments SET UserComment = ? WHERE UserComment = ?");
-    $stmt->bind_param("ss", $newUserComment, $oldUserComment);
+    $stmt->bind_param("ss", $userComment, $oldComment);
 
     if ($stmt->execute()) {
         $response = array("message" => "Successfully Edited Comment");
@@ -39,18 +39,12 @@ if ($conn->connect_error) {
 
 function getRequestInfo()
 {
-    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-
-    if ($contentType === 'application/json') {
-        $json = file_get_contents('php://input');
-        $data = json_decode($json, true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            returnWithError("Invalid JSON data: " . json_last_error_msg());
-        }
-        return $data;
-    } else {
-        return $_POST;
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        returnWithError("Invalid JSON data: " . json_last_error_msg());
     }
+    return $data;
 }
 
 function sendResultInfoAsJson($obj)
