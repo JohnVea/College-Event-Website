@@ -198,8 +198,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
-                            console.log("Delete button clicked " + deleteCommentButtons.length);
-                            console.log(button.parentElement.textContent);
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Deleting: " + commentText1);
                         });
                     });
 
@@ -207,12 +208,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
-                            console.log("Edit button clicked " + editCommentButtons.length);
-                            console.log(button.parentElement.textContent);
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
-                            console.log("Comment Text: " + commentText);
                             const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Comment Text1: " + commentText1);
+                            console.log("Editing: " + commentText1);
                         });
                     });
 
