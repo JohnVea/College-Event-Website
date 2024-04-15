@@ -50,6 +50,12 @@ function closeEventPopUp() {
     eventPopUpContainer.style.display = 'none';
     eventCard.style.display = 'block';
 }
+document.addEventListener("DOMContentLoaded", function() {
+    const editCommentContainer = document.getElementById("EditCommentContainer");
+    editCommentContainer.style.display = 'none';
+
+});
+
 
 
 
@@ -203,11 +209,11 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
 
-                            const createCommentContainer = document.getElementById("EditCommentContainer");
+                            const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
                             CommentText.value = commentText1; 
-                            createCommentContainer.style.display = 'block';
+                            editCommentContainer.style.display = 'block';
                             // eventCardContainer.style.display = 'block';
                             // eventPopUpContainer.style.display = 'none';
                             // window.location.reload();
@@ -215,13 +221,13 @@ document.addEventListener("DOMContentLoaded", function() {
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 fetchComments();
-                                createCommentContainer.style.display = 'none';
+                                editCommentContainer.style.display = 'none';
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
                             closeButton.addEventListener("click", function() {
                                 CommentText.value = '';
-                                createCommentContainer.style.display = "none";
+                                editCommentContainer.style.display = "none";
                             });
                         });
                     });
