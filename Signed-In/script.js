@@ -200,9 +200,10 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
-                            event.stopPropagation();
+                            
                             alert("Comment Deleted successfully");
-                            fetchComments();
+                            continueAfterAlert();
+                            // fetchComments();
                             
                         });
                     });
@@ -229,7 +230,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
-                                fetchComments();
+                                continueAfterAlert();
+                                // fetchComments();
                                 editCommentContainer.style.display = 'none';
                                 
                             });
@@ -248,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 
             }
-            fetchComments();
+            // fetchComments();
             
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
@@ -267,9 +269,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
                 alert("Comment created successfully");
-                fetchComments();
+                continueAfterAlert();
+                // fetchComments();
                 
             });
+            fetchComments();
 
             
         }
