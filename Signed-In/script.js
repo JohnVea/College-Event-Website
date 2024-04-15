@@ -55,8 +55,8 @@ function closeEventPopUp() {
 const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
 deleteCommentButtons.forEach(button => {
     button.addEventListener('click', async function(event) {
-        console.log("Delete button clicked ");
-        console.log(deleteCommentButtons.length);
+        console.log("Delete button clicked " + deleteCommentButtons.length);
+        console.log();
     });
 });
 
@@ -64,8 +64,8 @@ deleteCommentButtons.forEach(button => {
 const editCommentButtons = document.querySelectorAll('.editCommentButton');
 editCommentButtons.forEach(button => {
     button.addEventListener('click', async function(event) {
-        console.log("Edit button clicked ");
-        console.log(editCommentButtons.length);
+        console.log("Edit button clicked " + editCommentButtons.length);
+        console.log();
     });
 });
 
