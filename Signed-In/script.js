@@ -201,8 +201,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
                             event.stopPropagation();
-                            fetchComments();
                             alert("Comment Deleted successfully");
+                            fetchComments();
+                            
                         });
                     });
 
@@ -227,9 +228,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
+                                alert("Successfully Edited Comment");
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                alert("Successfully Edited Comment");
+                                
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
@@ -264,8 +266,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
-                fetchComments();
                 alert("Comment created successfully");
+                fetchComments();
+                
             });
 
             
@@ -413,8 +416,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
                             await DeleteComment(commentText1);
-                            fetchComments();
                             alert("Comment Deleted successfully");
+                            fetchComments();
+                            
                         });
                     });
 
@@ -438,9 +442,10 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
+                                alert("Successfully Edited Comment");
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                alert("Successfully Edited Comment");
+                                
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
@@ -473,8 +478,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 // eventPopUpContainer.style.display = 'none';
                 // window.location.reload();
                 createCommentContainer.style.display = 'none';
-                fetchComments();
                 alert("Comment created successfully");
+                fetchComments();
+                
             });
 
             
