@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
+                            event.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
@@ -208,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
+                            event.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
@@ -221,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             // eventPopUpContainer.style.display = 'none';
                             // window.location.reload();
                             submitComment.addEventListener('click', async function(){
+                                event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 fetchComments();
@@ -230,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                             const closeButton = document.getElementById("CancelEditComment");
                             closeButton.addEventListener("click", function() {
+                                event.stopPropagation();
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
                             });
@@ -250,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
+                event.stopPropagation();
                 const createCommentContainer = document.getElementById("createCommentContainer");
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 CommentText.value = ''; 
@@ -401,6 +406,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
+                            event.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
@@ -427,6 +433,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             // eventPopUpContainer.style.display = 'none';
                             // window.location.reload();
                             submitComment.addEventListener('click', async function(){
+                                event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 fetchComments();
@@ -455,7 +462,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const SubmitCommentButton = document.querySelector('.SubmitComment');
             const CommentText = document.getElementById("CommentText");
             
-            SubmitCommentButton.addEventListener('click', async function(){
+            SubmitCommentButton.addEventListener('click', async function(event){
+                event.stopPropagation();
                 const createCommentContainer = document.getElementById("createCommentContainer");
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 CommentText.value = ''; 
