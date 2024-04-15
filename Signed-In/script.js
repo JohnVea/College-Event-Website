@@ -183,18 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
-                    // Add event listener for delete buttons
-                    // const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                    //     deleteCommentButton.addEventListener('click', async function(event) {
-                    //     console.log("Delete button clicked ");
-                    // });
-
-                    // const editCommentButton = document.querySelector('.editCommentButton');
-                    // editCommentButton.addEventListener('click', async function(event) {
-                    //     console.log("Edit button clicked ");
-                    // });
-
-                    // Add event listeners for delete buttons
+                    
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
@@ -213,6 +202,27 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
+
+                            const createCommentContainer = document.getElementById("createCommentContainer");
+                            const submitComment = document.getElementById("SubmitComment");
+                            const CommentText = document.getElementById("CommentText");
+                            CommentText.value = commentText1; 
+                            createCommentContainer.style.display = 'block';
+                            // eventCardContainer.style.display = 'block';
+                            // eventPopUpContainer.style.display = 'none';
+                            // window.location.reload();
+                            submitComment.addEventListener('click', async function(){
+                                await EditComment(commentText1, CommentText.value);
+                                CommentText.value = '';
+                                fetchComments();
+                                createCommentContainer.style.display = 'none';
+                            });
+
+                            const closeButton = document.getElementById("CancelComment");
+                            closeButton.addEventListener("click", function() {
+                                CommentText.value = '';
+                                createCommentContainer.style.display = "none";
+                            });
                         });
                     });
 
@@ -872,6 +882,34 @@ async function DeleteComment(comment) {
 
         // const data = await response.json();
         alert("Comment Deleted successfully");
+        // return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        throw error; 
+    }
+}
+
+async function EditComment(oldComment, newComment) {
+    const commentData = {
+        UserComment: newComment,
+        oldComment: oldComment
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/EditComment.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(commentData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        // const data = await response.json();
+        alert("Successfully Edited Comment");
         // return data;
     } catch (error) {
         console.error('Error fetching events:', error.message);
