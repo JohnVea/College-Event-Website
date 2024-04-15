@@ -51,6 +51,23 @@ function closeEventPopUp() {
     eventCard.style.display = 'block';
 }
 
+// Add event listeners for delete buttons
+const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+deleteCommentButtons.forEach(button => {
+    button.addEventListener('click', async function(event) {
+        console.log("Delete button clicked ");
+    });
+});
+
+// Add event listeners for edit buttons
+const editCommentButtons = document.querySelectorAll('.editCommentButton');
+editCommentButtons.forEach(button => {
+    button.addEventListener('click', async function(event) {
+        console.log("Edit button clicked ");
+    });
+});
+
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -160,8 +177,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         editButton.style.color = 'yellow';
                         editButton.style.background = 'none';
                         
-
-                        
     
     
                         const commentParagraph = document.createElement('div');
@@ -184,15 +199,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     // Add event listener for delete buttons
-                    const deleteCommentButton = document.querySelector('.deleteCommentButton');
-                        deleteCommentButton.addEventListener('click', async function(event) {
-                        console.log("Delete button clicked ");
-                    });
+                    // const deleteCommentButton = document.querySelector('.deleteCommentButton');
+                    //     deleteCommentButton.addEventListener('click', async function(event) {
+                    //     console.log("Delete button clicked ");
+                    // });
 
-                    const editCommentButton = document.querySelector('.editCommentButton');
-                    editCommentButton.addEventListener('click', async function(event) {
-                        console.log("Edit button clicked ");
-                    });
+                    // const editCommentButton = document.querySelector('.editCommentButton');
+                    // editCommentButton.addEventListener('click', async function(event) {
+                    //     console.log("Edit button clicked ");
+                    // });
 
                     
                 }
