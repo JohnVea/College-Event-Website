@@ -62,84 +62,219 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
-        const target = event.target;
+        if (event.target.classList.contains('eventCard')) {
+            const eventCardContainer = document.querySelector('.displayEventsContainer');
+            const eventName = event.target.querySelector('h1');
+            const eventDate = event.target.querySelector('h2');
+            const eventData = event.target.querySelectorAll('*'); // Select the event card
+            let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null, eventID = null;
+            const eventTitle = event.target.querySelector('p');
+            Array.from(eventData).forEach(child => {
+                if (child.textContent.trim().startsWith('Time:')) {
+                    // Extract time value
+                    const timeText = child.textContent.trim().substring(6);
+                    eventTime = timeText; 
+                }
+                if (child.textContent.trim().startsWith('Longitude:')) {
+                    // Extract time value
+                    const longitudeText = child.textContent.trim().substring(10);
+                    longitude = parseFloat(longitudeText);
+                }
+                if (child.textContent.trim().startsWith('Latitude:')) {
+                    // Extract time value
+                    const latitudeText = child.textContent.trim().substring(10);
+                    latitude = parseFloat(latitudeText); 
+                }
+                if (child.textContent.trim().startsWith('Event Location:')) {
+                    // Extract time value
+                    const eventLocationText = child.textContent;
+                    eventLocation = eventLocationText; 
+                }
+                if (child.textContent.trim().startsWith('Event Type:')) {
+                    // Extract time value
+                    const eventTypeText = child.textContent;
+                    eventType = eventTypeText; 
+                }
+            });
 
-        if (target.classList.contains('eventCard')) {
-            handleEventCardClick(target);
+            const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
+            const popUp = eventPopUpContainer.querySelector('.eventPopUp');
+            popUp.querySelector('.eventName').textContent = eventName.textContent;
+            popUp.querySelector('.eventDate').textContent = eventDate.textContent;
+            popUp.querySelector('.eventTime').textContent = 'Time: '+ eventTime;
+            popUp.querySelector('.longitude').textContent = 'Longitude: '+longitude;
+            popUp.querySelector('.latitude').textContent = 'Latitude: '+latitude;
+            popUp.querySelector('.eventLocation').textContent = eventLocation;
+            popUp.querySelector('.eventDescription').textContent = eventTitle.textContent;
+            popUp.querySelector('.eventType').textContent = eventType;
+
+            let CommenterName = document.querySelector('.commentedUser');
+            // let iD;
+            const iD = await searchEvents2(eventTitle.textContent);
+            // getAllComments().then(response => iD=response);
+            const iDJson = await iD.json();
+            eventID = iDJson[0].Events_ID;
+            // getAllComments().then(response => console.log("Gettting comments ", response));
+
+
+            async function fetchComments() {
+                const comments = await getAllComments();
+                const commentsJson =  JSON.stringify(comments);
+
+                // Parse the JSON string back into an array
+                const commentsArray = JSON.parse(commentsJson);
+                // const commentsJson = await comments.json();
+                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
+                const commentsContainer = document.querySelector('.commentsContainer');
+                
+                
+                if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
+                    commentsContainer.innerHTML = '';
+                }else{
+                    commentsContainer.innerHTML = 'Comments:';
+                    filteredComments.forEach(comment => {
+                        console.log("Comment " +comment);
+                        const commentUser = document.createElement('h3');
+                        commentUser.textContent = comment.CommentedUser;
+                        //commentsContainer.appendChild(commentUser);
+    
+                        const commentText = document.createElement('p');
+                        commentText.textContent = comment.UserComment;
+                        // commentsContainer.appendChild(commentText);
+    
+                        const deleteButton = document.createElement('button');
+                        deleteButton.classList.add('deleteCommentButton');
+                        deleteButton.innerHTML = '<i class="material-icons">delete</i>';
+                        // deleteButton.style.fontSize = '10px';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.padding = '0';
+                        deleteButton.style.background = 'none';
+                        deleteButton.style.fontSize = '0'; // Set font size of icon to 0
+                        deleteButton.style.verticalAlign = 'top';
+                        deleteButton.style.color = 'red';
+
+                        // deleteButton.addEventListener('mouseover', function () {
+                        //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
+                        // });
+                        
+                        const editButton = document.createElement('button');
+                        editButton.classList.add('editCommentButton');
+                        editButton.innerHTML = '<i class="material-icons">edit</i>';
+                        editButton.style.border = 'none';
+                        editButton.style.padding = '0';
+                        editButton.style.fontSize = '0';
+                        editButton.style.verticalAlign = 'top';
+                        editButton.style.color = 'yellow';
+                        editButton.style.background = 'none';
+                        
+    
+    
+                        const commentParagraph = document.createElement('div');
+                        const commentContent = `${commentUser.textContent} - ${commentText.textContent}`;
+                        commentParagraph.textContent = commentContent;
+
+                        if(commentUser.textContent === userData.FirstName){
+                            commentParagraph.appendChild(deleteButton);
+                            commentParagraph.appendChild(editButton);
+                        }
+                        
+    
+                        // Append the paragraph to the comments container
+                        commentsContainer.appendChild(commentParagraph);
+                        // commentsContainer.appendChild(deleteButton);
+
+                        
+
+                    });
+                    popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
+                    eventPopUpContainer.style.alignItems = 'center';
+                    
+                    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+                    deleteCommentButtons.forEach(button => {
+                        button.addEventListener('click', async function(event) {
+                            // event.stopPropagation();
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Deleting: " + commentText1);
+                            await DeleteComment(commentText1);
+                            event.stopPropagation();
+                            fetchComments();
+                            alert("Comment Deleted successfully");
+                        });
+                    });
+
+                    // Add event listeners for edit buttons
+                    const editCommentButtons = document.querySelectorAll('.editCommentButton');
+                    editCommentButtons.forEach(button => {
+                        button.addEventListener('click', async function(event) {
+                            event.stopPropagation();
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Editing: " + commentText1);
+
+                            const editCommentContainer = document.getElementById("EditCommentContainer");
+                            const submitComment = document.getElementById("SubmitEditComment");
+                            const CommentText = document.getElementById("CommentEditText");
+                            CommentText.value = commentText1; 
+                            editCommentContainer.style.display = 'block';
+                            // eventCardContainer.style.display = 'block';
+                            // eventPopUpContainer.style.display = 'none';
+                            // window.location.reload();
+                            submitComment.addEventListener('click', async function(){
+                                event.stopPropagation();
+                                await EditComment(commentText1, CommentText.value);
+                                CommentText.value = '';
+                                fetchComments();
+                                editCommentContainer.style.display = 'none';
+                                alert("Successfully Edited Comment");
+                            });
+
+                            const closeButton = document.getElementById("CancelEditComment");
+                            closeButton.addEventListener("click", function() {
+                                event.stopPropagation();
+                                CommentText.value = '';
+                                editCommentContainer.style.display = "none";
+                            });
+                        });
+                    });
+
+
+                    
+                }
+                
+            }
+            fetchComments();
+            
+            eventCardContainer.style.display = 'none';
+            eventPopUpContainer.style.display = 'block';
+
+            const SubmitCommentButton = document.querySelector('.SubmitComment');
+            const CommentText = document.getElementById("CommentText");
+            
+            SubmitCommentButton.addEventListener('click', async function(){
+                // event.stopPropagation();
+                const createCommentContainer = document.getElementById("createCommentContainer");
+                await CreateComments(userData.FirstName, CommentText.value, eventID);
+                event.stopPropagation();
+                CommentText.value = ''; 
+                // eventCardContainer.style.display = 'block';
+                // eventPopUpContainer.style.display = 'none';
+                // window.location.reload();
+                createCommentContainer.style.display = 'none';
+                fetchComments();
+                alert("Comment created successfully");
+            });
+
+            
         }
-
-        if (target.classList.contains('deleteCommentButton')) {
-            handleDeleteCommentButtonClick(target);
-        }
-
-        if (target.classList.contains('editCommentButton')) {
-            handleEditCommentButtonClick(target);
-        }
-
-        // Handle other clicks...
     });
+
+    
+
 });
-
-async function handleEventCardClick(card) {
-    const eventCardContainer = document.querySelector('.displayEventsContainer');
-    const eventName = card.querySelector('h1');
-    const eventDate = card.querySelector('h2');
-    const eventData = card.querySelectorAll('*');
-    let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null, eventID = null;
-    const eventTitle = card.querySelector('p');
-
-    // Extract event details...
-
-    // Populate event popup...
-
-    // Fetch and display comments...
-
-    // Show event popup...
-    eventCardContainer.style.display = 'none';
-    eventPopUpContainer.style.display = 'block';
-}
-
-async function handleDeleteCommentButtonClick(button) {
-    event.stopPropagation();
-    const commentText = button.parentElement.textContent.split('-')[1].trim();
-    const commentText1 = commentText.split('deleteedit')[0];
-    console.log("Deleting: " + commentText1);
-    await DeleteComment(commentText1);
-    fetchComments();
-    alert("Comment Deleted successfully");
-}
-
-async function handleEditCommentButtonClick(button) {
-    event.stopPropagation();
-    const commentText = button.parentElement.textContent.split('-')[1].trim();
-    const commentText1 = commentText.split('deleteedit')[0];
-    console.log("Editing: " + commentText1);
-
-    const editCommentContainer = document.getElementById("EditCommentContainer");
-    const submitComment = document.getElementById("SubmitEditComment");
-    const CommentText = document.getElementById("CommentEditText");
-    CommentText.value = commentText1; 
-    editCommentContainer.style.display = 'block';
-
-    submitComment.addEventListener('click', async function(){
-        event.stopPropagation();
-        await EditComment(commentText1, CommentText.value);
-        CommentText.value = '';
-        fetchComments();
-        editCommentContainer.style.display = 'none';
-        alert("Successfully Edited Comment");
-    });
-
-    const closeButton = document.getElementById("CancelEditComment");
-    closeButton.addEventListener("click", function() {
-        event.stopPropagation();
-        CommentText.value = '';
-        editCommentContainer.style.display = "none";
-    });
-}
-
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
