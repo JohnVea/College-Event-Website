@@ -302,7 +302,8 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+    const eventPopUpSelector = document.querySelectorAll('.eventPopUp');
+    const deleteCommentButtons = eventPopUpSelector.children('.deleteCommentButton');
     deleteCommentButtons.forEach(button => {
         button.addEventListener('click', async function(event) {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
