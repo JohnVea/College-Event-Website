@@ -247,6 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
+            fetchComments();
 
             
 
