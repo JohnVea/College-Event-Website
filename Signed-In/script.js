@@ -264,6 +264,8 @@ SubmitCommentButton.addEventListener('click', async function(event){
     const CommentText = document.getElementById("CommentText");
     const eventTitle = event.target.querySelector('p');
     console.log("eventTitle: " + eventTitle);
+    console.log("event: " + event.target);
+    console.log("eventSelector: " + event.target.querySelector('h1'));
     const iD = await searchEvents2(eventTitle.textContent);
         // getAllComments().then(response => iD=response);
     const iDJson = await iD.json();
