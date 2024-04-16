@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             userProfile.style.color = 'black';
                             eventCardContainer.style.display = 'block';
                             eventPopUpContainer.style.display = 'none';
-                            return
+                            return;
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
@@ -248,9 +248,15 @@ document.addEventListener("DOMContentLoaded", function() {
                                 await EditComment(CommentText.value, filteredCommentID[0].CommentID);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
-                                // fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                // fetchComments();
+                                
+                                submitComment.removeEventListener('click', submitEditButtonClickHandler);
+                                const userProfile = document.getElementById("userProfile");
+                                userProfile.innerHTML = userData.FirstName;
+                                userProfile.style.color = 'black';
+                                eventCardContainer.style.display = 'block';
+                                eventPopUpContainer.style.display = 'none';
+                                return;
                                 
                             }
                             submitComment.removeEventListener('click', submitEditButtonClickHandler);
@@ -262,6 +268,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
+
+                                closeButton.removeEventListener('click', closeEditButtonClickHandler);
+                                return;
                             }
                             closeButton.removeEventListener('click', closeEditButtonClickHandler);
                             closeButton.addEventListener('click', closeEditButtonClickHandler);
