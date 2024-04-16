@@ -157,9 +157,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.verticalAlign = 'top';
                         deleteButton.style.color = 'red';
 
-                        // deleteButton.addEventListener('mouseover', function () {
-                        //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
-                        // });
                         
                         const editButton = document.createElement('button');
                         editButton.classList.add('editCommentButton');
@@ -407,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
-                            await DeleteComment(commentText1);
+                            await DeleteComment(commentText1, userData.FirstName);
                             alert("Comment Deleted successfully");
                             fetchComments();
                             
@@ -1087,9 +1084,10 @@ async function CreateComments(name, comment, eventID) {
     }
 }
 
-async function DeleteComment(comment) {
+async function DeleteComment(comment, commentedUser) {
     const commentData = {
-        UserComment: comment
+        UserComment: comment,
+        CommentedUser : commentedUser
     }
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/DeleteComment.php', {
