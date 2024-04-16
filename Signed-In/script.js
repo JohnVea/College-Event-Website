@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
                             console.log("CommentID: " + filteredCommentID);
-                            await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID);
+                            await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             event.stopPropagation();
                             alert("Comment Deleted successfully");
                             return;
