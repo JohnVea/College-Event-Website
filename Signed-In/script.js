@@ -217,13 +217,14 @@ document.addEventListener("DOMContentLoaded", function() {
                             // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
+                            console.log("Deleted Comment: " + deletedComment);
                             deletedComment = true;
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
                         button.addEventListener('click', deleteButtonClickHandler);
-                        console.log("Deleted Comment: " + deletedComment);
-                        if(deletedComment)fetchComments();
+                        
+                        // if(deletedComment)fetchComments();
                     });
                     
 
