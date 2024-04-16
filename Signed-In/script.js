@@ -285,6 +285,10 @@ document.addEventListener("DOMContentLoaded", function() {
             eventCardContainer.style.display = 'block';
             eventPopUpContainer.style.display = 'none';
             UserEventContainer.style.display = 'none';
+
+            const userProfile = document.getElementById("closeEventPopUp");
+            userProfile.innerHTML = userData.FirstName;
+            userProfile.style.color = 'black';
             // fetchComments();
             return;
         });
