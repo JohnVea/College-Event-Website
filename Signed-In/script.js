@@ -335,43 +335,38 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const eventPopUpSelector = document.querySelectorAll('.eventPopUp');
-  
-    eventPopUpSelector.forEach(eventPopUp => {
-      const deleteCommentButtons = eventPopUp.querySelectorAll('.deleteCommentButton');
-  
-      deleteCommentButtons.forEach(button => {
-        button.addEventListener('click', async function(event) {
-          const eventCard = button.closest('.eventPopUp');
-          const eventNameElement = eventCard.querySelector('.eventDescription');
-          const eventName = eventNameElement.textContent.trim();
-  
-          console.log("Event Name: " + eventName);
-  
-          const CommentText = document.getElementById("CommentText");
-          const iD = await searchEvents2(eventName);
-          const iDJson = await iD.json();
-          const eventID = iDJson[0].Events_ID;
-  
-          console.log("Deleting: " + CommentText);
-          await DeleteComment(CommentText, userData.FirstName, eventID);
-  
-          const userProfile = document.getElementById("userProfile");
-          userProfile.innerHTML = userData.FirstName;
-          userProfile.style.color = 'black';
-  
-          const eventCardContainer = document.querySelector('.displayEventsContainer');
-          const UserEventContainer = document.querySelector('.userEventsContainer');
-          eventCardContainer.style.display = 'block';
-          eventPopUpContainer.style.display = 'none';
-          UserEventContainer.style.display = 'none';
-  
-          alert("Comment Deleted successfully");
-          return;
+    const eventPopUpContainers = document.querySelectorAll('.eventPopUpContainer');
+    eventPopUpContainers.forEach(eventPopUpContainer => {
+        const deleteCommentButtons = eventPopUpContainer.querySelectorAll('.deleteCommentButton');
+        deleteCommentButtons.forEach(button => {
+            button.addEventListener('click', async function(event) {
+                const eventCardContainer = document.querySelector('.displayEventsContainer');
+                const UserEventContainer = document.querySelector('.userEventsContainer');
+                const eventPopUp = button.closest('.eventPopUp');
+                const eventNameElement = eventPopUp.querySelector('.eventDescription');
+                const eventName = eventNameElement.textContent.trim();
+                console.log("Event Name: " + eventName);
+                const CommentText = eventPopUp.querySelector("#CommentText").value; // Assuming CommentText is an input field
+
+                const iD = await searchEvents2(eventName);
+                const iDJson = await iD.json();
+                const eventID = iDJson[0].Events_ID;
+
+                console.log("Deleting: " + CommentText);
+                await DeleteComment(CommentText, userData.FirstName, eventID);
+                const userProfile = document.getElementById("userProfile");
+                userProfile.innerHTML = userData.FirstName;
+                userProfile.style.color = 'black';
+                eventCardContainer.style.display = 'block';
+                eventPopUpContainer.style.display = 'none';
+                UserEventContainer.style.display = 'none';
+                alert("Comment Deleted successfully");
+                return;
+            });
         });
-      });
     });
 });
+
   
 
 
