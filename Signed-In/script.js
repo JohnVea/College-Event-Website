@@ -296,23 +296,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     document.addEventListener('click', function(event) {
-//         if (event.target.classList.contains('userEvents')) {
-//             const eventName = event.target.querySelector('h1');
-//             if (eventName) {
-//                 console.log("Event card clicked: " + eventName.textContent);
-//             } else {
-//                 console.log("Event card clicked: No event name found");
-//             }
-//         }
-//     });
-// });
-
-// document.addEventListener("DOMContentLoaded", function(){
-//     const UserEventContainer = document.querySelector('.userEvents-container');
-//     UserEventContainer.style.display = 'none';
-// });
+document.addEventListener("DOMContentLoaded", function(){
+    const UserEventContainer = document.querySelector('.userEvents-container');
+    UserEventContainer.style.display = 'none';
+});
 
 
 document.addEventListener("DOMContentLoaded", function() {
