@@ -259,41 +259,43 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-const SubmitCommentButton = document.querySelector('.SubmitComment');       
-SubmitCommentButton.addEventListener('click', async function(event){
-    const CommentText = document.getElementById("CommentText");
-    const eventTitle = event.target.querySelector('p');
-    console.log("eventTitle: " + eventTitle);
-    console.log("event: " + event.target);
-    console.log("eventSelector: " + event.target.querySelector('h1'));
-    const iD = await searchEvents2(eventTitle.textContent);
-        // getAllComments().then(response => iD=response);
-    const iDJson = await iD.json();
-    const eventID = iDJson[0].Events_ID;
-    if(CommentText.value !== ''){
-        await CreateComments(userData.FirstName, CommentText.value, eventID);
-    }
-    CommentText.value = ''; 
-    createCommentContainer.style.display = 'none';
-    alert("Comment created successfully");
-    eventCardContainer.style.display = 'block';
-    eventPopUpContainer.style.display = 'none';
-    fetchComments();
-});
-
-
 document.addEventListener("DOMContentLoaded", function() {
-    document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('userEvents')) {
-            const eventName = event.target.querySelector('h1');
-            if (eventName) {
-                console.log("Event card clicked: " + eventName.textContent);
-            } else {
-                console.log("Event card clicked: No event name found");
-            }
+    const SubmitCommentButton = document.querySelector('.SubmitComment');       
+    SubmitCommentButton.addEventListener('click', async function(event){
+        const CommentText = document.getElementById("CommentText");
+        const eventTitle = event.target.querySelector('p');
+        console.log("eventTitle: " + eventTitle);
+        console.log("event: " + event.target);
+        console.log("eventSelector: " + event.target.querySelector('h1'));
+        const iD = await searchEvents2(eventTitle.textContent);
+            // getAllComments().then(response => iD=response);
+        const iDJson = await iD.json();
+        const eventID = iDJson[0].Events_ID;
+        if(CommentText.value !== ''){
+            await CreateComments(userData.FirstName, CommentText.value, eventID);
         }
+        CommentText.value = ''; 
+        createCommentContainer.style.display = 'none';
+        alert("Comment created successfully");
+        eventCardContainer.style.display = 'block';
+        eventPopUpContainer.style.display = 'none';
+        fetchComments();
     });
 });
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     document.addEventListener('click', function(event) {
+//         if (event.target.classList.contains('userEvents')) {
+//             const eventName = event.target.querySelector('h1');
+//             if (eventName) {
+//                 console.log("Event card clicked: " + eventName.textContent);
+//             } else {
+//                 console.log("Event card clicked: No event name found");
+//             }
+//         }
+//     });
+// });
 
 
 
