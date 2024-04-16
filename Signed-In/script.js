@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
-                            await DeleteComment(commentText1, userData.FirstName);
+                            await DeleteComment(commentText1, userData.FirstName, eventID);
                             event.stopPropagation();
                             
                             alert("Comment Deleted successfully");
@@ -1110,10 +1110,11 @@ async function CreateComments(name, comment, eventID) {
     }
 }
 
-async function DeleteComment(comment, commentedUser) {
+async function DeleteComment(comment, commentedUser, commentedEventID) {
     const commentData = {
         CommentedUser: commentedUser,
-        UserComment: comment
+        UserComment: comment,
+        CommentedEventID: commentedEventID
     }
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/DeleteComment.php', {
