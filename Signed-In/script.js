@@ -334,40 +334,44 @@ document.addEventListener("DOMContentLoaded", function(){
 // });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+document.addEventListener("DOMContentLoaded", function() {
+    const eventPopUpSelector = document.querySelectorAll('.eventPopUp');
   
-    deleteCommentButtons.forEach(button => {
-      button.addEventListener('click', async function (event) {
-        event.preventDefault(); // Prevent default form submission behavior (if applicable)
+    eventPopUpSelector.forEach(eventPopUp => {
+      const deleteCommentButtons = eventPopUp.querySelectorAll('.deleteCommentButton');
   
-        const commentContainer = button.closest('.commentsContainer');
-        const commentedUserElement = commentContainer.querySelector('.commentedUser');
-        const eventCommentsElement = commentContainer.querySelector('.eventComments');
+      deleteCommentButtons.forEach(button => {
+        button.addEventListener('click', async function(event) {
+          const eventCard = button.closest('.eventPopUp');
+          const eventNameElement = eventCard.querySelector('.eventDescription');
+          const eventName = eventNameElement.textContent.trim();
   
-        const isConfirmed = confirm(`Are you sure you want to delete the comment by ${commentedUserElement.textContent}?`);
+          console.log("Event Name: " + eventName);
   
-        if (isConfirmed) {
-            const commentText = eventCommentsElement.textContent.trim(); // Get comment text directly
-            const iD = await searchEvents2(eventName);
-            const iDJson = await iD.json();
-            const eventID = iDJson[0].Events_ID;
-          try {
-            await DeleteComment(commentText, userData.FirstName, eventID);
+          const CommentText = document.getElementById("CommentText");
+          const iD = await searchEvents2(eventName);
+          const iDJson = await iD.json();
+          const eventID = iDJson[0].Events_ID;
   
-            // Update UI for successful deletion (e.g., remove comment element, visual confirmation)
-            eventCommentsElement.textContent = '';
-            commentContainer.classList.add('comment-deleted'); // Add CSS class for visual feedback
+          console.log("Deleting: " + CommentText);
+          await DeleteComment(CommentText, userData.FirstName, eventID);
   
-            alert("Comment deleted successfully!");
-          } catch (error) {
-            console.error("Error deleting comment:", error);
-            alert("An error occurred while deleting the comment. Please try again later.");
-          }
-        }
+          const userProfile = document.getElementById("userProfile");
+          userProfile.innerHTML = userData.FirstName;
+          userProfile.style.color = 'black';
+  
+          const eventCardContainer = document.querySelector('.displayEventsContainer');
+          const UserEventContainer = document.querySelector('.userEventsContainer');
+          eventCardContainer.style.display = 'block';
+          eventPopUpContainer.style.display = 'none';
+          UserEventContainer.style.display = 'none';
+  
+          alert("Comment Deleted successfully");
+          return;
+        });
       });
     });
-  });
+});
   
 
 
