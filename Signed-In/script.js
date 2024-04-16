@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
-                                //await alert("Successfully Edited Comment");
+                                alert("Successfully Edited Comment");
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
                                 
@@ -261,7 +261,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 CommentText.value = ''; 
                 createCommentContainer.style.display = 'none';
-                
+                alert("Comment created successfully");
+                fetchComments();
             });
 
             
