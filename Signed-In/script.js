@@ -260,9 +260,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
                 const commentExists = commentsArray.some(comment => comment.UserComment === CommentText.value && comment.CommentedUser === userData.FirstName);
-                console.log(commentExists);
-                console.log(CommentText.value !== '');
-                console.log(!commentExists && (CommentText.value !== ''));
+                console.log("Comment exist? " ,commentExists);
+                console.log("empty string " , CommentText.value !== '');
+                console.log("Both? ", !commentExists && (CommentText.value !== ''));
                 if(!commentExists && (CommentText.value !== '')){
                     const createCommentContainer = document.getElementById("createCommentContainer");
                     const timer = setTimeout(async () => {
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // window.location.reload();
                     
                     // alert("Comment created successfully");
-                    fetchComments();
+                    // fetchComments();
                 }
                 CommentText.value = ''; 
                 createCommentContainer.style.display = 'none';
