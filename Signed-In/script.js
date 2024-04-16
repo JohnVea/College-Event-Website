@@ -191,20 +191,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     
-                    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
-                    deleteCommentButtons.forEach(button => {
-                        button.addEventListener('click', async function(event) {
-                            // event.stopPropagation();
-                            const commentText = button.parentElement.textContent.split('-')[1].trim();
-                            const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Deleting: " + commentText1);
-                            await DeleteComment(commentText1, userData.FirstName, eventID);
-                            event.stopPropagation();
+                    // const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+                    // deleteCommentButtons.forEach(button => {
+                    //     button.addEventListener('click', async function(event) {
+                    //         // event.stopPropagation();
+                    //         const commentText = button.parentElement.textContent.split('-')[1].trim();
+                    //         const commentText1 = commentText.split('deleteedit')[0];
+                    //         console.log("Deleting: " + commentText1);
+                    //         await DeleteComment(commentText1, userData.FirstName, eventID);
+                    //         event.stopPropagation();
                             
-                            alert("Comment Deleted successfully");
-                            return;
-                        });
-                    });
+                    //         alert("Comment Deleted successfully");
+                    //         return;
+                    //     });
+                    // });
 
                     // Add event listeners for edit buttons
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
@@ -333,6 +333,41 @@ document.addEventListener("DOMContentLoaded", function(){
 //     });
 // });
 
+document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener('click', async function(event) {
+        if (event.target.classList.contains('eventCard')){
+            const eventPopUpContainers = document.querySelectorAll('.eventPopUpContainer');
+            eventPopUpContainers.forEach(container => {
+                const deleteCommentButtons = container.querySelectorAll('.deleteCommentButton');
+                deleteCommentButtons.forEach(button => {
+                    button.addEventListener('click', async function(event) {
+                        const eventCardContainer = document.querySelector('.displayEventsContainer');
+                        const UserEventContainer = document.querySelector('.userEventsContainer');
+                        const eventNameElement = container.querySelector('.eventDescription');
+                        const eventName = eventNameElement.textContent.trim();
+                        console.log("Event Name: " + eventName);
+                        const CommentText = container.querySelector("#CommentText").value;
+
+                        const iD = await searchEvents2(eventName);
+                        const iDJson = await iD.json();
+                        const eventID = iDJson[0].Events_ID;
+
+                        console.log("Deleting: " + CommentText);
+                        await DeleteComment(CommentText, userData.FirstName, eventID);
+                        const userProfile = document.getElementById("userProfile");
+                        userProfile.innerHTML = userData.FirstName;
+                        userProfile.style.color = 'black';
+                        eventCardContainer.style.display = 'block';
+                        eventPopUpContainer.style.display = 'none';
+                        UserEventContainer.style.display = 'none';
+                        alert("Comment Deleted successfully");
+                        return;
+                    });
+                });
+            });
+        }
+    });
+});
 
 
 
