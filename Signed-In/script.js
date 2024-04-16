@@ -1086,8 +1086,9 @@ async function CreateComments(name, comment, eventID) {
 
 async function DeleteComment(comment, commentedUser) {
     const commentData = {
-        UserComment: comment,
-        CommentedUser : commentedUser
+        CommentedUser : commentedUser,
+        UserComment: comment
+        
     }
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/DeleteComment.php', {
