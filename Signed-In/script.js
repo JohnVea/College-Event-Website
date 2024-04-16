@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const CommentText = document.getElementById("CommentEditText");
                             
                             editCommentContainer.style.display = 'block';
-                            submitComment.addEventListener('click', async function(){
+                            const submitEditButtonClickHandler = async function(event) {
                                 await EditComment(CommentText.value, filteredCommentID[0].CommentID);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
@@ -245,14 +245,20 @@ document.addEventListener("DOMContentLoaded", function() {
                                 editCommentContainer.style.display = 'none';
                                 // fetchComments();
                                 
-                            });
+                            }
+                            submitComment.removeEventListener('click', submitEditButtonClickHandler);
+                            submitComment.addEventListener('click', submitEditButtonClickHandler);
+
 
                             const closeButton = document.getElementById("CancelEditComment");
-                            closeButton.addEventListener("click", function() {
+                            const closeEditButtonClickHandler = async function(event) {
                                 event.stopPropagation();
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
-                            });
+                            }
+                            closeButton.removeEventListener('click', closeEditButtonClickHandler);
+                            closeButton.addEventListener('click', closeEditButtonClickHandler);
+
                             
 
                         }
