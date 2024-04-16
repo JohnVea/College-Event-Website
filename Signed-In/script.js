@@ -206,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     //         return;
                     //     });
                     // });
+                    let deletedComment = false;
                     deleteCommentButtons.forEach(button => {
                         const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
@@ -215,13 +216,14 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("CommentID: " + filteredCommentID[0].CommentID);
                             // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             await DeleteComment(filteredCommentID[0].CommentID);
-                            event.stopPropagation();
                             alert("Comment Deleted successfully");
+                            deletedComment = true;
                             return;
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
                         button.addEventListener('click', deleteButtonClickHandler);
+                        if(deletedComment)fetchComments();
                     });
                     
 
