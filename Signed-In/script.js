@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     //         return;
                     //     });
                     // });
-                    let deletedComment = false;
                     deleteCommentButtons.forEach(button => {
                         const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
@@ -217,42 +216,32 @@ document.addEventListener("DOMContentLoaded", function() {
                             // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
-                            deletedComment = true;
-                            console.log("Deleted Comment: " + deletedComment);
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
                         button.addEventListener('click', deleteButtonClickHandler);
                     });
-                    console.log("Deleted Comment: " + deletedComment);
-                    console.log(deletedComment === true);
-                    if(deletedComment === true){
-                        fetchComments();
-                    }
                     
 
                     // Add event listeners for edit buttons
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
-                        button.addEventListener('click', async function(event) {
-                            event.stopPropagation();
-                            const commentText = button.parentElement.textContent.split('-')[1].trim();
-                            const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Editing: " + commentText1);
-
+                        const editButtonClickHandler = async function(event) {
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            console.log("CommentID: " + filteredCommentID[0].CommentID);
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
-                            CommentText.value = commentText1; 
+                            
                             editCommentContainer.style.display = 'block';
                             submitComment.addEventListener('click', async function(){
                                 event.stopPropagation();
-                                await EditComment(commentText1, CommentText.value);
+                                await EditComment(CommentText.value, filteredCommentID[0].CommentID);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
                                 // fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                fetchComments();
+                                // fetchComments();
                                 
                             });
 
@@ -262,8 +251,43 @@ document.addEventListener("DOMContentLoaded", function() {
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
                             });
-                        });
+                            
+
+                        }
+                        button.removeEventListener('click', editButtonClickHandler);
+                        button.addEventListener('click', editButtonClickHandler);
                     });
+                    // editCommentButtons.forEach(button => {
+                    //     button.addEventListener('click', async function(event) {
+                    //         event.stopPropagation();
+                    //         const commentText = button.parentElement.textContent.split('-')[1].trim();
+                    //         const commentText1 = commentText.split('deleteedit')[0];
+                    //         console.log("Editing: " + commentText1);
+
+                    //         const editCommentContainer = document.getElementById("EditCommentContainer");
+                    //         const submitComment = document.getElementById("SubmitEditComment");
+                    //         const CommentText = document.getElementById("CommentEditText");
+                    //         CommentText.value = commentText1; 
+                    //         editCommentContainer.style.display = 'block';
+                    //         submitComment.addEventListener('click', async function(){
+                    //             event.stopPropagation();
+                    //             await EditComment(commentText1, CommentText.value);
+                    //             CommentText.value = '';
+                    //             alert("Successfully Edited Comment");
+                    //             // fetchComments();
+                    //             editCommentContainer.style.display = 'none';
+                    //             fetchComments();
+                                
+                    //         });
+
+                    //         const closeButton = document.getElementById("CancelEditComment");
+                    //         closeButton.addEventListener("click", function() {
+                    //             event.stopPropagation();
+                    //             CommentText.value = '';
+                    //             editCommentContainer.style.display = "none";
+                    //         });
+                    //     });
+                    // });
 
 
                     
@@ -1218,10 +1242,10 @@ async function DeleteComment(commentID) {
     }
 }
 
-async function EditComment(oldComment, newComment) {
+async function EditComment(newComment, commentID) {
     const commentData = {
         UserComment: newComment,
-        oldComment: oldComment
+        CommentID: commentID
     }
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/EditComment.php', {
