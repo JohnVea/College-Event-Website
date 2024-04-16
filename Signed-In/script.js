@@ -223,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
                         button.addEventListener('click', deleteButtonClickHandler);
+                        console.log("Deleted Comment: " + deletedComment);
                         if(deletedComment)fetchComments();
                     });
                     
