@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         userProfile.innerHTML = userData.FirstName;
                         userProfile.style.color = 'black';
                         eventCardContainer.style.display = 'block';
-                        eventPopUpContainer.style.display = 'none';
+                        container.style.display = 'none'; 
                         UserEventContainer.style.display = 'none';
                         alert("Comment Deleted successfully");
                         return;
@@ -368,6 +368,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+
 
 
 
