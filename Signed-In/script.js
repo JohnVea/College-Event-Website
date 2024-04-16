@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 
             }
-            fetchComments();
+            // fetchComments();
             
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
