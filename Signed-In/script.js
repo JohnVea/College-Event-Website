@@ -491,7 +491,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             // fetchComments();
             
-            eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
             fetchComments();
 
