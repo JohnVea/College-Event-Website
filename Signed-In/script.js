@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             event.stopPropagation();
                             
                             alert("Comment Deleted successfully");
+                            fetchComments();
                         });
                     });
 
@@ -221,14 +222,11 @@ document.addEventListener("DOMContentLoaded", function() {
                             const CommentText = document.getElementById("CommentEditText");
                             CommentText.value = commentText1; 
                             editCommentContainer.style.display = 'block';
-                            // eventCardContainer.style.display = 'block';
-                            // eventPopUpContainer.style.display = 'none';
-                            // window.location.reload();
                             submitComment.addEventListener('click', async function(){
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
-                                // await alert("Successfully Edited Comment");
+                                //await alert("Successfully Edited Comment");
                                 fetchComments();
                                 editCommentContainer.style.display = 'none';
                                 
@@ -257,21 +255,22 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
-                if (lastAddCommentClick >= (Date.now() - delay)){
-                    return;
+                const comments = await getAllComments();
+                const commentsJson =  JSON.stringify(comments);
+                // Parse the JSON string back into an array
+                const commentsArray = JSON.parse(commentsJson);
+                if(!commentsArray.has(CommentText.value)){
+                    const createCommentContainer = document.getElementById("createCommentContainer");
+                    await CreateComments(userData.FirstName, CommentText.value, eventID);
+                    event.stopPropagation();
+                    CommentText.value = ''; 
+                    // eventCardContainer.style.display = 'block';
+                    // eventPopUpContainer.style.display = 'none';
+                    // window.location.reload();
+                    createCommentContainer.style.display = 'none';
+                    // alert("Comment created successfully");
+                    fetchComments();
                 }
-                lastAddCommentClick = Date.now();
-                // event.stopPropagation();
-                const createCommentContainer = document.getElementById("createCommentContainer");
-                await CreateComments(userData.FirstName, CommentText.value, eventID);
-                event.stopPropagation();
-                CommentText.value = ''; 
-                // eventCardContainer.style.display = 'block';
-                // eventPopUpContainer.style.display = 'none';
-                // window.location.reload();
-                createCommentContainer.style.display = 'none';
-                // alert("Comment created successfully");
-                fetchComments();
                 
             });
 
