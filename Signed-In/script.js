@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
     SubmitCommentButtons.forEach(button => {
         button.addEventListener('click', async function(event) {
             const eventCard = button.closest('.eventPopUp');
-            const eventNameElement = eventCard.querySelector('.eventName');
+            const eventNameElement = eventCard.querySelector('.eventDescription');
             const eventName = eventNameElement.textContent.trim();
             console.log("Event Name: " + eventName);
             // const CommentText = document.getElementById("CommentText");
