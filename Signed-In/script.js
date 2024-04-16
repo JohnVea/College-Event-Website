@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             event.stopPropagation();
                             
                             alert("Comment Deleted successfully");
-                            fetchComments();
+                            // fetchComments();
                         });
                     });
 
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
-                                fetchComments();
+                                // fetchComments();
                                 editCommentContainer.style.display = 'none';
                                 
                             });
@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
                 // fetchComments();
             });
+            fetchComments();
 
             
         }
