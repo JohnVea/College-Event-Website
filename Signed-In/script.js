@@ -259,9 +259,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const commentsJson =  JSON.stringify(comments);
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
-                
                 const commentExists = commentsArray.some(comment => comment.UserComment === CommentText.value && comment.CommentedUser === userData.FirstName);
                 console.log(commentExists);
+                console.log(CommentText.value !== '');
+                console.log(!commentExists && (CommentText.value !== ''));
                 if(!commentExists && (CommentText.value !== '')){
                     const createCommentContainer = document.getElementById("createCommentContainer");
                     const timer = setTimeout(async () => {
