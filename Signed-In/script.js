@@ -26,11 +26,8 @@ userProfileButton.addEventListener('click', function(){
 });
 
 const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
-const closeEventPopUpButton = document.getElementById("userProfile");
+const closeEventPopUpButton = document.getElementById("closeEventPopUp");
 closeEventPopUpButton.addEventListener('click', function(){
-    const userProfile = document.getElementById("closeEventPopUp");
-    userProfile.innerHTML = userData.FirstName;
-    userProfile.style.color = 'black';
     eventPopUpContainer.style.display = 'none';
     eventCard.style.display = 'block';
 });
@@ -282,13 +279,12 @@ document.addEventListener("DOMContentLoaded", function() {
             CommentText.value = ''; 
             createCommentContainer.style.display = 'none';
             alert("Comment created successfully");
+            const userProfile = document.getElementById("userProfile");
+            userProfile.innerHTML = userData.FirstName;
+            userProfile.style.color = 'black';
             eventCardContainer.style.display = 'block';
             eventPopUpContainer.style.display = 'none';
             UserEventContainer.style.display = 'none';
-
-            const userProfile = document.getElementById("closeEventPopUp");
-            userProfile.innerHTML = userData.FirstName;
-            userProfile.style.color = 'black';
             // fetchComments();
             return;
         });
