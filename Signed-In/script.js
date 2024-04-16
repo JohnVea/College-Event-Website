@@ -191,8 +191,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     
-                    // const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+                    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     // deleteCommentButtons.forEach(button => {
+                    //     button.removeEventListener('click');
                     //     button.addEventListener('click', async function(event) {
                     //         // event.stopPropagation();
                     //         const commentText = button.parentElement.textContent.split('-')[1].trim();
@@ -205,6 +206,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     //         return;
                     //     });
                     // });
+                    deleteCommentButtons.forEach(button => {
+                        const deleteButtonClickHandler = async function(event) {
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Deleting: " + commentText1);
+                            await DeleteComment(commentText1, userData.FirstName, eventID);
+                            event.stopPropagation();
+                            alert("Comment Deleted successfully");
+                            return;
+                        };
+                    
+                        button.removeEventListener('click', deleteButtonClickHandler);
+                        button.addEventListener('click', deleteButtonClickHandler);
+                    });
+                    
 
                     // Add event listeners for edit buttons
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
