@@ -62,8 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-var lastAddCommentClick = 0;
-var delay = 10;
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')) {
@@ -304,11 +302,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // });
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('userEvents')) {
-            const eventCardContainer = document.querySelector('.userEventsContainer');
+            const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
             const eventData = event.target.querySelectorAll('*'); // Select the event card
@@ -398,9 +395,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         deleteButton.style.verticalAlign = 'top';
                         deleteButton.style.color = 'red';
 
-                        // deleteButton.addEventListener('mouseover', function () {
-                        //     deleteButton.style.backgroundColor = 'rgba(104, 2, 2, 0.5)';
-                        // });
                         
                         const editButton = document.createElement('button');
                         editButton.classList.add('editCommentButton');
@@ -437,14 +431,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
-                            event.stopPropagation();
+                            // event.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
-                            await DeleteComment(commentText1, userData.FirstName);
+                            await DeleteComment(commentText1, userData.FirstName, eventID);
+                            event.stopPropagation();
+                            
                             alert("Comment Deleted successfully");
                             fetchComments();
-                            
                         });
                     });
 
@@ -452,6 +447,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
+                            event.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Editing: " + commentText1);
@@ -461,58 +457,42 @@ document.addEventListener("DOMContentLoaded", function() {
                             const CommentText = document.getElementById("CommentEditText");
                             CommentText.value = commentText1; 
                             editCommentContainer.style.display = 'block';
-                            // eventCardContainer.style.display = 'block';
-                            // eventPopUpContainer.style.display = 'none';
-                            // window.location.reload();
                             submitComment.addEventListener('click', async function(){
                                 event.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
-                                fetchComments();
-                                editCommentContainer.style.display = 'none';
                                 alert("Successfully Edited Comment");
+                                // fetchComments();
+                                editCommentContainer.style.display = 'none';
+                                fetchComments();
+                                
                             });
 
                             const closeButton = document.getElementById("CancelEditComment");
                             closeButton.addEventListener("click", function() {
+                                event.stopPropagation();
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
                             });
                         });
                     });
 
+
+                    
                 }
                 
             }
-            fetchComments();
+            // fetchComments();
             
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
+            fetchComments();
 
-            const SubmitCommentButton = document.querySelector('.SubmitComment');
-            const CommentText = document.getElementById("CommentText");
             
-            SubmitCommentButton.addEventListener('click', async function(event){
-                if (lastAddCommentClick >= (Date.now() - delay)){
-                    return;
-                }
-                lastAddCommentClick = Date.now();
-                event.stopPropagation();
-                const createCommentContainer = document.getElementById("createCommentContainer");
-                await CreateComments(userData.FirstName, CommentText.value, eventID);
-                CommentText.value = ''; 
-                // eventCardContainer.style.display = 'block';
-                // eventPopUpContainer.style.display = 'none';
-                // window.location.reload();
-                createCommentContainer.style.display = 'none';
-                fetchComments();
-                alert("Comment created successfully");
-            });
 
             
         }
     });
-
 
 });
 
