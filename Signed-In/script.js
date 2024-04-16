@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             event.stopPropagation();
                             
                             alert("Comment Deleted successfully");
-                            // fetchComments();
+                            fetchComments();
                         });
                     });
 
@@ -226,6 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 alert("Successfully Edited Comment");
                                 // fetchComments();
                                 editCommentContainer.style.display = 'none';
+                                fetchComments();
                                 
                             });
 
@@ -261,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const SubmitCommentButton = document.querySelector('.SubmitComment');       
 SubmitCommentButton.addEventListener('click', async function(event){
     const CommentText = document.getElementById("CommentText");
+    const eventTitle = event.target.querySelector('p');
     const iD = await searchEvents2(eventTitle.textContent);
         // getAllComments().then(response => iD=response);
     const iDJson = await iD.json();
