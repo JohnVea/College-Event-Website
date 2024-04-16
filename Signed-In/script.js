@@ -273,14 +273,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.addEventListener('click', async function(eventCard) {
-        if (event.target.classList.contains('userEvents')) {
+    document.addEventListener('click', async function(userEvent) {
+        if (userEvent.target.classList.contains('userEvents')) {
             const eventCardContainer = document.querySelector('.userEventsContainer');
-            const eventName = event.target.querySelector('h1');
-            const eventDate = event.target.querySelector('h2');
-            const eventData = event.target.querySelectorAll('*'); // Select the event card
+            const eventName = userEvent.target.querySelector('h1');
+            const eventDate = userEvent.target.querySelector('h2');
+            const eventData = userEvent.target.querySelectorAll('*'); // Select the event card
             let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null, eventID = null;
-            const eventTitle = event.target.querySelector('p');
+            const eventTitle = userEvent.target.querySelector('p');
             Array.from(eventData).forEach(child => {
                 if (child.textContent.trim().startsWith('Time:')) {
                     // Extract time value
@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
                     deleteCommentButtons.forEach(button => {
                         button.addEventListener('click', async function(event) {
-                            event.stopPropagation();
+                            userEvent.stopPropagation();
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
                             console.log("Deleting: " + commentText1);
@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             // eventPopUpContainer.style.display = 'none';
                             // window.location.reload();
                             submitComment.addEventListener('click', async function(){
-                                event.stopPropagation();
+                                userEvent.stopPropagation();
                                 await EditComment(commentText1, CommentText.value);
                                 CommentText.value = '';
                                 fetchComments();
@@ -464,7 +464,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     return;
                 }
                 lastAddCommentClick = Date.now();
-                event.stopPropagation();
                 const createCommentContainer = document.getElementById("createCommentContainer");
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 CommentText.value = ''; 
