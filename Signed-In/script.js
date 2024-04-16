@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             userProfile.innerHTML = userData.FirstName;
                             userProfile.style.color = 'black';
                             eventCardContainer.style.display = 'block';
-                            eventPopUpContainer.style.display = 'block';
+                            eventPopUpContainer.style.display = 'none';
                             return
                         };
                     
