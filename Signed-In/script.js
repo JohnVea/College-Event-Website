@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         button.addEventListener('click', deleteButtonClickHandler);
                     });
                     console.log("Deleted Comment: " + deletedComment);
-                    if(deletedComment){
+                    if(deletedComment === true){
                         fetchComments();
                     }
                     
