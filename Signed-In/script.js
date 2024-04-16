@@ -301,37 +301,40 @@ document.addEventListener("DOMContentLoaded", function(){
     UserEventContainer.style.display = 'none';
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const eventPopUpContainers = document.querySelectorAll('.eventPopUpContainer');
-    eventPopUpContainers.forEach(container => {
-        const deleteCommentButtons = container.querySelectorAll('.deleteCommentButton');
-        deleteCommentButtons.forEach(button => {
-            button.addEventListener('click', async function(event) {
-                const eventCardContainer = document.querySelector('.displayEventsContainer');
-                const UserEventContainer = document.querySelector('.userEventsContainer');
-                const eventNameElement = container.querySelector('.eventDescription');
-                const eventName = eventNameElement.textContent.trim();
-                console.log("Event Name: " + eventName);
-                const CommentText = container.querySelector("#CommentText").value;
-
-                const iD = await searchEvents2(eventName);
-                const iDJson = await iD.json();
-                const eventID = iDJson[0].Events_ID;
-
-                console.log("Deleting: " + CommentText);
-                await DeleteComment(CommentText, userData.FirstName, eventID);
-                const userProfile = document.getElementById("userProfile");
-                userProfile.innerHTML = userData.FirstName;
-                userProfile.style.color = 'black';
-                eventCardContainer.style.display = 'block';
-                eventPopUpContainer.style.display = 'none';
-                UserEventContainer.style.display = 'none';
-                alert("Comment Deleted successfully");
-                return;
-            });
-        });
+document.addEventListener("DOMContentLoaded", function () {
+    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+  
+    deleteCommentButtons.forEach(button => {
+      button.addEventListener('click', async function (event) {
+        event.preventDefault(); // Prevent default form submission behavior (if applicable)
+  
+        const commentContainer = button.closest('.commentsContainer');
+        const commentedUserElement = commentContainer.querySelector('.commentedUser');
+        const eventCommentsElement = commentContainer.querySelector('.eventComments');
+  
+        const isConfirmed = confirm(`Are you sure you want to delete the comment by ${commentedUserElement.textContent}?`);
+  
+        if (isConfirmed) {
+          const commentText = eventCommentsElement.textContent.trim(); // Get comment text directly
+          const eventID = /* Logic to retrieve event ID based on context */; // Implement based on your structure
+  
+          try {
+            await DeleteComment(commentText, userData.FirstName, eventID);
+  
+            // Update UI for successful deletion (e.g., remove comment element, visual confirmation)
+            eventCommentsElement.textContent = '';
+            commentContainer.classList.add('comment-deleted'); // Add CSS class for visual feedback
+  
+            alert("Comment deleted successfully!");
+          } catch (error) {
+            console.error("Error deleting comment:", error);
+            alert("An error occurred while deleting the comment. Please try again later.");
+          }
+        }
+      });
     });
-});
+  });
+  
 
 
 
