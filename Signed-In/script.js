@@ -261,18 +261,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 const commentsArray = JSON.parse(commentsJson);
                 console.log(commentsArray.includes(CommentText.value))
                 const commentExists = commentsArray.some(comment => comment.UserComment === CommentText.value && comment.CommentedUser === userData.FirstName);
-                if(!commentExists){
+                if(!commentExists && (CommentText.value !== '')){
                     const createCommentContainer = document.getElementById("createCommentContainer");
-                    await CreateComments(userData.FirstName, CommentText.value, eventID);
+                    const timer = setTimeout(async () => {
+                        await CreateComments(userData.FirstName, CommentText.value, eventID);
+                    }, 50000); 
                     event.stopPropagation();
-                    CommentText.value = ''; 
+                    
                     // eventCardContainer.style.display = 'block';
                     // eventPopUpContainer.style.display = 'none';
                     // window.location.reload();
-                    createCommentContainer.style.display = 'none';
+                    
                     // alert("Comment created successfully");
                     fetchComments();
                 }
+                CommentText.value = ''; 
+                createCommentContainer.style.display = 'none';
                 
             });
 
