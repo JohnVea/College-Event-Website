@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         button.removeEventListener('click', deleteButtonClickHandler);
                         button.addEventListener('click', deleteButtonClickHandler);
                     });
-                    if(deletedComment)fetchComments();
+                    console.log("Deleted Comment: " + deletedComment);
                     
 
                     // Add event listeners for edit buttons
