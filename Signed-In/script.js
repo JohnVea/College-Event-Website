@@ -262,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
     SubmitCommentButtons.forEach(button => {
         button.addEventListener('click', async function(event) {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
+            const UserEventContainer = document.querySelector('.userEvents-container');
             const eventCard = button.closest('.eventPopUp');
             const eventNameElement = eventCard.querySelector('.eventDescription');
             const eventName = eventNameElement.textContent.trim();
@@ -280,6 +281,7 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Comment created successfully");
             eventCardContainer.style.display = 'block';
             eventPopUpContainer.style.display = 'none';
+            UserEventContainer.style.display = 'none';
             // fetchComments();
             return;
         });
@@ -305,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('userEvents')) {
-            const eventCardContainer = document.querySelector('.displayEventsContainer');
+            const eventCardContainer = document.querySelector('.userEvents-container');
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
             const eventData = event.target.querySelectorAll('*'); // Select the event card
