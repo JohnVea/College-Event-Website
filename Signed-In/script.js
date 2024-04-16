@@ -259,7 +259,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 CommentText.value = ''; 
                 createCommentContainer.style.display = 'none';
                 alert("Comment created successfully");
-                fetchComments();
+                eventCardContainer.style.display = 'block';
+                eventPopUpContainer.style.display = 'none';
+                return;
+                // fetchComments();
             });
 
             
