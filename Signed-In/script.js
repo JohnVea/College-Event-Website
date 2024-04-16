@@ -303,6 +303,11 @@ document.addEventListener("DOMContentLoaded", function() {
 //     });
 // });
 
+document.addEventListener("DOMContentLoaded", function(){
+    const UserEventContainer = document.querySelector('.userEvents-container');
+    UserEventContainer.style.display = 'none';
+});
+
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
