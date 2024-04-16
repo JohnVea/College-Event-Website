@@ -14,7 +14,7 @@ header("Content-Type: application/json");
 
 $inData = getRequestInfo();
 $userComment = $inData['UserComment'];
-$oldComment = $inData['oldComment'];
+$commentID = $inData['CommentID'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
@@ -22,8 +22,8 @@ if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
     // Now insert the comment into the Comments table
-    $stmt = $conn->prepare("UPDATE Comments SET UserComment = ? WHERE UserComment = ?");
-    $stmt->bind_param("ss", $userComment, $oldComment);
+    $stmt = $conn->prepare("UPDATE Comments SET UserComment = ? WHERE CommentID = ?");
+    $stmt->bind_param("si", $userComment, $commentID);
 
     if ($stmt->execute()) {
         $response = array("message" => "Successfully Edited Comment");
