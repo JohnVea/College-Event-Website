@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
     SubmitCommentButtons.forEach(button => {
         button.addEventListener('click', async function(event) {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
-            const UserEventContainer = document.querySelector('.userEvents-container');
+            const UserEventContainer = document.querySelector('.userEventsContainer');
             const eventCard = button.closest('.eventPopUp');
             const eventNameElement = eventCard.querySelector('.eventDescription');
             const eventName = eventNameElement.textContent.trim();
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    const UserEventContainer = document.querySelector('.userEvents-container');
+    const UserEventContainer = document.querySelector('.userEventsContainer');
     UserEventContainer.style.display = 'none';
 });
 
