@@ -26,8 +26,11 @@ userProfileButton.addEventListener('click', function(){
 });
 
 const eventPopUpContainer = document.querySelector('.eventPopUpContainer');
-const closeEventPopUpButton = document.getElementById("closeEventPopUp");
+const closeEventPopUpButton = document.getElementById("userProfile");
 closeEventPopUpButton.addEventListener('click', function(){
+    const userProfile = document.getElementById("closeEventPopUp");
+    userProfile.innerHTML = userData.FirstName;
+    userProfile.style.color = 'black';
     eventPopUpContainer.style.display = 'none';
     eventCard.style.display = 'block';
 });
