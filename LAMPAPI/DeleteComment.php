@@ -13,7 +13,8 @@ header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
 $inData = getRequestInfo();
-$commentID = $inData['CommentID'];
+$userComment = $inData['UserComment'];
+$commentedUser = $inData['CommentedUser'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
@@ -21,9 +22,8 @@ if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
     // Now insert the comment into the Comments table
-    $stmt = $conn->prepare("DELETE FROM Comments WHERE CommentID = ?");
-    $stmt->bind_param("i", $commentID);
-
+    $stmt = $conn->prepare("DELETE FROM Comments WHERE UserComment = ? AND CommentedUser = ?");
+    $stmt->bind_param("ss", $userComment, $commentedUser);
 
     if ($stmt->execute()) {
         $response = array("message" => "Comment deleted successfully");
