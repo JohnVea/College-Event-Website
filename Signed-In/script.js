@@ -282,6 +282,9 @@ document.addEventListener("DOMContentLoaded", function() {
             CommentText.value = ''; 
             createCommentContainer.style.display = 'none';
             alert("Comment created successfully");
+            const userProfile = document.getElementById("userProfile");
+            userProfile.innerHTML = userData.FirstName;
+            userProfile.style.color = 'black';
             eventCardContainer.style.display = 'block';
             eventPopUpContainer.style.display = 'none';
             UserEventContainer.style.display = 'none';
