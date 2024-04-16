@@ -260,8 +260,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
                 console.log(commentsArray.includes(CommentText.value))
-                console.log(commentsArray);
-                if(!commentsArray.includes(CommentText.value)){
+                const commentExists = commentsArray.some(comment => comment.UserComment === CommentText.value && comment.CommentedUser === userData.FirstName);
+                if(!commentExists){
                     const createCommentContainer = document.getElementById("createCommentContainer");
                     await CreateComments(userData.FirstName, CommentText.value, eventID);
                     event.stopPropagation();
