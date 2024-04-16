@@ -179,40 +179,19 @@ document.addEventListener("DOMContentLoaded", function() {
                             commentParagraph.appendChild(deleteButton);
                             commentParagraph.appendChild(editButton);
                         }
-                        
-    
-                        // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
-                        // commentsContainer.appendChild(deleteButton);
-
-                        
-
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     
                     const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
-                    // deleteCommentButtons.forEach(button => {
-                    //     button.removeEventListener('click');
-                    //     button.addEventListener('click', async function(event) {
-                    //         // event.stopPropagation();
-                    //         const commentText = button.parentElement.textContent.split('-')[1].trim();
-                    //         const commentText1 = commentText.split('deleteedit')[0];
-                    //         console.log("Deleting: " + commentText1);
-                    //         await DeleteComment(commentText1, userData.FirstName, eventID);
-                    //         event.stopPropagation();
-                            
-                    //         alert("Comment Deleted successfully");
-                    //         return;
-                    //     });
-                    // });
+                    
                     deleteCommentButtons.forEach(button => {
                         const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
-                            console.log("CommentID: " + filteredCommentID[0].CommentID);
+                            
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
 
@@ -229,16 +208,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         button.addEventListener('click', deleteButtonClickHandler);
                     });
                     
-
-                    // Add event listeners for edit buttons
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
                         const editButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
-                            console.log("CommentID: " + filteredCommentID[0].CommentID);
+                            
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
@@ -274,62 +250,18 @@ document.addEventListener("DOMContentLoaded", function() {
                             }
                             closeButton.removeEventListener('click', closeEditButtonClickHandler);
                             closeButton.addEventListener('click', closeEditButtonClickHandler);
-
-                            
-
                         }
                         button.removeEventListener('click', editButtonClickHandler);
                         button.addEventListener('click', editButtonClickHandler);
                     });
-                    // editCommentButtons.forEach(button => {
-                    //     button.addEventListener('click', async function(event) {
-                    //         event.stopPropagation();
-                    //         const commentText = button.parentElement.textContent.split('-')[1].trim();
-                    //         const commentText1 = commentText.split('deleteedit')[0];
-                    //         console.log("Editing: " + commentText1);
-
-                    //         const editCommentContainer = document.getElementById("EditCommentContainer");
-                    //         const submitComment = document.getElementById("SubmitEditComment");
-                    //         const CommentText = document.getElementById("CommentEditText");
-                    //         CommentText.value = commentText1; 
-                    //         editCommentContainer.style.display = 'block';
-                    //         submitComment.addEventListener('click', async function(){
-                    //             event.stopPropagation();
-                    //             await EditComment(commentText1, CommentText.value);
-                    //             CommentText.value = '';
-                    //             alert("Successfully Edited Comment");
-                    //             // fetchComments();
-                    //             editCommentContainer.style.display = 'none';
-                    //             fetchComments();
-                                
-                    //         });
-
-                    //         const closeButton = document.getElementById("CancelEditComment");
-                    //         closeButton.addEventListener("click", function() {
-                    //             event.stopPropagation();
-                    //             CommentText.value = '';
-                    //             editCommentContainer.style.display = "none";
-                    //         });
-                    //     });
-                    // });
-
-
                     
                 }
-                
             }
-            // fetchComments();
-            
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
             fetchComments();
-
-            
-
-            
         }
     });
-
 });
 
 
@@ -374,37 +306,6 @@ document.addEventListener("DOMContentLoaded", function(){
     UserEventContainer.style.display = 'none';
 });
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     const eventPopUpContainers = document.querySelectorAll('.eventPopUpContainer');
-//     eventPopUpContainers.forEach(container => {
-//         const deleteCommentButtons = container.querySelectorAll('.deleteCommentButton');
-//         deleteCommentButtons.forEach(button => {
-//             button.addEventListener('click', async function(event) {
-//                 const eventCardContainer = document.querySelector('.displayEventsContainer');
-//                 const UserEventContainer = document.querySelector('.userEventsContainer');
-//                 const eventNameElement = container.querySelector('.eventDescription');
-//                 const eventName = eventNameElement.textContent.trim();
-//                 console.log("Event Name: " + eventName);
-//                 const CommentText = container.querySelector("#CommentText").value;
-
-//                 const iD = await searchEvents2(eventName);
-//                 const iDJson = await iD.json();
-//                 const eventID = iDJson[0].Events_ID;
-
-//                 console.log("Deleting: " + CommentText);
-//                 await DeleteComment(CommentText, userData.FirstName, eventID);
-//                 const userProfile = document.getElementById("userProfile");
-//                 userProfile.innerHTML = userData.FirstName;
-//                 userProfile.style.color = 'black';
-//                 eventCardContainer.style.display = 'block';
-//                 eventPopUpContainer.style.display = 'none';
-//                 UserEventContainer.style.display = 'none';
-//                 alert("Comment Deleted successfully");
-//                 return;
-//             });
-//         });
-//     });
-// });
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
@@ -444,20 +345,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
-
-  
-
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('userEvents')) {
-            const eventCardContainer = document.querySelector('.userEventsContainer');
+            const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
-            const eventData = event.target.querySelectorAll('*'); // Select the event card
+            const eventData = event.target.querySelectorAll('*');
             let eventTime = null, latitude = null, longitude = null, eventLocation = null, eventType = null, eventID = null;
             const eventTitle = event.target.querySelector('p');
             Array.from(eventData).forEach(child => {
@@ -565,86 +459,90 @@ document.addEventListener("DOMContentLoaded", function() {
                             commentParagraph.appendChild(deleteButton);
                             commentParagraph.appendChild(editButton);
                         }
-                        
-    
-                        // Append the paragraph to the comments container
                         commentsContainer.appendChild(commentParagraph);
-                        // commentsContainer.appendChild(deleteButton);
-
-                        
-
                     });
                     popUp.querySelector('.commentsContainer').innerHTML = commentsContainer.innerHTML;
                     eventPopUpContainer.style.alignItems = 'center';
                     
-                    // const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
-                    // deleteCommentButtons.forEach(button => {
-                    //     button.addEventListener('click', async function(event) {
-                    //         // event.stopPropagation();
-                    //         const commentText = button.parentElement.textContent.split('-')[1].trim();
-                    //         const commentText1 = commentText.split('deleteedit')[0];
-                    //         console.log("Deleting: " + commentText1);
-                    //         await DeleteComment(commentText1, userData.FirstName, eventID);
-                    //         event.stopPropagation();
-                            
-                    //         alert("Comment Deleted successfully");
-                    //         fetchComments();
-                    //     });
-                    // });
-
-                    // Add event listeners for edit buttons
-                    const editCommentButtons = document.querySelectorAll('.editCommentButton');
-                    editCommentButtons.forEach(button => {
-                        button.addEventListener('click', async function(event) {
-                            event.stopPropagation();
+                    const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
+                    
+                    deleteCommentButtons.forEach(button => {
+                        const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            console.log("Editing: " + commentText1);
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            
+                            await DeleteComment(filteredCommentID[0].CommentID);
+                            alert("Comment Deleted successfully");
 
+                            button.removeEventListener('click', deleteButtonClickHandler);
+                            const userProfile = document.getElementById("userProfile");
+                            userProfile.innerHTML = userData.FirstName;
+                            userProfile.style.color = 'black';
+                            eventCardContainer.style.display = 'block';
+                            eventPopUpContainer.style.display = 'none';
+                            return;
+                        };
+                    
+                        button.removeEventListener('click', deleteButtonClickHandler);
+                        button.addEventListener('click', deleteButtonClickHandler);
+                    });
+                    
+                    const editCommentButtons = document.querySelectorAll('.editCommentButton');
+                    editCommentButtons.forEach(button => {
+                        const editButtonClickHandler = async function(event) {
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
-                            CommentText.value = commentText1; 
+                            
                             editCommentContainer.style.display = 'block';
-                            submitComment.addEventListener('click', async function(){
-                                event.stopPropagation();
-                                await EditComment(commentText1, CommentText.value);
+                            const submitEditButtonClickHandler = async function(event) {
+                                await EditComment(CommentText.value, filteredCommentID[0].CommentID);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
-                                // fetchComments();
                                 editCommentContainer.style.display = 'none';
-                                fetchComments();
                                 
-                            });
+                                submitComment.removeEventListener('click', submitEditButtonClickHandler);
+                                const userProfile = document.getElementById("userProfile");
+                                userProfile.innerHTML = userData.FirstName;
+                                userProfile.style.color = 'black';
+                                eventCardContainer.style.display = 'block';
+                                eventPopUpContainer.style.display = 'none';
+                                return;
+                                
+                            }
+                            submitComment.removeEventListener('click', submitEditButtonClickHandler);
+                            submitComment.addEventListener('click', submitEditButtonClickHandler);
+
 
                             const closeButton = document.getElementById("CancelEditComment");
-                            closeButton.addEventListener("click", function() {
+                            const closeEditButtonClickHandler = async function(event) {
                                 event.stopPropagation();
                                 CommentText.value = '';
                                 editCommentContainer.style.display = "none";
-                            });
-                        });
+
+                                closeButton.removeEventListener('click', closeEditButtonClickHandler);
+                                return;
+                            }
+                            closeButton.removeEventListener('click', closeEditButtonClickHandler);
+                            closeButton.addEventListener('click', closeEditButtonClickHandler);
+                        }
+                        button.removeEventListener('click', editButtonClickHandler);
+                        button.addEventListener('click', editButtonClickHandler);
                     });
-
-
                     
                 }
-                
             }
-            // fetchComments();
-            
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
             fetchComments();
-
-            
-
-            
         }
     });
-
 });
-
 
 
 
