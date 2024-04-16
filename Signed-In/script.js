@@ -265,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', async function(event) {
             console.log("Button clicked: " + button.textContent);
             console.log("Button parent element: " + button.parentElement.textContent)
+            console.log("Button parent element: " + button.parentNode.textContent)
             // const CommentText = document.getElementById("CommentText");
             // const eventCard = button.closest('.eventCard');
             // const eventTitle = eventCard.querySelector('.eventName');
