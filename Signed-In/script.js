@@ -255,30 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
             
             SubmitCommentButton.addEventListener('click', async function(){
-                // const comments = await getAllComments();
-                // const commentsJson =  JSON.stringify(comments);
-                // // Parse the JSON string back into an array
-                // const commentsArray = JSON.parse(commentsJson);
-                // const commentExists = commentsArray.some(comment => comment.UserComment === CommentText.value && comment.CommentedUser === userData.FirstName);
-                // console.log("Comment exist? " ,commentExists);
-                // console.log("empty string " , CommentText.value !== '');
-                // console.log("Both? ", !commentExists && (CommentText.value !== ''));
-                // if((!commentExists) && (CommentText.value !== '')){
-                //     const createCommentContainer = document.getElementById("createCommentContainer");
-                //     const timer = setTimeout(async () => {
-                //         await CreateComments(userData.FirstName, CommentText.value, eventID);
-                //     }, 50000); 
-                //     event.stopPropagation();
-                    
-                //     // eventCardContainer.style.display = 'block';
-                //     // eventPopUpContainer.style.display = 'none';
-                //     // window.location.reload();
-                    
-                //     // alert("Comment created successfully");
-                //     // fetchComments();
-                //     CommentText.value = ''; 
-                //     createCommentContainer.style.display = 'none';
-                // }
+
                 if(CommentText.value !== ''){
                 await CreateComments(userData.FirstName, CommentText.value, eventID);
                 }
@@ -296,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.addEventListener('click', async function(event) {
+    document.addEventListener('click', async function(eventCard) {
         if (event.target.classList.contains('userEvents')) {
             const eventCardContainer = document.querySelector('.userEventsContainer');
             const eventName = event.target.querySelector('h1');
@@ -479,10 +456,10 @@ document.addEventListener("DOMContentLoaded", function() {
             eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
 
-            const SubmitCommentButton2 = document.querySelector('.SubmitComment');
+            const SubmitCommentButton = document.querySelector('.SubmitComment');
             const CommentText = document.getElementById("CommentText");
             
-            SubmitCommentButton2.addEventListener('click', async function(event){
+            SubmitCommentButton.addEventListener('click', async function(event){
                 if (lastAddCommentClick >= (Date.now() - delay)){
                     return;
                 }
