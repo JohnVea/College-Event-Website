@@ -260,28 +260,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const SubmitCommentButton = document.querySelector('.SubmitComment');       
-    SubmitCommentButton.addEventListener('click', async function(event){
-        const CommentText = document.getElementById("CommentText");
-        const eventTitle = event.target.querySelector('.eventName');
-        console.log("eventTitle: " + eventTitle);
-        console.log("event: " + event.target);
-        console.log("eventSelector: " + event.target.querySelector('h1'));
-        const iD = await searchEvents2(eventTitle.textContent);
-            // getAllComments().then(response => iD=response);
-        const iDJson = await iD.json();
-        const eventID = iDJson[0].Events_ID;
-        if(CommentText.value !== ''){
-            await CreateComments(userData.FirstName, CommentText.value, eventID);
-        }
-        CommentText.value = ''; 
-        createCommentContainer.style.display = 'none';
-        alert("Comment created successfully");
-        eventCardContainer.style.display = 'block';
-        eventPopUpContainer.style.display = 'none';
-        fetchComments();
+    const SubmitCommentButtons = document.querySelectorAll('.SubmitComment');       
+    SubmitCommentButtons.forEach(button => {
+        button.addEventListener('click', async function(event) {
+            const CommentText = document.getElementById("CommentText");
+            const eventCard = button.closest('.eventCard');
+            const eventTitle = eventCard.querySelector('.eventName');
+            console.log("eventTitle: " + eventTitle.textContent);
+
+            const iD = await searchEvents2(eventTitle.textContent);
+            const iDJson = await iD.json();
+            const eventID = iDJson[0].Events_ID;
+
+            if(CommentText.value !== ''){
+                await CreateComments(userData.FirstName, CommentText.value, eventID);
+            }
+            CommentText.value = ''; 
+            createCommentContainer.style.display = 'none';
+            alert("Comment created successfully");
+            eventCardContainer.style.display = 'block';
+            eventPopUpContainer.style.display = 'none';
+            fetchComments();
+        });
     });
 });
+
 
 
 // document.addEventListener("DOMContentLoaded", function() {
