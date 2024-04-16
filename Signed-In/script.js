@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const SubmitCommentButton = document.querySelector('.SubmitComment');       
     SubmitCommentButton.addEventListener('click', async function(event){
         const CommentText = document.getElementById("CommentText");
-        const eventTitle = event.target.querySelector('p');
+        const eventTitle = event.target.querySelector('.eventName');
         console.log("eventTitle: " + eventTitle);
         console.log("event: " + event.target);
         console.log("eventSelector: " + event.target.querySelector('h1'));
