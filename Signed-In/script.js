@@ -213,7 +213,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
                             console.log("CommentID: " + filteredCommentID[0].CommentID);
-                            await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
+                            // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
+                            await DeleteComment(filteredCommentID[0].CommentID);
                             event.stopPropagation();
                             alert("Comment Deleted successfully");
                             return;
@@ -1184,11 +1185,8 @@ async function CreateComments(name, comment, eventID) {
     }
 }
 
-async function DeleteComment(comment, commentedUser, commentedEventID, commentID) {
+async function DeleteComment(commentID) {
     const commentData = {
-        CommentedUser: commentedUser,
-        UserComment: comment,
-        CommentedEventID: commentedEventID,
         CommentID: commentID
     }
     try {
