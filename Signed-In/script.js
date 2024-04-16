@@ -227,6 +227,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     const editCommentButtons = document.querySelectorAll('.editCommentButton');
                     editCommentButtons.forEach(button => {
                         const editButtonClickHandler = async function(event) {
+                            const commentText = button.parentElement.textContent.split('-')[1].trim();
+                            const commentText1 = commentText.split('deleteedit')[0];
+                            console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
                             console.log("CommentID: " + filteredCommentID[0].CommentID);
                             const editCommentContainer = document.getElementById("EditCommentContainer");
@@ -235,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             
                             editCommentContainer.style.display = 'block';
                             submitComment.addEventListener('click', async function(){
-                                event.stopPropagation();
                                 await EditComment(CommentText.value, filteredCommentID[0].CommentID);
                                 CommentText.value = '';
                                 alert("Successfully Edited Comment");
