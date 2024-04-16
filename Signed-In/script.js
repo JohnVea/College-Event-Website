@@ -263,9 +263,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const SubmitCommentButtons = document.querySelectorAll('.SubmitComment');       
     SubmitCommentButtons.forEach(button => {
         button.addEventListener('click', async function(event) {
-            console.log("Button clicked: " + button.textContent);
-            console.log("Button parent element: " + button.parentElement.textContent)
-            console.log("Button parent element: " + button.parentNode.textContent)
+            const eventCard = button.closest('.eventPopUp');
+            const eventNameElement = eventCard.querySelector('.eventName');
+            const eventName = eventNameElement.textContent.trim();
+            console.log("Event Name: " + eventName);
             // const CommentText = document.getElementById("CommentText");
             // const eventCard = button.closest('.eventCard');
             // const eventTitle = eventCard.querySelector('.eventName');
