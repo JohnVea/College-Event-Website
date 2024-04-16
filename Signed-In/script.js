@@ -216,6 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
+                            button.removeEventListener('click', deleteButtonClickHandler);
+                            fetchEvents();
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
