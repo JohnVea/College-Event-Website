@@ -303,16 +303,16 @@ document.addEventListener("DOMContentLoaded", function() {
 //     });
 // });
 
-document.addEventListener("DOMContentLoaded", function(){
-    const UserEventContainer = document.querySelector('.userEvents-container');
-    UserEventContainer.style.display = 'none';
-});
+// document.addEventListener("DOMContentLoaded", function(){
+//     const UserEventContainer = document.querySelector('.userEvents-container');
+//     UserEventContainer.style.display = 'none';
+// });
 
 
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('userEvents')) {
-            const eventCardContainer = document.querySelector('.userEvents-container');
+            const eventCardContainer = document.querySelector('.userEventsContainer');
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
             const eventData = event.target.querySelectorAll('*'); // Select the event card
@@ -491,6 +491,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             // fetchComments();
             
+            eventCardContainer.style.display = 'none';
             eventPopUpContainer.style.display = 'block';
             fetchComments();
 
