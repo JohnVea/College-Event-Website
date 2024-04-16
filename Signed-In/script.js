@@ -276,9 +276,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                     // alert("Comment created successfully");
                     // fetchComments();
+                    CommentText.value = ''; 
+                    createCommentContainer.style.display = 'none';
                 }
-                CommentText.value = ''; 
-                createCommentContainer.style.display = 'none';
+                
                 
             });
 
