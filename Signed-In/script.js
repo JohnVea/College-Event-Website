@@ -213,11 +213,15 @@ document.addEventListener("DOMContentLoaded", function() {
                             console.log("Deleting: " + commentText1);
                             const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
                             console.log("CommentID: " + filteredCommentID[0].CommentID);
-                            // await DeleteComment(commentText1, userData.FirstName, eventID, filteredCommentID[0].CommentID);
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
+
                             button.removeEventListener('click', deleteButtonClickHandler);
-                            fetchEvents();
+                            const userProfile = document.getElementById("userProfile");
+                            userProfile.innerHTML = userData.FirstName;
+                            userProfile.style.color = 'black';
+                            eventCardContainer.style.display = 'block';
+                            return
                         };
                     
                         button.removeEventListener('click', deleteButtonClickHandler);
