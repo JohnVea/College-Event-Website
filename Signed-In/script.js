@@ -261,6 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Comment created successfully");
                 eventCardContainer.style.display = 'block';
                 eventPopUpContainer.style.display = 'none';
+                fetchComments();
                 return;
                 // fetchComments();
             });
