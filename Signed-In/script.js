@@ -220,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
+                            CommentText.value = commentText1;
                             
                             editCommentContainer.style.display = 'block';
                             const submitEditButtonClickHandler = async function(event) {
@@ -502,6 +503,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
                             const CommentText = document.getElementById("CommentEditText");
+                            CommentText.value = commentText1;
                             
                             editCommentContainer.style.display = 'block';
                             const submitEditButtonClickHandler = async function(event) {
