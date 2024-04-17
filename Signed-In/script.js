@@ -30,24 +30,32 @@ ROSsButton.addEventListener('click', function(){
 
 async function displayOrganizations(){
     const allOrganizations = await getAllOrganizations();
+    const oOrganizations =  document.querySelector('.organization');
+    oOrganizations.innerHTML = '';
     if(allOrganizations){
         displayOrganizationsContainer.innerHTML = '';
+        
         const allOrganizationsJson =  JSON.stringify(allOrganizations);
         const allOrganizationsArray = JSON.parse(allOrganizationsJson);
         allOrganizationsArray.forEach(org => {
             const orgName = document.createElement('h1');
             orgName.textContent = org.Name;
-            displayOrganizationsContainer.appendChild(orgName);
+            oOrganizations.appendChild(orgName);
 
             const orgUniversity = document.createElement('h2');
             orgUniversity.textContent = org.UniversityName;
-            displayOrganizationsContainer.appendChild(orgUniversity);
-
+            oOrganizations.appendChild(orgUniversity);
         });
+        displayOrganizationsContainer.appendChild(oOrganizations);
+        displayOrganizationsContainer.style.alignItems = 'center';
+        
     }else{
+        displayOrganizationsContainer.innerHTML = '';
         const orgName = document.createElement('h1');
         orgName.textContent = "No Organizations Found";
-        displayOrganizationsContainer.appendChild(orgName);
+        oOrganizations.appendChild(orgName);
+        displayOrganizationsContainer.appendChild(oOrganizations);
+        displayOrganizationsContainer.style.alignItems = 'center';
     }
 
 }
