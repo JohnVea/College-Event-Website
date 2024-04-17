@@ -7,7 +7,7 @@ header("Content-Type: application/json");
 $inData = getRequestInfo();
 
 $userID = $inData['UserID'];
-$universityName = $inData['UniversityName'];
+$universityID = $inData['UniversityID'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
@@ -15,16 +15,15 @@ if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
     // Check if the university exists
-    $checkUniversityStmt = $conn->prepare("SELECT UniversityID FROM Universities WHERE Name = ?");
-    $checkUniversityStmt->bind_param("s", $universityName);
+    $checkUniversityStmt = $conn->prepare("SELECT UniversityID FROM Universities WHERE UniversityID = ?");
+    $checkUniversityStmt->bind_param("i", $universityID);
     $checkUniversityStmt->execute();
     $checkUniversityStmt->store_result();
-    $checkUniversityStmt->bind_result($universityID);
-    $checkUniversityStmt->fetch();
+    $numRows = $checkUniversityStmt->num_rows;
     $checkUniversityStmt->close();
 
-    if (!$universityID) {
-        returnWithError("University does not exist");
+    if ($numRows === 0) {
+        returnWithError("University with ID $universityID does not exist");
     }
 
     // Insert the student into the Students table
