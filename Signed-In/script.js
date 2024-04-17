@@ -1327,6 +1327,9 @@ async function searchEvents2(searchQuery) {
             console.log(response.Description);
             console.log(response.Events_ID);
             const data = await response.json();
+            console.log(data.Description);
+            console.log(data.Events_ID);
+            console.log(data);
             return data;
         }
     } catch (error) {
