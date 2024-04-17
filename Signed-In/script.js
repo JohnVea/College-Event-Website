@@ -128,6 +128,15 @@ submitOrganizationButton.addEventListener('click', function(){
                 const allOrganizationsJson =  JSON.stringify(allOrganizations);
                 const allOrganizationsArray = JSON.parse(allOrganizationsJson);
                 const createdOrganizationID = allOrganizationsArray.filter(orzation => parseInt(orzation.Name) === newRSOName);
+                createStudent(parseInt(userData.UserID), parseInt(createdOrganizationID[0].UniversityID));
+                const allstudents = await getAllStudents();
+                if(allstudents == null){
+                    alert("Student Not Found");
+                    return;
+                }
+                const allstudentsJson =  JSON.stringify(allstudents);
+                const allstudentsArray = JSON.parse(allstudentsJson);
+                const allstudentsSudentID = allstudentsArray.filter(student => student.UserID === userData.UserID);
                 createStudentOrganization(parseInt(userData.UserID), parseInt(createdOrganizationID[0].RSOID));
             }
             
@@ -202,6 +211,57 @@ async function createStudentOrganization(studentID, rSOID){
     }
 }
 
+async function createStudent(userID, universityID){
+    const organizationData = {
+        UserID: userID,
+        UniversityID: universityID
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateStudent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(organizationData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        console.log(response);
+
+        // const data = await response.json();
+        
+        // return true;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        // return false;
+    }
+}
+
+
+async function getAllStudents() {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllStudents.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        const data = await response.json();
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        return null; 
+    }
+}
 
 
 
