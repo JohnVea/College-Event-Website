@@ -39,7 +39,7 @@ async function displayOrganizations(){
         const allOrganizationsArray = JSON.parse(allOrganizationsJson);
         allOrganizationsArray.forEach(org => {
             const orgName = document.createElement('h1');
-            orgName.textContent = org.Name;
+            orgName.textContent = "Organization: " + org.Name;
             oOrganizations.appendChild(orgName);
 
             const orgUniversity = document.createElement('h2');
