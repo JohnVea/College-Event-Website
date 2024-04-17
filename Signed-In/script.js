@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
                 // const commentsJson = await comments.json();
-                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID));
+                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID)  && (comment.UserComment === commentText1));
                 const commentsContainer = document.querySelector('.commentsContainer');
 
                 console.log("filtered comments: " + commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID)));
@@ -503,7 +503,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === parseInt(eventID)) && (comment.UserComment === commentText1));
                             
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         const editButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === parseInt(eventID)) && (comment.UserComment === commentText1));
                             
                             const editCommentContainer = document.getElementById("EditCommentContainer");
                             const submitComment = document.getElementById("SubmitEditComment");
@@ -792,7 +792,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         const deleteButtonClickHandler = async function(event) {
                             const commentText = button.parentElement.textContent.split('-')[1].trim();
                             const commentText1 = commentText.split('deleteedit')[0];
-                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === eventID) && (comment.UserComment === commentText1));
+                            const filteredCommentID = commentsArray.filter(comment => (parseInt(comment.CommentedEventID) === parseInt(eventID)) && (comment.UserComment === commentText1));
                             
                             await DeleteComment(filteredCommentID[0].CommentID);
                             alert("Comment Deleted successfully");
