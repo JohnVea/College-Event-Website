@@ -1325,6 +1325,7 @@ async function searchEvents2(searchQuery) {
         })
         if(response){
             console.log(response.Description);
+            console.log(response.Events_ID);
             const data = await response.json();
             return data;
         }
