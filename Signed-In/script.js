@@ -34,7 +34,7 @@ async function displayOrganizations(){
     const displayOrganizationsContainer = document.querySelector('.displayOrganizationsContainer');
     const oOrganizations =  document.querySelector('.organization');
     oOrganizations.innerHTML = '';
-    const privateStudentOrganizations =  await getAllStudentOrganizations();
+    // const privateStudentOrganizations =  await getAllStudentOrganizations();
     console.log("privateStudentOrganizations: " + privateStudentOrganizations);
     
     if(allOrganizations){
@@ -82,7 +82,7 @@ async function getAllOrganizations(){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         const data = await response.json();
         // console.log(data);
@@ -184,7 +184,7 @@ async function createOrganization(organizationName, organizationUni){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         // const data = await response.json();
         
@@ -275,28 +275,28 @@ async function getAllStudents() {
     }
 }
 
-async function getAllStudentOrganizations() {
-    try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllStudentOrganizations.php', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+// async function getAllStudentOrganizations() {
+//     try {
+//         const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllStudentOrganizations.php', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         });
 
-        if (!response.ok) {
-            throw new Error(`Failed to fetch events: ${response.statusText}`);
-        }
-        // console.log(response);
+//         if (!response.ok) {
+//             throw new Error(`Failed to fetch events: ${response.statusText}`);
+//         }
+//         // console.log(response);
 
-        const data = await response.json();
-        // console.log(data);
-        return data;
-    } catch (error) {
-        console.error('Error fetching events:', error.message);
-        return null; 
-    }
-}
+//         const data = await response.json();
+//         // console.log(data);
+//         return data;
+//     } catch (error) {
+//         console.error('Error fetching events:', error.message);
+//         return null; 
+//     }
+// }
 
 
 
@@ -426,8 +426,14 @@ document.addEventListener("DOMContentLoaded", function() {
             // let iD;
             const iD = await searchEvents2(eventTitle.textContent);
             // getAllComments().then(response => iD=response);
+            
+            // const iDJson = await iD.json();
+            // console.log(iDJson);
+            // eventID = iDJson[0].Events_ID;
+            console.log('Response:', iD); // Log the response
             const iDJson = await iD.json();
-            eventID = iDJson[0].Events_ID;
+            console.log(iDJson);
+
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
 
@@ -1497,3 +1503,7 @@ async function EditComment(newComment, commentID) {
         throw error; 
     }
 }
+
+
+
+
