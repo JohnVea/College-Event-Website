@@ -31,6 +31,7 @@ ROSsButton.addEventListener('click', function(){
 async function displayOrganizations(){
     const allOrganizations = await getAllOrganizations();
     if(allOrganizations){
+        displayOrganizationsContainer.innerHTML = '';
         const allOrganizationsJson =  JSON.stringify(allOrganizations);
         const allOrganizationsArray = JSON.parse(allOrganizationsJson);
         allOrganizationsArray.forEach(org => {
