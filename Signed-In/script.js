@@ -431,8 +431,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // console.log(iDJson);
             // eventID = iDJson[0].Events_ID;
             console.log('Response:', iD); // Log the response
-            const iDJson = await iD.json();
-            console.log(iDJson);
+            // const iDJson = await iD.json();
+            // console.log(iDJson);
             const iDJSON = JSON.stringfy(iD)
             console.log(iDJSON);
             console.log(JSON.parse(iDJSON));
@@ -1325,7 +1325,8 @@ async function searchEvents2(searchQuery) {
         })
         if(response){
             console.log(response.Description);
-            return response;
+            const data = await response.json();
+            return data;
         }
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
