@@ -39,13 +39,13 @@ async function displayOrganizations(){
         const allOrganizationsArray = JSON.parse(allOrganizationsJson);
         allOrganizationsArray.forEach(org => {
             const orgName = document.createElement('h1');
-            orgName.textContent = "Organization: " + org.Name;
+            orgName.textContent = org.Name;
             oOrganizations.appendChild(orgName);
 
             const orgUniversity = document.createElement('h2');
             orgUniversity.textContent = org.UniversityName;
             oOrganizations.appendChild(orgUniversity);
-            oOrganizations.style.height = oOrganizations.style.height + 20;
+            oOrganizations.style.height = oOrganizations.style.height + 20 + '%';
         });
         displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
@@ -55,7 +55,7 @@ async function displayOrganizations(){
         const orgName = document.createElement('h1');
         orgName.textContent = "No Organizations Found";
         oOrganizations.appendChild(orgName);
-        oOrganizations.style.height = oOrganizations.style.height + 20;
+        oOrganizations.style.height = oOrganizations.style.height + 20 + "%";
         displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
     }
