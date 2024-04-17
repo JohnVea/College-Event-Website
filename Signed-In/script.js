@@ -595,6 +595,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const iD = await searchEvents2(eventName);
             const iDJson = await iD.json();
+            // const eventID = iDJson[0].Events_ID;
+            console.log("ID trying to Solve: " + iDJson);
             const eventID = iDJson[0].Events_ID;
 
             if(CommentText.value !== ''){
