@@ -905,7 +905,7 @@ function displayUserCreatedPrivateEvents(){
                             // displayEventsUserPrivateContainer.appendChild(eventCard);
                             // Set height of event card based on description height
                             const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                            eventCard.style.height = descriptionHeight + 7 + '%';
+                            eventCard.style.height = eventCard.style.height + 10 + '%';
                         }
                         
                     // }
@@ -1022,7 +1022,7 @@ function fetchEvents() {
 
                 // Set height of event card based on description height
                 const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                eventCard.style.height = descriptionHeight + 3 + '%';
+                eventCard.style.height = eventCard.style.height + 3 + '%';
             });
         })
         .catch(error => {
@@ -1170,7 +1170,7 @@ function searchEvents() {
 
             // Set height of event card based on description height
             const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-            eventCard.style.height = descriptionHeight + 3 + '%';
+            eventCard.style.height = eventCard.style.height + 10 + '%';
         });
     })
     .catch(error => {
