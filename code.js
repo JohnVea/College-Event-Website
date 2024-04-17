@@ -135,11 +135,11 @@ async function doLogin() {
             localStorage.setItem('userData', JSON.stringify(data));
             window.location.href = "./Signed-In/home.html";
         } else {
-            throw new Error(data.error);
+            alert("Incorrect Username and Password combination!")
         }
     } catch (error) {
         
-        console.error('Error during login:', error.message);
+        alert("Incorrect Username and Password combination!");
     }
 }
 
