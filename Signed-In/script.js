@@ -313,8 +313,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')){
             const eventPopUpContainers = document.querySelectorAll('.eventPopUpContainer');
-            const theUserEvent = document.querySelector('.userEvents');
-            theUserEvent.style.display = 'none';
             eventPopUpContainers.forEach(container => {
                 const deleteCommentButtons = container.querySelectorAll('.deleteCommentButton');
                 deleteCommentButtons.forEach(button => {
@@ -352,6 +350,8 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('userEvents')) {
+            const theUserEvent = document.querySelector('.userEvents');
+            theUserEvent.style.display = 'none';
             const eventCardContainer = document.querySelector('.displayEventsContainer');
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
