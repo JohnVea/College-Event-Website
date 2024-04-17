@@ -105,12 +105,13 @@ CreateRSOsButton.addEventListener('click', function(){
 });
 
 const submitOrganizationButton = document.getElementById("submitOrganization");
-const newOrgName = document.querySelector('.OrganizationName');
-const newOrgUni = document.querySelector('.OrganizationUniversity');
 
+const newOrgName = document.querySelector('.OrganizationName');
 submitOrganizationButton.addEventListener('click', function(){
     const newRSOName = document.getElementById('OrganizationName').value;
-    const createdOrganization = createOrganization(newRSOName, newOrgUni.innerHTML.textContent);
+    
+    const newOrgUni = document.querySelector('.OrganizationUniversity');
+    const createdOrganization = createOrganization(newRSOName, document.getElementById('OrganizationUniversity').value);
     eventCard.style.display = 'block'
     userEvents.style.display = 'none';
     createRSOsContainer.style.display = 'none';
