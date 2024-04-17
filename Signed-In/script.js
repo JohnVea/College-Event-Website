@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', async function(event) {
         if (event.target.classList.contains('eventCard')) {
             const eventCardContainer = document.querySelector('.displayEventsContainer');
+            const theUserEvent = document.querySelector('.userEvent');
+            theUserEvent.style.display = 'none';
             const eventName = event.target.querySelector('h1');
             const eventDate = event.target.querySelector('h2');
             const eventData = event.target.querySelectorAll('*'); // Select the event card
@@ -543,13 +545,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-
-
-
-
-
-
 
 
 
