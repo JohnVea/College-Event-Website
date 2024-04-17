@@ -433,6 +433,10 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('Response:', iD); // Log the response
             const iDJson = await iD.json();
             console.log(iDJson);
+            const iDJSON = JSON.stringfy(iD)
+            console.log(iDJSON);
+            console.log(JSON.parse(iDJSON));
+            
 
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
