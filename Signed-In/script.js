@@ -1310,7 +1310,6 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
 
 async function searchEvents2(searchQuery) {
     console.log(searchQuery);
-    // Prepare the search object
     const searchObject = {
         keyword: searchQuery
     };
@@ -1322,20 +1321,30 @@ async function searchEvents2(searchQuery) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(searchObject)
-        })
-        if(response){
-            console.log(response.Description);
-            console.log(response.Events_ID);
-            const data = await response.json();
-            console.log(data.Description);
-            console.log(data.Events_ID);
-            console.log(data);
-            return data;
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+
+        const responseData = await response.text();
+
+        // Check if response data is empty
+        if (!responseData) {
+            console.error('Empty response data');
+            return []; // Return empty array
+        }
+
+        const data = JSON.parse(responseData);
+        console.log('Response:', data);
+
+        return data;
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
+        return []; // Return empty array in case of error
     }
 }
+
 
 
 async function createEvent(eventData) {
