@@ -28,6 +28,52 @@ ROSsButton.addEventListener('click', function(){
     }
 });
 
+async function displayOrganizations(){
+    const allOrganizations = await getAllOrganizations();
+    if(allOrganizations){
+        const allOrganizationsJson =  JSON.stringify(allOrganizations);
+        const allOrganizationsArray = JSON.parse(allOrganizationsJson);
+        allOrganizationsArray.forEach(org => {
+            const orgName = document.createElement('h1');
+            orgName.textContent = org.Name;
+            displayOrganizationsContainer.appendChild(orgName);
+
+            const orgUniversity = document.createElement('h2');
+            orgUniversity.textContent = org.UniversityName;
+            displayOrganizationsContainer.appendChild(orgUniversity);
+
+        });
+    }else{
+        const orgName = document.createElement('h1');
+        orgName.textContent = "No Organizations Found";
+        displayOrganizationsContainer.appendChild(orgName);
+    }
+
+}
+
+async function getAllOrganizations(){
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllOrganizations.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        const data = await response.json();
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        retrun = null;
+    }
+}
+
 
 
 
