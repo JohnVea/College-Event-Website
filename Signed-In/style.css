@@ -508,7 +508,7 @@ label[for="Daytime"] {
     background-color: rgba(164, 77, 77, 0.5);
 }
 
-.ROSs{
+.RSOs{
     position: absolute;
     top: 83%;
     bottom: 10%;
@@ -563,7 +563,7 @@ label[for="Daytime"] {
     z-index: 3;
 }
 
-.ROSs:hover{
+.RSOs:hover{
     cursor: pointer;
     transform: scale(1.03);
     animation: bounce 0.5s;

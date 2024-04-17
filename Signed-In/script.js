@@ -7,7 +7,7 @@ document.querySelector('.Signout').addEventListener('click', function() {
 });
 
 
-const ROSsButton = document.querySelector('.ROSs');
+const ROSsButton = document.querySelector('.RSOs');
 const eventCard = document.querySelector('.displayEventsContainer');
 const userEvents = document.querySelector('.userEventsContainer');
 const displayOrganizationsContainer = document.querySelector('.displayOrganizationsContainer');
