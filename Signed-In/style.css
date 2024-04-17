@@ -697,7 +697,7 @@ label[for="Daytime"] {
     position: fixed;
     top: 40%;
     left: 50%;
-    height: 30%;
+    height: 9%;
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 10px;
@@ -711,4 +711,30 @@ label[for="Daytime"] {
     align-items: center;
     justify-content: center;
     display: none;
+}
+
+.createRSOsContainer #OrganizationName,
+.createRSOsContainer #OrganizationUniversity{
+    width: 80%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.createRSOsContainer button {
+    width: 82.4%; 
+    margin: 5px; 
+    margin-left: 9%;
+}
+
+.createRSOsContainer button :hover {
+    cursor: pointer;
+    background-color: rgb(7, 121, 11);
+}
+
+.OrganizationType{
+
+}
+
+label[for="OrganizationType"] {
+    margin-left: 9%;
 }

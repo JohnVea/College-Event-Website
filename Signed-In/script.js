@@ -92,17 +92,116 @@ CreateRSOsButton.addEventListener('click', function(){
         eventCard.style.display = 'none';
         userEvents.style.display = 'none';
         createRSOsContainer.style.display = 'block';
-        CreateRSOsButton.innerHTML = "close";
+        CreateRSOsButton.innerHTML = "Cancel";
         CreateRSOsButton.style.color = 'red';
         displayOrganizations();
     }else{
         eventCard.style.display = 'block'
         userEvents.style.display = 'none';
         createRSOsContainer.style.display = 'none';
-        CreateRSOsButton.innerHTML = "Organizations";
+        CreateRSOsButton.innerHTML = "Create Organization";
         CreateRSOsButton.style.color = 'black';
     }
 });
+
+const submitOrganizationButton = document.getElementById("submitOrganization");
+const newOrgName = document.querySelector('.OrganizationName');
+const newOrgUni = document.querySelector('.OrganizationUniversity');
+const newOrgType = document.querySelector('.OrganizationType');
+submitOrganizationButton.addEventListener('click', function(){
+    const newRSOName = newOrgName.innerHTML.textContent;
+    const createdOrganization = createOrganization(newRSOName, newOrgUni.innerHTML.textContent);
+    eventCard.style.display = 'block'
+    userEvents.style.display = 'none';
+    createRSOsContainer.style.display = 'none';
+    CreateRSOsButton.innerHTML = "Create Organization";
+    CreateRSOsButton.style.color = 'black';
+    newOrgName.innerHTML = '';
+    newOrgUni.innerHTML = '';
+
+    async function handleOrganizationCreation() {
+        if (createdOrganization) {
+
+            if(newOrgType.innerHTML.textContent === 'student'){
+                const allOrganizations = await getAllOrganizations();
+                const allOrganizationsJson =  JSON.stringify(allOrganizations);
+                const allOrganizationsArray = JSON.parse(allOrganizationsJson);
+                const createdOrganizationID = allOrganizationsArray.filter(orzation => parseInt(orzation.Name) === newRSOName);
+                createStudentOrganization(userData.UserID.toString(), createdOrganizationID[0].RSOID);
+            }
+            
+            alert("Organization created successfully");
+        } else {
+            alert("Organization Already Exist successfully");
+        }
+    }
+
+    handleOrganizationCreation();
+
+    // const userProfile = document.getElementById("userProfile");
+    // userProfile.innerHTML = userData.FirstName;
+    // userProfile.style.color = 'black';
+    // eventPopUpContainer.style.display = 'none';
+    // eventCard.style.display = 'block';
+});
+
+async function createOrganization(organizationName, organizationUni){
+    const organizationData = {
+        name: organizationName,
+        universityName: organizationUni
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateOrganization.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(organizationData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        // const data = await response.json();
+        
+        return true;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        return false;
+    }
+}
+
+async function createStudentOrganization(studentID, rSOID){
+    const organizationData = {
+        StudentID: studentID,
+        RSOID: rSOID
+    }
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/CreateStudentOrganization.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(organizationData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        console.log(response);
+
+        // const data = await response.json();
+        
+        // return true;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        // return false;
+    }
+}
+
+
 
 
 
