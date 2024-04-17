@@ -35,7 +35,7 @@ async function displayOrganizations(){
     const oOrganizations =  document.querySelector('.organization');
     oOrganizations.innerHTML = '';
     // const privateStudentOrganizations =  await getAllStudentOrganizations();
-    console.log("privateStudentOrganizations: " + privateStudentOrganizations);
+    // console.log("privateStudentOrganizations: " + privateStudentOrganizations);
     
     if(allOrganizations){
         
