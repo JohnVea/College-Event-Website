@@ -427,17 +427,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const iD = await searchEvents2(eventTitle.textContent);
             // getAllComments().then(response => iD=response);
             
-            // const iDJson = await iD.json();
-            // console.log(iDJson);
-            // eventID = iDJson[0].Events_ID;
-            console.log('Response:', iD); // Log the response
-            // const iDJson = await iD.json();
-            // console.log(iDJson);
-            const iDJSON = iD;
-            console.log(iDJSON);
-            console.log(JSON.parse(iDJSON));
-            
-
+            const iDJson = await iD.json();
+            console.log(iDJson);
+            eventID = iDJson[0].Events_ID;
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
 
@@ -599,8 +591,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const iD = await searchEvents2(eventName);
             const iDJson = await iD.json();
-            // const eventID = iDJson[0].Events_ID;
-            console.log("ID trying to Solve: " + iDJson);
             const eventID = iDJson[0].Events_ID;
 
             if(CommentText.value !== ''){
@@ -1310,6 +1300,7 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
 
 async function searchEvents2(searchQuery) {
     console.log(searchQuery);
+    // Prepare the search object
     const searchObject = {
         keyword: searchQuery
     };
@@ -1321,30 +1312,15 @@ async function searchEvents2(searchQuery) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(searchObject)
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        })
+        if(response){
+            console.log(response.Description);
+            return response;
         }
-
-        const responseData = await response.text();
-
-        // Check if response data is empty
-        if (!responseData) {
-            console.error('Empty response data');
-            return []; // Return empty array
-        }
-
-        const data = JSON.parse(responseData);
-        console.log('Response:', data);
-
-        return data;
     } catch (error) {
         console.error('Error calling SearchEvent API:', error);
-        return []; // Return empty array in case of error
     }
 }
-
 
 
 async function createEvent(eventData) {
