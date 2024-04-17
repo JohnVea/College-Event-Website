@@ -9,8 +9,10 @@ $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 if ($conn->connect_error) {
     returnWithError("Database connection error: " . $conn->connect_error);
 } else {
-    // Retrieve all RSOs from the database
-    $result = $conn->query("SELECT * FROM RSOs");
+    // Retrieve all RSOs with their associated university names from the database
+    $sql = "SELECT RSOs.*, Universities.Name AS UniversityName FROM RSOs 
+            INNER JOIN Universities ON RSOs.UniversityID = Universities.UniversityID";
+    $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $rsoArray = array();
