@@ -6,9 +6,34 @@ document.querySelector('.Signout').addEventListener('click', function() {
     window.location.href = "../index.html";
 });
 
-const userProfileButton = document.querySelector('.userProfile');
+
+const ROSsButton = document.querySelector('.ROSs');
 const eventCard = document.querySelector('.displayEventsContainer');
 const userEvents = document.querySelector('.userEventsContainer');
+const displayOrganizationsContainer = document.querySelector('.displayOrganizationsContainer');
+ROSsButton.addEventListener('click', function(){
+    if(ROSsButton.style.display === 'none'){
+        eventCard.style.display = 'none';
+        userEvents.style.display = 'none';
+        displayOrganizationsContainer.style.display = 'block';
+        ROSsButton.innerHTML = "close";
+        ROSsButton.style.color = 'red';
+        displayOrganizations();
+    }else{
+        eventCard.style.display = 'block'
+        userEvents.style.display = 'none';
+        displayOrganizationsContainer.style.display = 'none';
+        ROSsButton.innerHTML = "Organizations";
+        ROSsButton.style.color = 'black';
+    }
+});
+
+
+
+
+const userProfileButton = document.querySelector('.userProfile');
+// const eventCard = document.querySelector('.displayEventsContainer');
+// const userEvents = document.querySelector('.userEventsContainer');
 userProfileButton.addEventListener('click', function(){
     if(userEvents.style.display === 'none'){
         eventCard.style.display = 'none';
@@ -57,6 +82,12 @@ function closeEventPopUp() {
 document.addEventListener("DOMContentLoaded", function() {
     const editCommentContainer = document.getElementById("EditCommentContainer");
     editCommentContainer.style.display = 'none';
+
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const displayOrganizationsContainer = document.querySelector(".displayOrganizationsContainer");
+    displayOrganizationsContainer.style.display = 'none';
 
 });
 
