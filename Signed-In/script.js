@@ -31,36 +31,44 @@ ROSsButton.addEventListener('click', function(){
 let allOrganizations;
 async function displayOrganizations(){
     allOrganizations = await getAllOrganizations();
+    const displayOrganizationsContainer = document.querySelector('.displayOrganizationsContainer');
     const oOrganizations =  document.querySelector('.organization');
     oOrganizations.innerHTML = '';
+    const privateStudentOrganizations =  await getAllStudentOrganizations();
+    console.log("privateStudentOrganizations: " + privateStudentOrganizations);
+    
     if(allOrganizations){
+        
         displayOrganizationsContainer.innerHTML = '';
         
         const allOrganizationsJson =  JSON.stringify(allOrganizations);
         const allOrganizationsArray = JSON.parse(allOrganizationsJson);
         allOrganizationsArray.forEach(org => {
+            // console.log(privateStudentOrganizations.has(org.RSOID));
+            const organizationDiv = document.createElement('div'); // Create a new div for each organization
+            organizationDiv.classList.add('organization');
+
             const orgName = document.createElement('h1');
             orgName.textContent = org.Name;
-            oOrganizations.appendChild(orgName);
+            organizationDiv.appendChild(orgName);
 
             const orgUniversity = document.createElement('h2');
             orgUniversity.textContent = org.UniversityName;
-            oOrganizations.appendChild(orgUniversity);
-            oOrganizations.style.height = oOrganizations.style.height + 10 + '%';
+            organizationDiv.appendChild(orgUniversity);
+
+            displayOrganizationsContainer.appendChild(organizationDiv); // Append the organization div to the container
         });
-        displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
         
     }else{
         displayOrganizationsContainer.innerHTML = '';
         const orgName = document.createElement('h1');
         orgName.textContent = "No Organizations Found";
-        oOrganizations.appendChild(orgName);
-        oOrganizations.style.height = oOrganizations.style.height + 10 + "%";
-        displayOrganizationsContainer.appendChild(oOrganizations);
+        displayOrganizationsContainer.appendChild(orgName);
         displayOrganizationsContainer.style.alignItems = 'center';
     }
 }
+
 
 async function getAllOrganizations(){
     try {
@@ -247,6 +255,29 @@ async function createStudent(userID, universityID){
 async function getAllStudents() {
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllStudents.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch events: ${response.statusText}`);
+        }
+        // console.log(response);
+
+        const data = await response.json();
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching events:', error.message);
+        return null; 
+    }
+}
+
+async function getAllStudentOrganizations() {
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/GetAllStudentOrganizations.php', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
