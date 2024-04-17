@@ -1304,27 +1304,29 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
 }
 
 async function searchEvents2(searchQuery) {
+    const searchQuery = searchBar.value;
     console.log(searchQuery);
     // Prepare the search object
     const searchObject = {
         keyword: searchQuery
     };
     
-    try {
-        const response = await fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(searchObject)
-        })
-        if(response){
-            console.log(response.Description);
-            return response;
-        }
-    } catch (error) {
-        console.error('Error calling SearchEvent API:', error);
-    }
+    // Call the SearchEvent API with the search query
+    fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(searchObject)
+    })
+    .then(response => response.json())
+    .then(events => {
+        return events;
+    })
+    .catch(error => {
+        
+        console.error('Error searching events:', error);
+    });
 }
 
 
