@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
                 // const commentsJson = await comments.json();
-                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
+                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID));
                 const commentsContainer = document.querySelector('.commentsContainer');
                 
                 
@@ -729,7 +729,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Parse the JSON string back into an array
                 const commentsArray = JSON.parse(commentsJson);
                 // const commentsJson = await comments.json();
-                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === eventID);
+                const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID));
                 const commentsContainer = document.querySelector('.commentsContainer');
                 
                 
