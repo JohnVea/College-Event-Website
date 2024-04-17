@@ -127,7 +127,7 @@ submitOrganizationButton.addEventListener('click', function(){
                 const allOrganizationsJson =  JSON.stringify(allOrganizations);
                 const allOrganizationsArray = JSON.parse(allOrganizationsJson);
                 const createdOrganizationID = allOrganizationsArray.filter(orzation => parseInt(orzation.Name) === newRSOName);
-                createStudentOrganization(userData.UserID.toString(), createdOrganizationID[0].RSOID);
+                createStudentOrganization(parseInt(userData.UserID), parseInt(createdOrganizationID[0].RSOID));
             }
             
             alert("Organization created successfully");
