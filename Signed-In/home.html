@@ -14,7 +14,7 @@
         </button>
         <button class="userProfile" id="userProfile"></button>
         <button class="RSOs" id="RSOs">Organizations</button>
-        <button class="CreateedROSs" id="CreateedRSOs">Created Organizations</button>
+        <button class="CreateRSOs" id="CreateRSOs">Create Organization</button>
 
         
         
@@ -34,6 +34,29 @@
                 <h2 class="organizationUniversity"></h2>
             </div>
         </div>
+
+        <div class="createRSOsContainer" id="createRSOsContainer">
+            <form>
+                <input type="text" id="eventeditName" name="eventeditName" placeholder="">
+                <input type="text" id="eventeditDate" name="eventeditDate" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                <input type="text" id="eventeditTimeHours" placeholder="" name="eventeditTimeHours">
+                <label for="eventeditTimeMinutes">:</label>
+                <input type="text" id="eventeditTimeMinutes" placeholder="" name="eventeditTimeMinutes">
+                <select id="Daytimeedit" name="Daytimeedit" id="Daytimeedit">
+                    <option value="AM">AM</option>
+                    <h1>:</h1>
+                    <option value="PM">PM</option>
+                </select>
+                <input type="text" id="longitudeedit" placeholder="" name="longitudeedit">
+                <input type="text" id="latitudeedit" placeholder="" name="latitudeedit">
+                <input type="text" id="eventeditLocation" placeholder="" name="eventeditLocation">
+                <input type="text" id="eventeditDescription" placeholder="" name="eventeditDescription">
+                <button type="submit" id="submitEventedit" class="submitEventedit">Submit</button>
+                <button type="button" id="closeeditEventForm" class="closePopupedit">Close</button>
+            </form>
+        </div>
+
+
         
         <div class="displayEventsContainer">
             <div class="eventCard">
@@ -92,7 +115,7 @@
             </div>
         </div>
 
-        <div class="userEventsContainer">"
+        <div class="userEventsContainer">
             <div class="userEvents">
                 <h1 class="eventName"></h1>
                 <h2 class="eventDate"></h2>

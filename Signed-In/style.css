@@ -536,7 +536,7 @@ label[for="Daytime"] {
 }
 
 
-.CreateedROSs{
+.CreateRSOs{
     position: absolute;
     bottom: 20%;
     top: 78%;
@@ -569,7 +569,7 @@ label[for="Daytime"] {
     animation: bounce 0.5s;
 }
 
-.CreateedROSs:hover{
+.CreateRSOs:hover{
     cursor: pointer;
     transform: scale(1.03);
     animation: bounce 0.5s;
@@ -691,4 +691,24 @@ label[for="Daytime"] {
 
 .organization{
     transition: transform 0.3s ease;
+}
+
+.createRSOsContainer{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(35px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center;
+    justify-content: center;
+    display: none;
 }
