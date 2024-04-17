@@ -6,8 +6,8 @@ header("Content-Type: application/json");
 
 $inData = getRequestInfo();
 
-$userID = $inData['userID'];
-$universityName = $inData['universityName'];
+$userID = $inData['UserID'];
+$universityName = $inData['UniversityName'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
