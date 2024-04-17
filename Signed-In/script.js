@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('Response:', iD); // Log the response
             // const iDJson = await iD.json();
             // console.log(iDJson);
-            const iDJSON = JSON.stringfy(iD)
+            const iDJSON = iD;
             console.log(iDJSON);
             console.log(JSON.parse(iDJSON));
             
