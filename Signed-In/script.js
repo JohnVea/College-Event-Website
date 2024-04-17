@@ -442,6 +442,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // const commentsJson = await comments.json();
                 const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID));
                 const commentsContainer = document.querySelector('.commentsContainer');
+
+                console.log("filtered comments: " + commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID)));
                 
                 
                 if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
