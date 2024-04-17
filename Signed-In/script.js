@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const iDJson = iD;
 
             console.log("Response JSON:", iDJson); // Log the parsed JSON data
-            console.log("Response:", iD); // Log the Response object
+            console.log("Response:", JSON.stringify(iD)); // Log the Response object
 
             eventID = iDJson[0].Events_ID;
 
