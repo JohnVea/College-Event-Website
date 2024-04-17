@@ -59,8 +59,6 @@ async function displayOrganizations(){
         displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
     }
-    
-
 }
 
 async function getAllOrganizations(){
@@ -86,6 +84,25 @@ async function getAllOrganizations(){
     }
 }
 
+
+const CreateRSOsButton = document.querySelector('.CreateRSOs');
+const createRSOsContainer = document.querySelector('.createRSOsContainer');
+CreateRSOsButton.addEventListener('click', function(){
+    if(createRSOsContainer.style.display === 'none'){
+        eventCard.style.display = 'none';
+        userEvents.style.display = 'none';
+        createRSOsContainer.style.display = 'block';
+        CreateRSOsButton.innerHTML = "close";
+        CreateRSOsButton.style.color = 'red';
+        displayOrganizations();
+    }else{
+        eventCard.style.display = 'block'
+        userEvents.style.display = 'none';
+        createRSOsContainer.style.display = 'none';
+        CreateRSOsButton.innerHTML = "Organizations";
+        CreateRSOsButton.style.color = 'black';
+    }
+});
 
 
 
@@ -148,6 +165,12 @@ document.addEventListener("DOMContentLoaded", function() {
     displayOrganizationsContainer.style.display = 'none';
 
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const createRSOsContainer = document.querySelector(".createRSOsContainer");
+    createRSOsContainer.style.display = 'none';
+});
+
 
 
 
