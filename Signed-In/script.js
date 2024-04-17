@@ -427,7 +427,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const iD = await searchEvents2(eventTitle.textContent);
             // getAllComments().then(response => iD=response);
             const iDJson = await iD.json();
+            console.log(iDJson);
             eventID = iDJson[0].Events_ID;
+            
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
 
