@@ -427,7 +427,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const iD = await searchEvents2(eventTitle.textContent);
 
             // Parse the response body as JSON
-            const iDJson = await iD.json();
+            // const iDJson = await iD.json();
+            const iDJson = iD;
 
             console.log("Response JSON:", iDJson); // Log the parsed JSON data
             console.log("Response:", iD); // Log the Response object
