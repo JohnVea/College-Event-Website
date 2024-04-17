@@ -6,8 +6,8 @@ header("Content-Type: application/json");
 
 $inData = getRequestInfo();
 
-$studentID = $inData['studentID'];
-$rsoID = $inData['rsoID'];
+$studentID = $inData['StudentID'];
+$rsoID = $inData['RSOID'];
 
 $conn = new mysqli("localhost", "JohnVea", "1loveComputers", "COP4710");
 
