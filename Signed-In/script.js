@@ -82,7 +82,7 @@ async function getAllOrganizations(){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         const data = await response.json();
         // console.log(data);
@@ -184,7 +184,7 @@ async function createOrganization(organizationName, organizationUni){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         // const data = await response.json();
         
@@ -212,7 +212,7 @@ async function createStudentOrganization(studentID, rSOID){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         // const data = await response.json();
         
@@ -240,7 +240,7 @@ async function createStudent(userID, universityID){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        // console.log(response);
+        console.log(response);
 
         // const data = await response.json();
         
@@ -427,9 +427,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const iD = await searchEvents2(eventTitle.textContent);
             // getAllComments().then(response => iD=response);
             const iDJson = await iD.json();
-            console.log(iDJson);
             eventID = iDJson[0].Events_ID;
-            
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
 
@@ -449,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }else{
                     commentsContainer.innerHTML = 'Comments:';
                     filteredComments.forEach(comment => {
-                        // console.log("Comment " +comment);
+                        console.log("Comment " +comment);
                         const commentUser = document.createElement('h3');
                         commentUser.textContent = comment.CommentedUser;
                         //commentsContainer.appendChild(commentUser);
@@ -586,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const eventCard = button.closest('.eventPopUp');
             const eventNameElement = eventCard.querySelector('.eventDescription');
             const eventName = eventNameElement.textContent.trim();
-            // console.log("Event Name: " + eventName);
+            console.log("Event Name: " + eventName);
             const CommentText = document.getElementById("CommentText");
 
             const iD = await searchEvents2(eventName);
@@ -631,14 +629,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         const UserEventContainer = document.querySelector('.userEventsContainer');
                         const eventNameElement = container.querySelector('.eventDescription');
                         const eventName = eventNameElement.textContent.trim();
-                        // console.log("Event Name: " + eventName);
+                        console.log("Event Name: " + eventName);
                         const CommentText = container.querySelector("#CommentText").value;
 
                         const iD = await searchEvents2(eventName);
                         const iDJson = await iD.json();
                         const eventID = iDJson[0].Events_ID;
 
-                        // console.log("Deleting: " + CommentText);
+                        console.log("Deleting: " + CommentText);
                         await DeleteComment(CommentText, userData.FirstName, eventID);
                         const userProfile = document.getElementById("userProfile");
                         userProfile.innerHTML = userData.FirstName;
@@ -732,7 +730,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }else{
                     commentsContainer.innerHTML = 'Comments:';
                     filteredComments.forEach(comment => {
-                        // console.log("Comment " +comment);
+                        console.log("Comment " +comment);
                         const commentUser = document.createElement('h3');
                         commentUser.textContent = comment.CommentedUser;
                         //commentsContainer.appendChild(commentUser);
@@ -983,7 +981,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Parse the JSON string to an object
         userData = JSON.parse(userDataJSON);
         profileName.innerHTML = userData.FirstName;
-        // console.log('User data:', userData);
+        console.log('User data:', userData);
         // console.log(JSON.stringify(userData.UserID));
         // console.log(userData.UserID.toString());
 
@@ -1092,7 +1090,7 @@ function createEventCardSearch(event, locations) {
     // Extract date and time from the 'Time' field
     const dateTimeParts = event.Time.split(' '); // Split the time string at the space
     const eventDate = document.createElement('h2');
-    // console.log(event.Time);
+    console.log(event.Time);
     eventDate.textContent = "Date: " +event.Time; 
     eventDate.textContent = "Date: " + dateTimeParts[0]; // Get the date part
     const eventTime = document.createElement('h2');
@@ -1134,7 +1132,7 @@ searchBar.addEventListener('input', searchEvents);
 
 function searchEvents() {
     const searchQuery = searchBar.value;
-    // console.log(searchQuery);
+    console.log(searchQuery);
     // Prepare the search object
     const searchObject = {
         keyword: searchQuery
@@ -1154,7 +1152,7 @@ function searchEvents() {
         const displayEventsContainer = document.querySelector('.displayEventsContainer');
         displayEventsContainer.innerHTML = '';
         
-        // console.log(events);
+        console.log(events);
         // Loop through each search result and create event cards
         events.forEach(event => {
             const eventCard = createEventCardSearch(event, locationsData); // Pass locations data
@@ -1234,19 +1232,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // // Call function to create event
         const eventCreated = await createEvent(eventData);
-        // console.log(userData.UserID);
+        console.log(userData.UserID);
         if(eventType === 'private'){
             if(eventCreated){
                 
                 setTimeout(async () => {
                     const eventDat = await searchEvents2(eventData.eventName);
-                    // console.log(eventDat.Events_ID);
-                    // console.log(eventData);
+                    console.log(eventDat.Events_ID);
+                    console.log(eventData);
                     // console.log(await eventDat.json());
                     const eventDat2 = await eventDat.json();
                     const eventID = eventDat2[0].Events_ID;
-                    // console.log(eventDat2[0]);
-                    // console.log(eventDat2[0].Events_ID);
+                    console.log(eventDat2[0]);
+                    console.log(eventDat2[0].Events_ID);
                     await createPrivateEvent(eventDat2[0].Events_ID, userData.UserID, userData.UserID);
                 }, 5000);
             }
@@ -1267,11 +1265,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 async function createPrivateEvent(eventID, adminID, superAdminID) {
-    // console.log("Under Here");
-    // console.log(eventID);
-    // console.log(adminID);
-    // console.log(superAdminID);
-    // console.log("----------");
+    console.log("Under Here");
+    console.log(eventID);
+    console.log(adminID);
+    console.log(superAdminID);
+    console.log("----------");
     try {
         const response = await fetch('http://unieventverse.com/LAMPAPI/CreatePrivateEvent.php', {
             method: 'POST',
@@ -1299,7 +1297,7 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
 }
 
 async function searchEvents2(searchQuery) {
-    // console.log(searchQuery);
+    console.log(searchQuery);
     // Prepare the search object
     const searchObject = {
         keyword: searchQuery
@@ -1338,7 +1336,7 @@ async function createEvent(eventData) {
             throw new Error('Create Event failed');
         }
 
-        // console.log('Event Created Successfully:');
+        console.log('Event Created Successfully:');
         return true;
 
     } catch (error) {
