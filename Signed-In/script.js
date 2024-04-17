@@ -45,7 +45,7 @@ async function displayOrganizations(){
             const orgUniversity = document.createElement('h2');
             orgUniversity.textContent = org.UniversityName;
             oOrganizations.appendChild(orgUniversity);
-            oOrganizations.style.height = oOrganizations.style.height + 7 + '%';
+            oOrganizations.style.height = oOrganizations.style.height + 20;
         });
         displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
@@ -55,7 +55,7 @@ async function displayOrganizations(){
         const orgName = document.createElement('h1');
         orgName.textContent = "No Organizations Found";
         oOrganizations.appendChild(orgName);
-        oOrganizations.style.height = oOrganizations.style.height + 7 + '%';
+        oOrganizations.style.height = oOrganizations.style.height + 20;
         displayOrganizationsContainer.appendChild(oOrganizations);
         displayOrganizationsContainer.style.alignItems = 'center';
     }
