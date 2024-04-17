@@ -1303,12 +1303,11 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
     }
 }
 
-async function searchEvents2(searchQuery) {
-    const searchQuery = searchBar.value;
-    console.log(searchQuery);
+async function searchEvents2(searchQuery2) {
+    console.log(searchQuery2);
     // Prepare the search object
     const searchObject = {
-        keyword: searchQuery
+        keyword: searchQuery2
     };
     
     // Call the SearchEvent API with the search query
