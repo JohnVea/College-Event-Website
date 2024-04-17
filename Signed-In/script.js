@@ -1022,7 +1022,7 @@ function fetchEvents() {
 
                 // Set height of event card based on description height
                 const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-                eventCard.style.height = descriptionHeight + 7 + '%';
+                eventCard.style.height = descriptionHeight + 3 + '%';
             });
         })
         .catch(error => {
@@ -1170,7 +1170,7 @@ function searchEvents() {
 
             // Set height of event card based on description height
             const descriptionHeight = eventCard.querySelector('.eventDescription').clientHeight;
-            eventCard.style.height = descriptionHeight + 10 + '%';
+            eventCard.style.height = descriptionHeight + 3 + '%';
         });
     })
     .catch(error => {
