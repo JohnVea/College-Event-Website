@@ -107,9 +107,9 @@ CreateRSOsButton.addEventListener('click', function(){
 const submitOrganizationButton = document.getElementById("submitOrganization");
 const newOrgName = document.querySelector('.OrganizationName');
 const newOrgUni = document.querySelector('.OrganizationUniversity');
-const newOrgType = document.querySelector('.OrganizationType');
+
 submitOrganizationButton.addEventListener('click', function(){
-    const newRSOName = newOrgName.innerHTML.textContent;
+    const newRSOName = document.getElementById('OrganizationName').value;
     const createdOrganization = createOrganization(newRSOName, newOrgUni.innerHTML.textContent);
     eventCard.style.display = 'block'
     userEvents.style.display = 'none';
@@ -121,7 +121,7 @@ submitOrganizationButton.addEventListener('click', function(){
 
     async function handleOrganizationCreation() {
         if (createdOrganization) {
-
+            const newOrgType = document.getElementById('OrganizationType').value;
             if(newOrgType.innerHTML.textContent === 'student'){
                 const allOrganizations = await getAllOrganizations();
                 const allOrganizationsJson =  JSON.stringify(allOrganizations);
