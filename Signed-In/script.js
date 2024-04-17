@@ -82,7 +82,7 @@ async function getAllOrganizations(){
         if (!response.ok) {
             throw new Error(`Failed to fetch events: ${response.statusText}`);
         }
-        console.log(response);
+        // console.log(response);
 
         const data = await response.json();
         // console.log(data);
@@ -424,18 +424,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             // let iD;
-            const iD = await searchEvents2(eventTitle.textContent);
-
-            // Parse the response body as JSON
-            // const iDJson = await iD.json();
-            const iDJson = iD;
-
-            console.log("Response JSON:", iDJson); // Log the parsed JSON data
-            console.log("Response:", JSON.stringify(iD)); // Log the Response object
-
+            // const iD = await searchEvents2(eventTitle.textContent);
+            const searchQuery = eventTitle.textContent.substring(0, 10);
+            const iD = await searchEvents2(searchQuery);            
+            // getAllComments().then(response => iD=response);
+            const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
-
-            
             // getAllComments().then(response => console.log("Gettting comments ", response));
 
 
@@ -1304,29 +1298,28 @@ async function createPrivateEvent(eventID, adminID, superAdminID) {
     }
 }
 
-async function searchEvents2(searchQuery2) {
-    console.log(searchQuery2);
+async function searchEvents2(searchQuery) {
+    console.log(searchQuery);
     // Prepare the search object
     const searchObject = {
-        keyword: searchQuery2
+        keyword: searchQuery
     };
     
-    // Call the SearchEvent API with the search query
-    fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(searchObject)
-    })
-    .then(response => response.json())
-    .then(events => {
-        return events;
-    })
-    .catch(error => {
-        
-        console.error('Error searching events:', error);
-    });
+    try {
+        const response = await fetch('http://unieventverse.com/LAMPAPI/SearchEvent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(searchObject)
+        })
+        if(response){
+            console.log(response.Description);
+            return response;
+        }
+    } catch (error) {
+        console.error('Error calling SearchEvent API:', error);
+    }
 }
 
 
