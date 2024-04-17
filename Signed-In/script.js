@@ -1243,9 +1243,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // // Call function to create event
         const eventCreated = await createEvent(eventData);
         console.log(userData.UserID);
-        const newOrgType = document.getElementById('eventType').value;
-        if(newOrgType === 'private'){
-        // if(eventType === 'private'){
+        if(eventType === 'private'){
             if(eventCreated){
                 
                 setTimeout(async () => {
