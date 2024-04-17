@@ -425,11 +425,13 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             // let iD;
             const iD = await searchEvents2(eventTitle.textContent);
-            // getAllComments().then(response => iD=response);
-            
+
+            // Parse the response body as JSON
             const iDJson = await iD.json();
-            console.log("Response JSON " + iDJson);
-            console.log("Response " + iD)
+
+            console.log("Response JSON:", iDJson); // Log the parsed JSON data
+            console.log("Response:", iD); // Log the Response object
+
             eventID = iDJson[0].Events_ID;
 
             
