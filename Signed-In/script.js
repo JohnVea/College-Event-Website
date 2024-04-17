@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             // let iD;
             // const iD = await searchEvents2(eventTitle.textContent);
-            const searchQuery = eventTitle.textContent.substring(0, 10);
+            const searchQuery = eventTitle.textContent.substring(0, 50);
             const iD = await searchEvents2(searchQuery);            
             // getAllComments().then(response => iD=response);
             const iDJson = await iD.json();
@@ -443,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const filteredComments = commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID));
                 const commentsContainer = document.querySelector('.commentsContainer');
 
-                console.log("filtered comments: " + commentsArray.filter(comment => parseInt(comment.CommentedEventID) === parseInt(eventID)));
+                
                 
                 
                 if(filteredComments == null || filteredComments == undefined || filteredComments.length == 0){
@@ -592,7 +592,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const CommentText = document.getElementById("CommentText");
 
             // const iD = await searchEvents2(eventName);
-            const searchQuery = eventName.substring(0, 10);
+            const searchQuery = eventName.substring(0, 50);
             const iD = await searchEvents2(searchQuery);
             const iDJson = await iD.json();
             const eventID = iDJson[0].Events_ID;
@@ -639,7 +639,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         const CommentText = container.querySelector("#CommentText").value;
 
                         // const iD = await searchEvents2(eventName);
-                        const searchQuery = eventName.substring(0, 10);
+                        const searchQuery = eventName.substring(0, 50);
                         const iD = await searchEvents2(searchQuery);
                         const iDJson = await iD.json();
                         const eventID = iDJson[0].Events_ID;
@@ -716,7 +716,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let CommenterName = document.querySelector('.commentedUser');
             // let iD;
             //const iD = await searchEvents2(eventTitle.textContent);
-            const searchQuery = eventTitle.textContent.substring(0, 10);
+            const searchQuery = eventTitle.textContent.substring(0, 50);
             const iD = await searchEvents2(searchQuery);
             // getAllComments().then(response => iD=response);
             const iDJson = await iD.json();
