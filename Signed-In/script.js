@@ -117,8 +117,8 @@ submitOrganizationButton.addEventListener('click', function(){
     createRSOsContainer.style.display = 'none';
     CreateRSOsButton.innerHTML = "Create Organization";
     CreateRSOsButton.style.color = 'black';
-    newOrgName.innerHTML = '';
-    newOrgUni.innerHTML = '';
+    // newOrgName.innerHTML = '';
+    // newOrgUni.innerHTML = '';
 
     async function handleOrganizationCreation() {
         if (createdOrganization) {
