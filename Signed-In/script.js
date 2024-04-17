@@ -123,7 +123,7 @@ submitOrganizationButton.addEventListener('click', function(){
     async function handleOrganizationCreation() {
         if (createdOrganization) {
             const newOrgType = document.getElementById('OrganizationType').value;
-            if(newOrgType.innerHTML.textContent === 'student'){
+            if(newOrgType === 'student'){
                 const allOrganizations = await getAllOrganizations();
                 const allOrganizationsJson =  JSON.stringify(allOrganizations);
                 const allOrganizationsArray = JSON.parse(allOrganizationsJson);
