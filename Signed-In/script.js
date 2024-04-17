@@ -589,7 +589,9 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Event Name: " + eventName);
             const CommentText = document.getElementById("CommentText");
 
-            const iD = await searchEvents2(eventName);
+            // const iD = await searchEvents2(eventName);
+            const searchQuery = eventName.substring(0, 10);
+            const iD = await searchEvents2(searchQuery);
             const iDJson = await iD.json();
             const eventID = iDJson[0].Events_ID;
 
@@ -634,7 +636,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         console.log("Event Name: " + eventName);
                         const CommentText = container.querySelector("#CommentText").value;
 
-                        const iD = await searchEvents2(eventName);
+                        // const iD = await searchEvents2(eventName);
+                        const searchQuery = eventName.substring(0, 10);
+                        const iD = await searchEvents2(searchQuery);
                         const iDJson = await iD.json();
                         const eventID = iDJson[0].Events_ID;
 
@@ -709,7 +713,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let CommenterName = document.querySelector('.commentedUser');
             // let iD;
-            const iD = await searchEvents2(eventTitle.textContent);
+            //const iD = await searchEvents2(eventTitle.textContent);
+            const searchQuery = eventTitle.textContent.substring(0, 10);
+            const iD = await searchEvents2(searchQuery);
             // getAllComments().then(response => iD=response);
             const iDJson = await iD.json();
             eventID = iDJson[0].Events_ID;
