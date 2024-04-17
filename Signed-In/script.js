@@ -28,8 +28,9 @@ ROSsButton.addEventListener('click', function(){
     }
 });
 
+let allOrganizations;
 async function displayOrganizations(){
-    const allOrganizations = await getAllOrganizations();
+    allOrganizations = await getAllOrganizations();
     const oOrganizations =  document.querySelector('.organization');
     oOrganizations.innerHTML = '';
     if(allOrganizations){
@@ -111,12 +112,15 @@ submitOrganizationButton.addEventListener('click', function(){
     const newRSOName = document.getElementById('OrganizationName').value;
     
     const newOrgUni = document.querySelector('.OrganizationUniversity');
-    const createdOrganization = createOrganization(newRSOName, document.getElementById('OrganizationUniversity').value);
-    eventCard.style.display = 'block'
-    userEvents.style.display = 'none';
-    createRSOsContainer.style.display = 'none';
-    CreateRSOsButton.innerHTML = "Create Organization";
-    CreateRSOsButton.style.color = 'black';
+    let createdOrganization;
+    (async function() {
+        createdOrganization = await createOrganization(newRSOName, document.getElementById('OrganizationUniversity').value);
+        eventCard.style.display = 'block'
+        userEvents.style.display = 'none';
+        createRSOsContainer.style.display = 'none';
+        CreateRSOsButton.innerHTML = "Create Organization";
+        CreateRSOsButton.style.color = 'black';
+    })();
     // newOrgName.innerHTML = '';
     // newOrgUni.innerHTML = '';
 
@@ -124,7 +128,7 @@ submitOrganizationButton.addEventListener('click', function(){
         if (createdOrganization) {
             const newOrgType = document.getElementById('OrganizationType').value;
             if(newOrgType === 'student'){
-                const allOrganizations = await getAllOrganizations();
+                allOrganizations = await getAllOrganizations();
                 const allOrganizationsJson =  JSON.stringify(allOrganizations);
                 const allOrganizationsArray = JSON.parse(allOrganizationsJson);
                 const createdOrganizationID = allOrganizationsArray.filter(orzation => parseInt(orzation.Name) === newRSOName);
