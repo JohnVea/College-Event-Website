@@ -428,9 +428,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // getAllComments().then(response => iD=response);
             
             const iDJson = await iD.json();
-            console.log(iDJson);
-            console.log(iD)
-            console.log("Text: " +iD.text);
+            console.log("Response JSON " + iDJson);
+            console.log("Response " + iD)
             eventID = iDJson[0].Events_ID;
 
             
