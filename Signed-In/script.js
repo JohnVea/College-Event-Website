@@ -12,7 +12,7 @@ const eventCard = document.querySelector('.displayEventsContainer');
 const userEvents = document.querySelector('.userEventsContainer');
 const displayOrganizationsContainer = document.querySelector('.displayOrganizationsContainer');
 ROSsButton.addEventListener('click', function(){
-    if(ROSsButton.style.display === 'none'){
+    if(displayOrganizationsContainer.style.display === 'none'){
         eventCard.style.display = 'none';
         userEvents.style.display = 'none';
         displayOrganizationsContainer.style.display = 'block';
