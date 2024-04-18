@@ -153,8 +153,6 @@ submitOrganizationButton.addEventListener('click', function(){
             }
             
             alert("Organization created successfully");
-        } else {
-            alert("Organization Already Exist successfully");
         }
     }
 
