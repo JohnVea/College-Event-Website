@@ -22,4 +22,4 @@ Univentverse is a platform designed to connect users with events and organizatio
 To use Univentverse, simply open the web application in your browser. You can navigate through the various features using the buttons and forms provided on the interface. 
 
 ## Installation
-There is no installation required to use Univentverse, as it is a web-based application. Simply visit the website unieventverse.com(#) to access the platform.
+There is no installation required to use Univentverse, as it is a web-based application. Simply visit the website [unieventverse.com](#) to access the platform.
