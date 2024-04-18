@@ -184,14 +184,8 @@ async function getUsers() {
       }
   
       const data = await response.json();
-      console.log('Users:', data);
+      
     } catch (error) {
       console.error('Error fetching users:', error.message);
     }
   }
-
-document.querySelector('.btnLogout').addEventListener('click', function() {
-
-    localStorage.clear();
-    window.location.href = "./index.html";
-});
